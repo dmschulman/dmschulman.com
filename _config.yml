@@ -1,0 +1,81 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site config
+title: David M. Schulman
+title_separator: |
+description: >-
+  A sometimes blog containing words, works, and wonders.
+bio: >-
+  Frontend web developer | Electronic musician
+baseurl: ""
+url: "https://dmschulman.com"
+sitename: dmschulman.com
+sass:
+  sass_dir: assets/scss
+  style: compressed
+
+# Contact and Social
+email: hello@dmschulman.com
+twitter_username: dmschulman
+github_username: dmschulman
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:slug.html
+  pages:
+    output: true
+  photos:
+    output: true
+  projects:
+    output: true
+  gear:
+    output: true
+    permalink: /studio/gear/:name.html
+  music:
+    output: true
+  work:
+    output: true
+collections_dir: collections
+
+# Front matter defaults
+defaults:
+  -
+    scope:
+      path: "_posts" # an empty string here means all files in the project
+      type: "/collections/_posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: "/collections/_gear"
+    values:
+      layout: "page"
+
+# Build settings
+theme: #minima
+mytheme: concentrate
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

@@ -1,0 +1,12 @@
+{
+  "navigation": {
+    "links": [
+      { "href": "index.html", "title": "Home" },
+      { "href": "about/index.html", "title": "About" },
+      { "href": "studio/index.html", "title": "Studio" },
+      { "href": "projects/index.html", "title": "Projects" },
+      { "href": "photos/index.html", "title": "Photos" },
+      { "href": "blog/index.html", "title": "Blog" }
+    ]
+  }
+}

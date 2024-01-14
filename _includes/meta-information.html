@@ -1,0 +1,37 @@
+<div class="meta-information">
+  {% if post.date %}
+  <span><i aria-hidden class="far fa-calendar-alt" title="Date"></i>Posted: {{post.date | date: '%B %d, %Y'}}</span>
+  {% endif %}
+  {% if page.updated %}
+  <span><i aria-hidden class="far fa-clock-alt" title="Updated"></i>Last update: {{page.path | prepend: "/" | prepend: site.source | file_date | date: "%B %d, %Y"}}.</span>
+  {% endif %}
+  {% if post.tags.size > 0 %}
+  <span class="tags"><i aria-hidden class="fas fa-tags" title="Tags"></i>Tagged: {{post.tags | sort | join: ", "}}</span>
+  {% endif %}
+  
+  {% if site.gear %}
+    {% if page.image %}
+    <img class="hero" src="{{page.image}}" title="Picture of a {{page.make}} {{page.model}}" />
+    {% endif %}
+    <div class="inline">
+      {% if page.category %}
+      <span><i aria-hidden class="fas fa-folder" title="Category"></i>Category: {{page.category}}</span>
+      {% endif %}
+      {% if page.format %}
+      <span><i aria-hidden class="fas fa-yin-yang" title="Format"></i>Format: {{page.format}}</span>
+      {% endif %}
+    </div>
+    <div class="inline">
+      {% if page.year %}
+      <span><i aria-hidden class="far fa-calendar-alt" title="Year"></i>First Produced: {{page.year}}</span>
+      {% endif %}
+      {% if page.domain %}
+      <span><i aria-hidden class="fas fa-wave-square" title="Domain"></i>Domain: {{page.domain}}</span>
+      {% endif %}
+      {% if page.voices %}
+      <span><i aria-hidden class="fas fa-microphone" title="Voices"></i>Voices: {{page.voices}}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+</div>

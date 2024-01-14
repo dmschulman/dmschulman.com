@@ -1,0 +1,130 @@
+body {
+  &.concentrate {
+    background-color: $concentrate-page-background;
+    color: $concentrate-primary-foreground;
+    font-family: monospace;
+
+    .site-wrapper {
+      padding: 1rem;
+
+      @include mq(bp1024) {
+        padding: 2rem 1rem;
+      }
+
+      header,
+      main,
+      footer {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1rem;
+
+        a {
+          color: $concentrate-secondary-foreground;
+
+          &:hover,
+          &:focus {
+            color: $concentrate-secondary-foreground;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        span,
+        p {
+          margin: 0 0 0.5rem 0;
+        }
+
+        span {
+          color: $concentrate-secondary-foreground;
+        }
+
+        nav {
+          margin: 1rem 0 0 0;
+          ul {
+            display: flex;
+
+            li {
+
+              &:after {
+                content: "|";
+                padding: 0 10px;
+              }
+
+              &:last-child {
+                &:after {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      main {
+        margin: 4rem auto;
+
+        article {
+          h1 {
+            margin: 0 0 1rem 0;
+          }
+
+          .meta-information {
+            margin: 0 0 3rem 0;
+
+            img.hero {
+              margin: 0 0 0.5rem 0;
+            }
+
+            span {
+              display: block;
+              margin: 0 0 0.5rem 0;
+              text-transform: capitalize;
+            }
+
+            .inline {
+              display: block;
+              margin: 0 0 0.5rem 0;
+
+              span {
+                display: inline;
+                margin: 0 1rem 0 0;
+              }
+            }
+          }
+
+          p {
+            margin: 0 0 1rem 0;
+            line-height: 1.5;
+          }
+        }
+      }
+
+      footer {
+        span {
+          &.colophon {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            margin: 0.5rem 0 0 0;
+
+            ul {
+              display: flex;
+              flex-direction: row;
+              width: 25%;
+
+              > li {
+                flex: 1 1 auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+---
+title: If this is the future of advertising we are in for some serious trouble
+layout: post
+tags:
+- television
+- musings
+- the media
+- business
+source-id: 13jmdvFbdB1JlmN271LOxoxqH-kZ1-6lDL1Z4Tp7h8cY
+published: true
+---
+This past weekend, instead of watching Superbowl XLIII, I ended up doing some video editing work and hammered out a few more details with my portfolio (exciting, right?). I expected the Steelers to win so I don't believe I missed much in the way of a nail-biting football game (except for that 100 yard touchdown, that was probably cool to see). I tend to watch the Superbowl for the same thing everyone else watches the Superbowl, for the commercials, but I apparently didn’t miss much there either given the fact that some of the worst spots in recent memory (at least according to those on the internet) aired this year. I believe I did however miss one highly significant event by not tuning in this year.
+
+In what might prove to be [the Skynet of television commercial advertising](http://adage.com/videos/pepsi-pepsuber/474), one single human-made creation that will inevitably have a catastrophic cascading effect guaranteeing our demise as a society, a series of Pepsi commercials aired which, upon watching after the game, has left disturbed and even a little bit frightened. This is not the first time Saturday Night Live has experimented with brand synergy, using one of their characters or sketches to sell a product, but a series of cola commercials featuring everyone's favorite mulleted blue-collar action detective, MacGruber, left me without a laugh and a sinking feeling inside the pit of my stomach.
+
+As is the typical setup to every skit featuring MacGruber, and incidentally the setup to this lazy excuse for a series of commercials, the knock-off MacGyver gets himself and his friends into a dangerous situation and then, by using his carefully honed skills of household ingenuity, attempts to foil the bad thing at hand. The clever tweak to the MacGruber premise is, of course, his plan backfires and (hilarious) kills everyone. Nothing screams "refreshment" quite like the literal death screams of MacGruber and his colleagues (and presumably a bad guy).
+
+![image alt text]({{ site.url }}/public/8DIJRhM2wGq0NNcc4VCIw_img_0.jpg)
+
+The worst part about this entire campaign, putting aside the fact that the advertisements suck and aren't that funny (what can we really expect from commercials these days anyhow?), has to do with how the writers treat the material as this tongue-in-cheek joke about the absurdities of product placement on television (or even the absurdities of the commercial medium itself). This spot is of course a commercial advertisement aired during the Oscars of commercial advertisements. It better be your best material, but whereas most commercials will leave you with an emotion or at least a catchphrase, there’s literally nothing for the viewer to unpack or meditation on that might help them reflect on the absurdities of the consumer culture we’ve all been forcibly conditioned to cherish and appreciate.
+
+So if these ads aren't trying to impress us with a spectacle or flood us with some kind of nostalgia or feeling, or even simply convey something about the qualities of a product, what are they trying to do here? I guess it’s supposed to be funny, but on its face it’s honestly not humorous. There’s no punchline or clever bit, it’s just a tired gag that people have seen many times before on SNL. It’s just absurdity for the sake of absurdity, which I have nothing against, but the thing that I believe ticks me off about this particular MacGruber Pepsi commercial is that it assumes it offers the audience something. It assumes the audience is dumb enough to imply this commercial is clever because it’s related to Saturday Night Live and airing during the Superbowl. Insulting, no?
+
+And I have nothing against the absurd. And absurdity is great! Who doesn't like absurdity? But in this context the commercial leaves me nagging because absurdity is a lazy prop used in place of actual humor or content, a stand-in for effort. And ultimately, given what "viral videos" have come to represent the last five or so years, this MacGruber commercial is probably what all commercials will start to look like very soon.
+
+Not to hold the world of TV commercials to too high a standard, but for quite a long time the business has been decent enough to maintain some kind of distinction between what's a piece of TV writing and what’s a TV commercial. With this single series of commercials the comedy writers over at have SNL have managed to make both their brand and Pepsi’s look irrelevantly out of touch, but knowing what SNL has become over the last few years, this was not a difficult task for their writers. As any slap-happy ad executive will tell you, television programming has always just been a vehicle for advertising (those great 30 second blips between pesky 30 minute programming blocks). Maybe I’m being too critical about a silly little piece of ephemera here, but I also know there’s also nothing more obnoxious than someone who demands your undivided attention but offers the audience nothing in return. Pepsi MacGruber is that obnoxious individual in television commercial form.
+
+On a similar and depressing note, I was really disappointed to see some silly videos along these lines on Boing Boing, [essentially a Cheetos commercial](https://boingboing.net/2009/02/04/bb-video-this-is-an.html) of all things. At least Boing Boing is transparent enough to let me know this is an ad and it helps support their operations. I'm wondering what convinced them this was a quality product and something desirable enough to promote among their audience. Just par for the course, I suppose.
+
+I write all of this because it makes me kind of afraid. My fear is that this is a trend starting to form. As the line between TV programming and TV advertising begins to blur, whats to stop cash-strapped networks from indulging in the same smug product placement bullcrap movies have been doing for decades? The ad execs can have it as far as I'm concerned. Go plug stuff on Two and A Half Men or Desperate Housewives. I’ll warn you though, if you get your corporate peanut butter anywhere near my chocolatey smooth hour of LOST every week heads will roll immediately.
+

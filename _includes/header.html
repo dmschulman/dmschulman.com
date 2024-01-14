@@ -1,0 +1,15 @@
+<header>
+  {% if site.title %}
+  <span>{{site.title}}</span>
+  {% endif %}
+  {% if site.bio %}
+  <p>{{site.bio}}</p>
+  {% endif %}
+  <nav>
+    <ul>
+      {% for links in site.data.header.navigation.links | strip %}
+      <li><a href="{{site.baseurl}}/{{links.href}}">{{links.title}}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>

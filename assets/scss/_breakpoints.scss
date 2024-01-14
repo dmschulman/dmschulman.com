@@ -1,0 +1,28 @@
+@mixin mq ($breakpoint) {
+
+  @if $breakpoint == bp576 {
+    @media only screen and (min-width: 576px) { @content; }
+  }
+
+  @if $breakpoint == bp768 {
+    @media only screen and (min-width: 768px) { @content; }
+  }
+
+  @if $breakpoint == bp1024 {
+    @media only screen and (min-width: 1024px) { @content; }
+  }
+
+  @if $breakpoint == bp1280 {
+    @media only screen and (min-width: 1280px) { @content; }
+  }
+
+  @if $breakpoint == bp1600 {
+    @media only screen and (min-width: 1536px) { @content; }
+  }
+}
+
+$bp576: 'screen and (min-width: 576px)'; // For small screens (0px-576px), used only in special cases where content needs to be considered for tiny screens
+$bp768: 'screen and (min-width: 768px)'; // For tablets and small screens (0px-768px), this is the starting point for designs, elements shift as screen size increases
+$bp1024: 'screen and (min-width: 1024px)'; // For tablets and legacy desktops, layouts shift to accommodate more navigation and other UI elements
+$bp1280: 'screen and (min-width: 1280px)'; // For traditional desktops, layout gains more air and more legibility
+$bp1600: 'screen and (min-width: 1536px)'; // For modern desktops and devices with large screens, iPads are 1536px wide
