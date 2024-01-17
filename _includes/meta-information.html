@@ -1,12 +1,12 @@
 <div class="meta-information">
-  {% if post.date %}
-  <span><i aria-hidden class="far fa-calendar-alt" title="Date"></i>Posted: {{post.date | date: '%B %d, %Y'}}</span>
+  {% if page.date %}
+  <span><i aria-hidden class="far fa-calendar-alt" title="Date"></i>Posted: {{page.date | date: '%B %d, %Y'}}</span>
   {% endif %}
   {% if page.updated %}
   <span><i aria-hidden class="far fa-clock-alt" title="Updated"></i>Last update: {{page.path | prepend: "/" | prepend: site.source | file_date | date: "%B %d, %Y"}}.</span>
   {% endif %}
-  {% if post.tags.size > 0 %}
-  <span class="tags"><i aria-hidden class="fas fa-tags" title="Tags"></i>Tagged: {{post.tags | sort | join: ", "}}</span>
+  {% if page.tags.size > 0 %}
+  <span class="tags"><i aria-hidden class="fas fa-tags" title="Tags"></i>Tagged: {{page.tags | sort | join: ", "}}</span>
   {% endif %}
   
   {% if site.gear %}

@@ -1,0 +1,11 @@
+---
+layout: default
+title: "Biography"
+description: ""
+---
+
+<!-- As we watch our digital world evolve in complexity and scale, it is apparent that many online spaces have gotten away from the simple ideas that drove the early web. My talent as a developer rests between the integration of new technologies and **building upon a solid foundation of semantic HTML, responsive CSS, mobile friendly user experience (UX), and reliable web accessibility (a11y)**. Design around these principals and the rest will follow, because if your site can't be viewed by all, across any device, and at remarkable speed, then what's the point? Though I am framework agnostic, I'm a big believer in utilizing UI patterns, asset libraries, and thinking in terms of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/). -->
+
+<!-- Web development and design has been a devotion of mine as far back as I can remember. With humble beginnings on Geocities (my first ever website was about the game [Unreal](https://en.wikipedia.org/wiki/Unreal_(1998_video_game))!) and bare HTML, I dabbled and experimented with my own websites that resembled the graphic and print layouts I grew up admiring moreso than they did any hypetext document (thanks for the inspiration, [Phaidon Press](https://en.wikipedia.org/wiki/Phaidon_Press)). In many ways I credit [CSS Zen Garden](http://csszengarden.com/) and even [Superbad.com](http://superbad.com/) for showing me very early on what was possible with a medium such as the web.
+
+Looking to break out of Geocities and host my own websites led me to work with the [LAMP stack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)), and by the time the first version of [Wordpress](https://wordpress.org/) dropped in 2003 I was well on my way to becoming a Wordpress theme developer, blog operator, and begrudging [PHP](https://www.php.net/) coder. Hacking around with PHP opened my eyes to the possibilities of what the web could provide users with, and this insight eventually led me to start messing around with [Ruby on Rails](https://rubyonrails.org/) during college, a framework way ahead of its time. -->

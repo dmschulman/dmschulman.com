@@ -1,8 +1,22 @@
 /* Contains definitions for default elements */
 /* Actual "theme" styles come from theme scss */
 
-h1 {
-  font-size: 3rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1rem 0;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.6rem }
+h3 { font-size: 2.2rem }
+
+p {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 i.fab,
@@ -17,6 +31,17 @@ i.fas {
 
 article ul {
   margin: 0 0 1rem 0;
+}
+
+/* IMAGES */
+
+img.circle {
+  border-radius: 100%;
+}
+
+figure.inline-left {
+  float: left;
+  margin: 0 1rem 0 0;
 }
 
 /* LISTS */

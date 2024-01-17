@@ -19,7 +19,6 @@ tags:
   - keyboard
   - semi-modular
 image: https://dmschulman.com/studio/img/roland-sh-101.jpg
-own: true
 blurb: "One of the most iconic electronic musical instruments Roland has ever produced. When you hear people talking about the analog synths of yesteryear, how their lack of digital microchips and circuits constitutes some kind of pure electronic soul, it's the buttery smooth sound of the Roland SH-101 that everyone's really alluding to. The warm rubbery bass and tasty leads you can get out of the SH-101, not to mention the weird spacey FX and modulated noises you can make, are legendary in electronic music, especially on techno and house tracks."
 ---
 There are many reasons why this grey monophonic keyboard, essentially a keytar judging by the way it was advertised, has so much going for it, but to really understand what makes the SH-101 so special I would encourage you to just look at the thing. It's beautifully simplistic, everything is right there in front of you at the touch of a knob or slider. There are no menu systems, no shift button or secret key presses, the position of each slider elegantly illustrates what's currently being heard. The built-in sequencer can get a little hairy to work with at times but the SH-101 is an honest piece of gear, everything it's capible of is apparent from first glance. And it's simply a pleasure to look at and use.

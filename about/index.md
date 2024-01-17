@@ -4,12 +4,18 @@ title: "About"
 description: "Hey there, my name is David Michael Schulman (he/him) and I’m a frontend web developer currently based out of Philadelphia, PA. I admire minimal, lightweight, and well-designed web applications, endeavoring to incorporate those values into every project that comes across my desk."
 ---
 
-<img src="https://dmschulman.com/assets/img/david-m-schulman-headshot.jpg" alt="David M. Schulman" class="headshot" />
+<figure class="inline-left">
+  <img src="https://dmschulman.com/assets/img/david-m-schulman-headshot.jpg" alt="A headshot of David M. Schulman" class="circle" />
+</figure>
 
-_Hey there_, my name is David Michael Schulman (he/him) and I am a frontend web developer currently based out of **Philadelphia, PA**. ***I admire minimal, lightweight, and well-designed web applications, endeavoring to incorporate those values into every project that comes across my desk***. In my current role, I cover full-stack web development (with a focus on frontend) for [Saint Joseph's University in Philadelphia](https://www.sju.edu/), maintaining and evolving the university's public-facing web presence across a variety of systems and applications.
+_Hey ya_, thanks for visiting. My name is David Michael Schulman (he/him) and I'm an enthusiastic frontend web developer based out of **Philadelphia, PA**. I design and build lightweight, accessible, and minimal-inspired web applications using an ever-evolving set of tools and tactics. In my current role at [Saint Joseph's University](https://www.sju.edu/) I oversee the university's public-facing web presence across multiple stacks.
 
-As we watch our digital world evolve in complexity and scale, it is apparent that many online spaces have gotten away from the simple ideas that drove the early web. My talent as a developer rests between the integration of new technologies and **building upon a solid foundation of semantic HTML, responsive CSS, mobile friendly user experience (UX), and reliable web accessibility (a11y)**. Design around these principals and the rest will follow, because if your site can't be viewed by all, across any device, and at remarkable speed, then what's the point? Though I am framework agnostic, I'm a big believer in utilizing UI patterns, asset libraries, and thinking in terms of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/).
+In my spare time I like to travel (mostly by bike), build electronics (mainly synthesizers and sound modules), attend and perform live music, take photographs, write, and work with my hands. You'll find me documenting most of those experiences here on this very website! Of course I'm keeping it short and sweet, but you can read more about my background and what got me into tech in the first place [here](bio.html).
 
-<!-- Web development and design has been a devotion of mine as far back as I can remember. With humble beginnings on Geocities (my first ever website was about the game [Unreal](https://en.wikipedia.org/wiki/Unreal_(1998_video_game))!) and bare HTML, I dabbled and experimented with my own websites that resembled the graphic and print layouts I grew up admiring moreso than they did any hypetext document (thanks for the inspiration, [Phaidon Press](https://en.wikipedia.org/wiki/Phaidon_Press)). In many ways I credit [CSS Zen Garden](http://csszengarden.com/) and even [Superbad.com](http://superbad.com/) for showing me very early on what was possible with a medium such as the web.
+## Skills and expertise
 
-Looking to break out of Geocities and host my own websites led me to work with the [LAMP stack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)), and by the time the first version of [Wordpress](https://wordpress.org/) dropped in 2003 I was well on my way to becoming a Wordpress theme developer, blog operator, and begrudging [PHP](https://www.php.net/) coder. Hacking around with PHP opened my eyes to the possibilities of what the web could provide users with, and this insight eventually led me to start messing around with [Ruby on Rails](https://rubyonrails.org/) during college, a framework way ahead of its time. -->
+HTML5, XML, XSL/XSLT, Jekyll, Wordpress, Drupal
+
+CSS, SASS, Bootstrap, Foundation
+
+Javascript, jQuery, Node, React
