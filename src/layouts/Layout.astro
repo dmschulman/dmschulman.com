@@ -1,0 +1,50 @@
+---
+import '../styles/style.scss';
+import Head from '../components/globals/Head.astro';
+import Header from '../components/globals/Header.astro';
+import Footer from '../components/globals/Footer.astro';
+import { Breadcrumbs } from "astro-breadcrumbs";
+import json from '../data/site.json';
+
+const themeClass = json.site.meta.theme;
+
+const { pageTitle = "Page", customBreadcrumbLinks = [], } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+    <Head />
+	</head>
+
+	<body {...(themeClass && {class: themeClass})}>
+    <Header />
+    <main>
+      <h1 class="page-heading">{pageTitle}</h1>
+      <Breadcrumbs
+        mainBemClass="breadcrumbs"
+        linkTextFormat="capitalized"
+        customTitle={Astro.props.frontmatter?.title || Astro.props.pageTitle}
+        customizeLinks={customBreadcrumbLinks}
+      />
+      <slot />
+    </main>
+    <Footer />
+	</body>
+
+</html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('a[href^="http"]');
+    const currentDomain = window.location.hostname;
+
+    links.forEach(link => {
+      const url = new URL(link.href);
+      if (url.hostname !== currentDomain) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+      }
+    });
+  });
+</script>

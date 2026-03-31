@@ -1,0 +1,65 @@
+@charset "UTF-8";
+@use 'sass:map';
+
+// COLORS
+// basic colors
+$color-white: #ffffff;
+$color-black: #101010;
+$color-grey: #cbcbcb;
+$color-light-grey: #f5f5f5;
+$color-dark-grey: #bcbcbc;
+
+// ui colors
+$color-hover: #efefef;
+$color-hover-active: #dbdbdb;
+$color-hover-shadow: #f6ece3;
+
+// accent colors
+$color-link-hover-accent: #ff671f;
+
+// TYPOGRAPHY
+// font faces
+
+// heading font sizes
+$font-size-h1: 2.986rem;
+$font-size-h2: 2.448rem;
+$font-size-h3: 2.074rem;
+$font-size-h4: 1.728rem;
+$font-size-h5: 1.44rem;
+$font-size-h6: 1.2rem;
+$font-size-sm: 0.833rem;
+$font-size-xs: 0.694rem;
+
+// heading font line height
+$font-line-height-h1: 1.4;
+$font-line-height-h2: 1.4;
+$font-line-height-h3: 1.4;
+$font-line-height-h4: 1.4;
+$font-line-height-h5: 1.4;
+$font-line-height-h6: 1.4;
+
+// scaling font sizes
+$font-scale-banner: clamp(1.6rem, 1.32rem + 1.4vw, 3rem);
+
+// font weight
+$weight-normal: 400;
+
+// UX
+// animation
+$tran-fast: 75ms;
+$tran-med: 125ms;
+$tran-slow: 300ms;
+
+// lAYOUT
+// max width definitions
+$max-width-xs: 800px;
+$max-width-sm: 1024px;
+$max-width-md: 1280px;
+$max-width-lg: 1400px;
+$max-width-xl: 1600px;
+
+// THEMES
+// bayside
+$bayside-color-primary-text: #101010;
+$bayside-font-serif: 'Hepta Slab', Verdana, monospace;
+$bayside-font-sans: 'Inter', Helvetica, Arial, sans-serif;

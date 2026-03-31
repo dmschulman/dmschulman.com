@@ -1,0 +1,33 @@
+---
+import json from '../../data/site.json';
+import ListSocials from '../../components/navigation/ListSocials.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <span>Powered by <a href={json.site.stack.poweredUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.powered}</a>, hosted by <a href={json.site.stack.hostUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.host}</a>, and open-sourced on <a href={json.about.social.github.href} target="_blank" rel="noopener">Github</a></span>
+  <ListSocials />
+  <span>&copy; {json.site.meta.firstYear}-{year} {json.about.fullName}</span>
+</footer>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  footer {
+
+    span {
+      display: block;
+
+      a {
+        color: var.$color-black;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+</style>

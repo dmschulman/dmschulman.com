@@ -1,0 +1,19 @@
+---
+import Logo from '../../components/elements/Logo.astro';
+import MainNavigation from '../../components/globals/MainNavigation.astro';
+
+interface Props {
+  isH1?: boolean;
+}
+
+const {
+  isH1 = false
+} = Astro.props;
+---
+
+<header>
+  <Logo
+    isH1={isH1}
+  />
+  <MainNavigation />
+</header>

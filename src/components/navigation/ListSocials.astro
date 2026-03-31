@@ -1,0 +1,48 @@
+---
+export const prerender = false;
+import json from '../../data/site.json'
+import { Icon } from 'astro-icon/components';
+
+const socials = Object.entries(json.about.social || {});
+---
+
+<ul class="socials">
+  {socials.map(([key, { href, icon, title }]) => (
+    <li>
+      <a href={href} title={title} target="_blank" rel="noopener noreferrer"><Icon name={icon} />{title}</a>
+    </li>
+  ))}
+  <li>
+    <span style="cursor:pointer"><Icon name="fa-twitter" /><s><u>Twitter</u></s></span>
+  </li>
+</ul>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.socials {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+
+    li {
+      a,
+      span {
+        display: block;
+        color: var.$color-black;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+
+        svg {
+          margin: 0 0.25rem 0 0;
+          vertical-align: text-bottom;
+          filter: brightness(0);
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+@use 'sass:map';
+
+$bp: (
+  'mobile': 520px,
+  'tablet': 1024px,
+  'desktop': 1500px,
+  'xl': 1920px,
+);
+
+@mixin bp($size) {
+  @if map.has-key($bp, $size) {
+    @media screen and (min-width: map.get($bp, $size)) {
+      @content;
+    }
+  } @else {
+    @error 'Invalid breakpoint size: #{$size}.';
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "site": {
+    "meta": {
+      "title": "David M. Schulman / Web Wonderland",
+      "sitename": "dmschulman.com",
+      "tagline": "The Wonderful Website of David M. Schulman",
+      "theme": "bayside",
+      "firstYear": "2006"
+    },
+    "navigation": {
+      "mainNav": {
+        "ariaLabel": "Main",
+        "items": [
+          {
+            "title": "Home",
+            "href": "/"
+          },
+          {
+            "title": "About",
+            "href": "/about"
+          },
+          {
+            "title": "Work",
+            "href": "/work"
+          }
+        ]
+      }
+    },
+    "stack": {
+      "powered": "Astro",
+      "poweredUrl": "https://astro.build/",
+      "host": "Vultr",
+      "hostUrl": "https://www.vultr.com/"
+    }
+  },
+  "about": {
+    "fullName": "David M. Schulman",
+    "firstName": "David",
+    "location": "Philadelphia, PA",
+    "jobRole": "Design Systems Engineer",
+    "pitch": "I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
+    "fullPitch": "My name is David M. Schulman and I'm a Design Systems Engineer based in Philadelphia, PA. I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
+    "currentRole": "I currently work as a Web Developer and Frontend Lead in the Office of Marketing & Communications at Saint Joseph's University.",
+    "hello": ["Hey there!", "Greetings!", "Welcome!", "Bonjour!", "Howdy!","Aloha!"],
+    "social": {
+      "github": {
+        "title": "Github",
+        "href": "https://github.com/dmschulman",
+        "icon": "fa-github"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "href": "https://www.linkedin.com/in/dmschulman/",
+        "icon": "fa-linkedin"
+      },
+      "bsky": {
+        "title": "Bluesky",
+        "href": "https://bsky.app/profile/schul.dev",
+        "icon": "fa-bluesky"
+      },
+      "codepen": {
+        "title": "CodePen",
+        "href": "https://codepen.io/dmschulman",
+        "icon": "fa-codepen"
+      }
+    }
+  }
+}

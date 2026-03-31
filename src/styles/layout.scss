@@ -1,0 +1,52 @@
+@charset 'UTF-8';
+@use 'sass:map';
+
+@use './base/breakpoints.scss' as *;
+@use './base/vars.scss' as var;
+
+// LAYOUT
+
+body {
+
+  header {}
+
+  main {
+    .col-1,
+    .col-2 {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem auto;
+    }
+
+    .col-1 {
+      grid-template-columns: 100%;
+
+      &.xl {
+        @include bp(xl) {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+
+    .col-2 {
+      @include bp(mobile) {
+        width: 90%;
+      }
+
+      @include bp(tablet) {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+
+  footer {}
+
+  header,
+  main,
+  footer {
+    box-sizing: border-box;
+    transition: all var.$tran-med;
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+@charset 'UTF-8';
+@use 'sass:map';
+
+@use './base/breakpoints.scss' as *;
+@use './base/vars.scss' as var;
+
+// TEXT AND TYPOGRAPHY
+
+// HEADINGS
+
+h1 {
+  &.page-heading {
+    text-transform: capitalize;
+    margin: 0;
+
+    @include bp(tablet) {
+      margin: 0 0 0.5rem;
+    }
+  }
+}
+
+// INLINE ELEMENTS
+
+a {
+  text-decoration: underline;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

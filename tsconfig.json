@@ -1,5 +1,21 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  // NEW STUFF
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strictNullChecks": true,
+    "allowJs": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+    },
+  },
+  "noImplicitAny": false,
+  "module": "ESNext",
+  "moduleResolution": "NodeNext",
+  "target": "ESNext",
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
 }

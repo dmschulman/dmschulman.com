@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  buttonClass?: string;
+  buttonJs?: string;
+  label: string;
+  href: string;
+  icon?: string;
+}
+
+const { buttonClass, buttonJs, label, href, icon } = Astro.props;
+---
+
+<div class={buttonClass ? `button ${buttonClass}` : 'button'}>
+  <a href={href} role="button" {...(buttonJs ? { onclick: buttonJs } : {})}>{icon && <Icon name={icon} />}{label}</a>
+</div>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .button {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+  }
+</style>

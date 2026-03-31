@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ListTags from '../components/navigation/ListTags.astro';
+import PrevNextPost from '../components/navigation/PrevNextPost.astro';
+import { Icon } from 'astro-icon/components';
+
+const { frontmatter, collection, postId } = Astro.props;
+const collectionFromUrl = collection || frontmatter.collection || Astro.url.pathname.split('/')[1];
+const dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+---
+
+<Layout pageTitle={frontmatter.title}>
+  <div class="content">
+    <article>
+      <div class="meta">
+        <span class="date"><Icon name="fa-calendar" />{new Date(frontmatter.date).toLocaleDateString('en-US', dateFormat)}</span>
+      </div>
+      <slot />
+      <ListTags tags={frontmatter.tags} collection={collectionFromUrl} styled={true} />
+    </article>
+    <PrevNextPost collection="blog" currentPostId={postId} urlPath="words" />
+  </div>
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+
+  span {
+
+    svg {
+      margin-right: 0.5rem;
+      vertical-align: text-top;
+    }
+
+    &.date {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('a[href^="http"]');
+    const currentDomain = window.location.hostname;
+
+    links.forEach(link => {
+      const url = new URL(link.href);
+      if (url.hostname !== currentDomain) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+      }
+    });
+  });
+</script>

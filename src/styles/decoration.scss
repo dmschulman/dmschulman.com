@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+@use 'sass:map';
+
+@use './base/breakpoints.scss' as *;
+@use './base/vars.scss' as var;
+
+// DECORATIONS
+
+// HEADINGS
+
+.d_heading-thick {
+  border-bottom: 7px solid var.$color-black;
+  margin-bottom: 1rem;
+}
+
+// BORDERS
+
+.d_polaroid {
+  border: 1px solid var.$color-grey;
+  padding: 0.5rem;
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 5px 5px 20px var.$color-grey;
+
+  img {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    border: 1px solid var.$color-black;
+  }
+
+  figcaption {
+    font-size: var.$font-size-sm;
+    font-style: italic;
+    padding: 0.75rem 0.5rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+// EFFECTS
+// TYPE
+.d_underline-slide {
+  position: relative;
+  width: fit-content;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    padding-bottom: -100%;
+    background-color: black;
+    transition: transform 0.25s ease-out;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+  }
+}
+
+// ANIMATIONS
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFadeBottom {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes boldMe {
+  to {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,93 @@
+@charset 'UTF-8';
+@use 'sass:map';
+
+@use './base/breakpoints.scss' as *;
+@use './base/vars.scss' as var;
+
+// MEDIA
+
+// IMAGES
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+
+  // EMBED POSITIONING
+
+  &.left,
+  &.right {
+    margin: 0 auto 1.5rem;
+    max-width: 640px;
+    float: none;
+    display: block;
+
+    @include bp(tablet) {
+      width: calc(50% - 1.5rem);
+      max-width: unset;
+    }
+  }
+
+  &.left {
+    @include bp(tablet) {
+      float: left;
+      margin: 0 1.5rem 1.5rem 0;
+    }
+  }
+
+  &.right {
+    @include bp(tablet) {
+      float: right;
+      margin: 0 0 1.5rem 1.5rem;
+    }
+  }
+
+  &.center {
+    margin: 0 auto;
+    display: block;
+
+    @include bp(tablet) {
+      width: 80%;
+    }
+
+    @include bp(xl) {
+      width: 75%;
+    }
+  }
+
+  // LAYOUT SPECIFIC IMAGES
+
+  &.cover {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+// TEMPLATE SPECIFIC IMAGE LAYOUT
+
+.work {
+  img.cover {
+
+    @include bp(mobile) {
+      width: calc(50% - 1.5rem);
+      float: right;
+      margin: 0 0 1.5rem 1.5rem;
+    }
+
+    @include bp(xl) {
+      width: calc(45% - 3rem);
+      margin: 0 0 3rem 3rem;
+    }
+  }
+}
+
+// VIDEO
+
+video {
+  width: 100%;
+  height: auto;
+}

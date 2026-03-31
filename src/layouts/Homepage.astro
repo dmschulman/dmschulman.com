@@ -1,0 +1,27 @@
+---
+import '../styles/style.scss';
+import Head from '../components/globals/Head.astro';
+import Header from '../components/globals/Header.astro';
+import Footer from '../components/globals/Footer.astro';
+import json from '../data/site.json';
+
+const themeClass = json.site.meta.theme;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+    <Head />
+	</head>
+
+	<body {...(themeClass && {class: themeClass})}>
+    <Header
+      isH1={true}
+    />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+	</body>
+
+</html>
