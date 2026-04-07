@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/blocks/ContactForm.astro';
+---
+
+<Layout pageTitle="Contact">
+  <p>Want to connect? Shoot me a message using the form below. Though I might not personally respond to every email, I do try my best to get back to people in a timely manner. Robots, on the other hand, might not receive the most expedient reply (sorry it's not you, it's me).</p>
+  <p><i>* denotes a required field.</i></p>
+  <ContactForm />
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+</style>

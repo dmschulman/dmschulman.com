@@ -1,0 +1,202 @@
+---
+interface Props {
+  recipientEmail?: string;
+}
+
+const {
+  recipientEmail = "hello@dmschulman.com",
+} = Astro.props;
+
+const airformEndpoint = `https://airform.io/${recipientEmail}`;
+---
+
+<form id="contact-form" class="contact-form" action={airformEndpoint} method="post" novalidate>
+
+  <div class="field small">
+    <label for="name">Full Name<span class="required">*</span></label>
+    <input type="text" id="name" name="name" placeholder="" required autocomplete="name" />
+    <span class="field-error" aria-live="polite"></span>
+  </div>
+
+  <div class="field small">
+    <label for="email">Email Address<span class="required">*</span></label>
+    <input type="email" id="email" name="email" placeholder="email@example.com" required autocomplete="email" />
+    <span class="field-error" aria-live="polite"></span>
+  </div>
+
+  <div class="field">
+    <label for="subject">Subject<span class="required">*</span></label>
+    <input type="text" id="subject" name="subject" placeholder="" required />
+    <span class="field-error" aria-live="polite"></span>
+  </div>
+
+  <div class="field">
+    <label for="message">Message<span class="required">*</span></label>
+    <textarea id="message" name="message" rows="6" placeholder="Well, get on with it..." required></textarea>
+    <span class="field-error" aria-live="polite"></span>
+  </div>
+
+  <div class="honeypot" aria-hidden="true">
+    <label for="_honeypot">Leave this field empty</label>
+    <input type="text" id="_honeypot" name="_honeypot" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="button">
+    <button type="submit" id="submit" class="submit">
+      <span class="btn-text">Send Message</span>
+      <span class="btn-loading" aria-hidden="true">Sending...</span>
+    </button>
+  </div>
+</form>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include bp(tablet) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      margin: 0 0 1rem 0;
+      width: 100%;
+
+      &.small {
+
+        @include bp(tablet) {
+          width: calc(50% - 0.5rem);
+
+          &:first-child {
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      label {
+        padding-bottom: 0.25rem;
+        display: block;
+        font-weight: var.$weight-bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        font-size: 1rem;
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .field-error {
+        font-style: italic;
+        text-decoration: underline;
+        font-size: 0.75rem;
+      }
+    }
+
+    .honeypot {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .button {
+      .submit {
+        .btn-loading {
+          display: none;
+        }
+
+        &.loading {
+          .btn-loading {
+            display: inline;
+          }
+
+          .btn-text {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit') as HTMLButtonElement;
+
+  function showError(field: HTMLInputElement | HTMLTextAreaElement, message: string) {
+    field.classList.add('invalid');
+    const errorEl = field.nextElementSibling as HTMLElement;
+    if (errorEl) errorEl.textContent = message;
+  }
+
+  function clearError(field: HTMLInputElement | HTMLTextAreaElement) {
+    field.classList.remove('invalid');
+    const errorEl = field.nextElementSibling as HTMLElement;
+    if (errorEl) errorEl.textContent = '';
+  }
+
+  function validateField(field: HTMLInputElement | HTMLTextAreaElement): boolean {
+    const value = field.value.trim();
+    if (field.required && !value) {
+      showError(field, 'This field is required!');
+      return false;
+    }
+    if (field.type === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        showError(field, 'Please enter a valid email address.');
+        return false;
+      }
+    }
+    clearError(field);
+    return true;
+  }
+
+  form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input:not([type="hidden"]):not(#_honeypot), textarea').forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      if (field.classList.contains('invalid')) validateField(field);
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+
+    const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+      'input[required], textarea[required]'
+    );
+    let isValid = true;
+    fields.forEach(field => {
+      if (!validateField(field)) isValid = false;
+    });
+    if (!isValid) {
+      e.preventDefault();
+      return;
+    }
+
+    const honeypot = form.querySelector<HTMLInputElement>('#_honeypot');
+    if (honeypot && honeypot.value) {
+      e.preventDefault();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+  });
+</script>

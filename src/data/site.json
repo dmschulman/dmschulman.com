@@ -40,7 +40,9 @@
     "jobRole": "Design Systems Engineer",
     "pitch": "I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
     "fullPitch": "My name is David M. Schulman and I'm a Design Systems Engineer based in Philadelphia, PA. I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
-    "currentRole": "I currently work as a Web Developer and Frontend Lead in the Office of Marketing & Communications at Saint Joseph's University.",
+    "currentRole": "Web Developer and Frontend Lead",
+    "currentDept": "Office of Marketing & Communications",
+    "currentOrg": "Saint Joseph's University",
     "hello": ["Hey there!", "Greetings!", "Welcome!", "Bonjour!", "Howdy!","Aloha!"],
     "social": {
       "github": {

@@ -8,11 +8,14 @@ $color-black: #101010;
 $color-grey: #cbcbcb;
 $color-light-grey: #f5f5f5;
 $color-dark-grey: #bcbcbc;
+$color-utility-grey: #777777;
 
 // ui colors
 $color-hover: #efefef;
 $color-hover-active: #dbdbdb;
 $color-hover-shadow: #f6ece3;
+$color-ui-error: #C9002B;
+$color-ui-success: #03804D;
 
 // accent colors
 $color-link-hover-accent: #ff671f;
@@ -43,6 +46,7 @@ $font-scale-banner: clamp(1.6rem, 1.32rem + 1.4vw, 3rem);
 
 // font weight
 $weight-normal: 400;
+$weight-bold: 700;
 
 // UX
 // animation
