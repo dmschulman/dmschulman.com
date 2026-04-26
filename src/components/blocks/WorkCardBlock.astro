@@ -1,0 +1,66 @@
+---
+export const prerender = false;
+import resumeData from '../../data/resume.json'
+import WorkCard from '../../components/elements/WorkCard.astro'
+
+const { content = 'jobs' } = Astro.props;
+
+const sortedWork = [...(resumeData[content] ?? [])].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+const grouped = sortedWork.reduce((acc, job) => {
+  const key = job.category ?? '';
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(job);
+  return acc;
+}, {});
+---
+
+<ul class="work-card-block">
+  {Object.entries(grouped).map(([category, jobs]) => (
+    <li>
+      {category && <h3 class="heading">{category}</h3>}
+      <ul>
+        {jobs.map((job) => (
+          <li>
+            <WorkCard
+              img={job.img}
+              org={job.org}
+              time={job.time}
+              role={job.role}
+              contract={job.contract}
+              bullets={job.bullets}
+            />
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ul>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul {
+    &.work-card-block {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: 1.5rem;
+
+        @include bp(tablet) {
+          margin-bottom: 2rem;
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+      }
+    }
+  }
+
+</style>

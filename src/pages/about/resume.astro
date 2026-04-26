@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import resume from '../../data/resume.json';
+import AnimatedList from '../../components/elements/AnimatedList.astro';
+import AnimatedWrapper from '../../components/elements/AnimatedWrapper.astro';
+import WorkCardBlock from '../../components/blocks/WorkCardBlock.astro';
+---
+
+<Layout pageTitle="Resume">
+
+ <!-- <p>I've been involved with computers and the internet for as long as I can remember. The web has always fascinated me, its ability to disseminate information on a massive scale and ever-changing utility is a powerful thing. My expertise and skills bridge the gap between what is probable and what is possible with your brand online.</p>
+  <p>Though my background is in journalism and new media, I am primarily focused on web development, design, and creating engaging online experiences. I hold expertise in developing sites with Wordpress and other major CMS platforms and I employ the use of web analytics to tailor and improve the web for the end user.</p>
+  <p>I've encountered and optimized everything under the sun, from e-commerce websites and consulting firms to online charities and faith-based ministries. Web presence and visibility is critical to online success and I help to achieve those positive results.</p> -->
+
+  <p>I've been involved with computers for as long as I can remember. </p>
+  
+  <div class="resume">
+
+    <AnimatedWrapper direction="left" distance="200px" initialDelay="200">
+      <h2 class="heading">Fundimental Skills</h2>
+      <AnimatedList items={resume.skills}  />
+    </AnimatedWrapper>
+
+    <AnimatedWrapper direction="right" distance="200px" initialDelay="1000">
+      <h2 class="heading">Languages, Frameworks, and Software</h2>
+      <AnimatedList items={resume.tools} initialDelay="1600" />
+    </AnimatedWrapper>
+
+
+      <AnimatedWrapper direction="bottom" distance="200px" triggerAt="40%" initialDelay="3000">
+    <h2 class="heading">Work Experience</h2>
+      <WorkCardBlock content="jobs" />
+      </AnimatedWrapper>
+
+    <h2 class="heading">Education</h2>
+      <WorkCardBlock content="education" />
+
+    <h2 class="heading">Awards & Accolades</h2>
+      <WorkCardBlock content="awards" />
+
+  </div>
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .resume {
+    ul {
+      &.animated-list {
+        margin: 0 0 2rem 0;
+      }
+    }
+  }
+
+</style>

@@ -1,0 +1,39 @@
+---
+interface Props {
+  index: number;
+  stagger?: number;
+}
+
+const { index, stagger = 500 } = Astro.props;
+---
+
+<li class="animated-item" data-index={index} data-stagger={stagger}><slot /></li>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .animated-item {
+    &:after {
+      content: ",";
+      padding-right: 0.25rem;
+    }
+
+    &:last-child {
+      &:after {
+        content: ".";
+      }
+    }
+
+    @include bp(tablet) {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>

@@ -16,6 +16,14 @@ export default defineConfig({
   image: {
     domains: ["astro.build"],
   },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 500,
+      }
+    }
+  },
   integrations: [icon({
     iconDir: "src/assets/icons",
     svgoOptions: {

@@ -1,0 +1,200 @@
+ {
+  "skills": [ "Frontend web development",  "component development", "design systems architecture", "accessible design (WCAG 2.2)", "responsive web design", "search engine optimization (SEO/SEM)", "web analytics analysis"],
+  "tools": [ "HTML & CSS", "SASS", "React", "Javascript", "XML/XSLT", "PHP", "Twig", "Markdown", "Astro", "Drupal", "Jekyll", "Wordpress" ],
+  "jobs": [
+    {
+      "category": "Web Development",
+      "img": "/assets/images/favicon/sju-logo.jpg",
+      "org": "Saint Joseph's University",
+      "time": {
+        "start": "June 2022"
+      },
+      "timestamp": "2022-06-01T04:00:00.000Z",
+      "role": "Web Developer",
+      "contract": "Full time",
+      "bullets": [
+        "Established university's website pattern library and integrated atomic design into the SJU web team's development process",
+        "Led project team to design and develop the next iteration of the SJU web theme"
+      ]
+    },
+    {
+      "category": "Web Development",
+      "img": "/assets/images/favicon/usciences-dna.png",
+      "org": "University of the Sciences",
+      "time": {
+        "start": "December 2015",
+        "end": "June 2022"
+      },
+      "timestamp": "2022-6-01T04:00:00.000Z",
+      "role": "Web Developer",
+      "contract": "Full time",
+      "bullets": [
+        "Established university's website pattern library and integrated atomic design into the SJU web team's development process.",
+        "Led project team to design and develop the next iteration of the SJU web theme."
+      ]
+    },
+    {
+      "category": "Web Development",
+      "img": "/assets/images/favicon/benefitpackages-logo.png",
+      "org": "BenefitPackages",
+      "time": {
+        "start": "March 2013",
+        "end": "July 2016"
+      },
+      "timestamp": "2016-07-01T04:00:00.000Z",
+      "role": "Lead Web Developer",
+      "contract": "Contract",
+      "bullets": [
+        "Redesigned website from the ground up and transitioned CMS platform to Wordpress.",
+        "Managed SEM campaign and led SEO efforts to help educate consumers in California and Nevada about the Affordable Healthcare Act.",
+        "Designed new logo and brand identity for use on stationary, business cards, and brochures."
+      ]
+    },
+    {
+      "category": "Web Development",
+      "img": "/assets/images/favicon/francisvale-logo.png",
+      "org": "Francisvale Home For Smaller Animals",
+      "time": {
+        "start": "April 2014",
+        "end": "November 2015"
+      },
+      "timestamp": "2015-11-01T04:00:00.000Z",
+      "role": "Web Developer",
+      "contract": "Contract",
+      "bullets": [
+        "Redesigned Francisvale Home's website as well as upgraded and improved their Wordpress instance.",
+        "Developed an improved animal adoption platform to deliver a less cumbersome matching experience.",
+        "Promoted the animal shelter's web presence through SEO efforts and search marketing."
+      ]
+    },
+    {
+      "category": "Web Development",
+      "img": "/assets/images/favicon/quixote-center-logo.jpg",
+      "org": "The Quixote Center",
+      "time": {
+        "start": "November 2014",
+        "end": "September 2015"
+      },
+      "timestamp": "2014-11-01T04:00:00.000Z",
+      "role": "Web Developer",
+      "contract": "Contract",
+      "bullets": [
+        "Assisted with the recovery of Quixote Center's Wordpress website, which had been hijacked by hackers.",
+        "Redesigned the Quixote Center's web presence to better position their organization online, reimplemented recovered content.",
+        "Designed and built landing pages to promote the center's various non-profit activities."
+      ]
+    },
+    {
+      "category": "Web Development",
+      "org": "National Positions",
+      "img": "/assets/images/favicon/national-positions-logo.jpg",
+      "time": {
+        "start": "February 2011",
+        "end": "February 2013"
+      },
+      "timestamp": "2013-02-01T04:00:00.000Z",
+      "role": "Web Developer",
+      "contract": "Full time",
+      "bullets": [
+        "Worked across the agency's roster of clients to provide white-glove website support and digital strategy consultation services.",
+        "Leveraged data-driven results via A/B testing to help clients improve their user experience and website conversion rates.",
+        "Developed and facilitated an in-house SEO training program for sales and support teams with the goal of improving team's technical knowhow.",
+        "Collaborated on special projects with SEM team to improve client's search visibility.",
+        "Participated in developing new product offerings and digital strategies at a leading internet marketing agency."
+      ]
+    },
+    {
+      "category": "Content Writing",
+      "img": "/assets/images/favicon/djtt-logo.jpg",
+      "org": "DJ TechTools",
+      "time": {
+        "start": "January 2013",
+        "end": "October 2013"
+      },
+      "timestamp": "2013-10-01T04:00:00.000Z",
+      "role": "Contributing Writer",
+      "contract": "Contract",
+      "bullets": [
+        "Researched, developed, and wrote up digital music production tutorials.",
+        "Submitted reviews of various DJ hardware and DIY electronics projects.",
+        "Facilitated and produced interviews with DJs and other digital music-related figures.",
+        "Worked to improve DJTT on-page SEO efforts and align web content with Google best practices."
+      ]
+    },
+    {
+      "category": "Content Writing",
+      "img": "/assets/images/favicon/laptoplogic-logo.png",
+      "org": "LaptopLogic.com / Logic Media Group",
+      "time": {
+        "start": "December 2005",
+        "end": "March 2008"
+      },
+      "timestamp": "2008-03-01T04:00:00.000Z",
+      "role": "News Editor / Contributing Writer",
+      "contract": "Contract",
+      "bullets": [
+        "Research and wrote product reviews of laptops, mobile devices, and laptop accessories.",
+        "Edited other contributor's work, penned original news content, and managed the website's online advertising presence.",
+        "Contributed to the success of an industry-leading online mobile product review website."
+      ]
+    },
+    {
+      "category": "Film & Television",
+      "img": "/assets/images/favicon/flight33-logo.png",
+      "org": "Flight 33 Productions",
+      "time": {
+        "start": "February 2009",
+        "end": "February 2010"
+      },
+      "timestamp": "2010-02-01T04:00:00.000Z",
+      "role": "Post Production Assistant",
+      "contract": "Full time",
+      "bullets": [
+        "Couriered physical media, video dalies, audio dubs, scripts, and other work-critical materials to production facilities.",
+        "Maintained and provided on-site technical support for AVID Unity systems and Final Cut Pro editing bays.",
+        "Logged and organized stock footage resources.",
+        "Production credits include: Life After People (17 episodes), The Universe (11 episodes), Blood For The Gods (3 episodes), Patton 360 (10 episodes), and Prehistoric New York (5 episodes)."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "org": "Ithaca College",
+      "time": {
+        "start": "2004",
+        "end": "2008"
+      },
+      "timestamp": "2008-06-01T04:00:00.000Z",
+      "role": [
+        "Bachelor of Arts, Digital Journalism",
+        "Minors in Political Science and Art History"
+      ],
+      "contract": "Roy H. Park School of Communications",
+      "bullets": [
+        "Served as Editor of Design at The Ithacan student newspaper from 2005-2006",
+        "Participated in the Knight Innovation Incubator program",
+        "Represented the Republic of Chile and People's Democratic Republic of Algeria at Harvard's Model United Nations Conference in 2006 and 2007"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "org": "CUPPIE Award, 2016",
+      "timestamp": "2016-12-02T04:00:00.000Z",
+      "role": "Proven Everywhere Landing Page, Website",
+      "contract": "Bronze",
+      "bullets": [
+        "Website designed and developed in house encouraging users to learn more and apply to University of the Sciences."
+      ]
+    },
+    {
+      "org": "CUPPIE Award, 2016",
+      "timestamp": "2016-12-01T04:00:00.000Z",
+      "role": "Proven Everywhere Marketing Campaign, Wild Card",
+      "contract": "Bronze",
+      "bullets": [
+        "Digital, in-home, terrestrial, and web marketing campaign for USciences, created in association with Aloysius Butler & Clark."
+      ]
+    }
+  ]
+ }

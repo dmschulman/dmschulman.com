@@ -1,0 +1,81 @@
+---
+interface Props {
+  direction?: 'left' | 'right' | 'top' | 'bottom';
+  duration?: number;
+  initialDelay?: number;
+  triggerAt?: string;
+  threshold?: number;
+  distance?: string;
+}
+
+const {
+  direction = 'bottom',
+  duration = 600,
+  initialDelay = 0,
+  triggerAt = '-50%',
+  threshold = 0,
+  distance = '200px',
+} = Astro.props;
+
+const translateMap = {
+  left:   `translateX(-${distance})`,
+  right:  `translateX(${distance})`,
+  top:    `translateY(-${distance})`,
+  bottom: `translateY(${distance})`,
+};
+
+const initialTransform = translateMap[direction];
+---
+
+<div
+  class="animated-wrapper"
+  data-initial-delay={initialDelay}
+  data-trigger-at={triggerAt}
+  data-threshold={threshold}
+  style={`
+    --duration: ${duration}ms;
+    --initial-transform: ${initialTransform};
+  `}
+>
+  <slot />
+</div>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .animated-wrapper {
+
+    @include bp(tablet) {
+      opacity: 0;
+      transform: var(--initial-transform);
+      transition: opacity var(--duration) ease, transform var(--duration) ease;
+    }
+  }
+
+  .animated-wrapper.visible {
+
+    @include bp(tablet) {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.animated-wrapper').forEach((el) => {
+    const initialDelay = Number(el.dataset.initialDelay);
+    const threshold = Number(el.dataset.threshold);
+    const triggerAt = el.dataset.triggerAt ?? '-50%';
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.style.transitionDelay = `${initialDelay}ms`;
+        el.classList.add('visible');
+        observer.disconnect();
+      }
+    }, { threshold, rootMargin: `0px 0px ${triggerAt} 0px` });
+
+    observer.observe(el);
+  });
+</script>

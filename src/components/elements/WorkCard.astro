@@ -1,0 +1,93 @@
+---
+const { img, org, time, role, contract, bullets } = Astro.props
+const roles = Array.isArray(role) ? role : [role];
+---
+
+<div class="work-card">
+  <span class="org">
+    {img && <img class="icon" src={img} alt={`Icon for ${org}`} />}
+    {org}
+  </span>
+  {time && <span class="time">{time.start ? `${time.start} - ${time.end ?? "Present"}` : time.end}</span>}
+  {roles.map(r => (
+    <span class="role">{r}</span>
+  ))}
+  {bullets?.length > 0 && (
+    <ul class="bullets">
+      {bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+  )}
+</div>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include bp(tablet) {
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    span {
+      &.org {
+        order: 0;
+        font-weight: var.$weight-bold;
+        font-size: 1.25rem;
+
+        @include bp(tablet) {
+          width: 50%;
+          font-size: 1.5rem;
+        }
+
+        img.icon {
+          width: auto;
+          height: 24px;
+          vertical-align: text-bottom;
+          margin: 0 0.25rem 0 0;
+
+          @include bp(tablet) {
+            height: 30px;
+          }
+        }
+      }
+
+      &.time {
+        order: 2;
+
+        @include bp(tablet) {
+          order: 1;
+          width: 50%;
+          display: flex;
+          justify-content: flex-end;
+          text-align: right;
+        }
+      }
+
+      &.role {
+        order: 1;
+        font-style: italic;
+        width: 100%;
+
+        @include bp(tablet) {
+          order: 2;
+        }
+      }
+    }
+
+    ul.bullets {
+      order: 3;
+      margin: 0;
+      padding: 0 0 0 2rem;
+      margin: 0.5rem 0 0 0;
+      list-style: disc;
+    }
+  }
+</style>

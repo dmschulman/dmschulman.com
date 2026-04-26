@@ -1,0 +1,57 @@
+---
+import AnimatedItem from '../elements/AnimatedItem.astro';
+
+interface Props {
+  items: string[];
+  duration?: number;
+  threshold?: number;
+  initialDelay?: number;
+  triggerAt?: string;
+}
+
+const { items, duration = 1500, threshold = 0, initialDelay = 250, triggerAt = '-50%' } = Astro.props;
+const stagger = Math.round(duration / items.length);
+---
+
+<ul class="animated-list" data-threshold={threshold} data-initial-delay={initialDelay} data-trigger-at={triggerAt}>
+  {items.map((item, i) => (
+    <AnimatedItem index={i} stagger={stagger}>{item}</AnimatedItem>
+  ))}
+</ul>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.animated-list').forEach((list) => {
+    const items = list.querySelectorAll<HTMLElement>('.animated-item');
+    const threshold = Number(list.dataset.threshold);
+    const initialDelay = Number(list.dataset.initialDelay);
+    const triggerAt = list.dataset.triggerAt ?? '-50%';
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        items.forEach((item) => {
+          const i = Number(item.dataset.index);
+          const s = Number(item.dataset.stagger);
+          item.style.transitionDelay = `${initialDelay + i * s}ms`;
+          item.classList.add('visible');
+        });
+        observer.disconnect();
+      }
+    }, { threshold, rootMargin: `0px 0px ${triggerAt} 0px` });
+
+    observer.observe(list);
+  });
+</script>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.animated-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+  }
+
+</style>
