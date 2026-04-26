@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Button from '../components/elements/Button.astro'
 
 import { about } from '../data/site.json';
-
 import { getRandomItem } from '../utils/parseItems';
 const randomItem = getRandomItem(about.hello);
 ---
@@ -23,18 +22,6 @@ const randomItem = getRandomItem(about.hello);
   @use '../styles/base/breakpoints.scss' as *;
 
   p.intro {
-    font-size: 1.5rem;
-    font-family: var.$bayside-font-sans;
-
-    @include bp(tablet) {
-      font-size: 1.75rem;
-    }
-
-    em {
-      font-style: normal;
-      text-decoration: underline;
-    }
-
     img.seal {
       display: inline;
       width: auto;

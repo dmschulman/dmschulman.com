@@ -19,7 +19,7 @@ const grouped = sortedWork.reduce((acc, job) => {
   {Object.entries(grouped).map(([category, jobs]) => (
     <li>
       {category && <h3 class="heading">{category}</h3>}
-      <ul>
+      <ul class="work-cards">
         {jobs.map((job) => (
           <li>
             <WorkCard
@@ -48,14 +48,12 @@ const grouped = sortedWork.reduce((acc, job) => {
       list-style: none;
 
       li {
-        margin-bottom: 1.5rem;
-
-        @include bp(tablet) {
-          margin-bottom: 2rem;
+        h3 {
+          margin: 0;
+          text-decoration: underline;
         }
 
         ul {
-          margin: 0;
           padding: 0;
           list-style: none;
         }

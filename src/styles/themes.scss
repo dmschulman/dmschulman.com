@@ -84,6 +84,23 @@ body {
         color: var.$bayside-color-primary-text;
       }
 
+      p {
+        &.intro {
+          font-size: 1.5rem;
+          font-family: var.$bayside-font-sans;
+
+          @include bp(tablet) {
+            font-size: 1.75rem;
+          }
+
+          em {
+            font-style: normal;
+            text-decoration: underline;
+          }
+        }
+
+      }
+
       a {
         transition: text-decoration var.$tran-fast ease;
       }
