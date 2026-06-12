@@ -26,6 +26,7 @@ const { pageTitle = "Page", customBreadcrumbLinks = [], } = Astro.props
         linkTextFormat="capitalized"
         customTitle={Astro.props.frontmatter?.title || Astro.props.pageTitle}
         customizeLinks={customBreadcrumbLinks}
+        crumbs={Astro.props.crumbs}
       />
       <slot />
     </main>

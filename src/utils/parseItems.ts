@@ -1,4 +1,3 @@
-// Function to choose a random item from an array of items
 export function getRandomItem(array) {
   if (!array || array.length === 0) {
     throw new Error("Array is empty!");
@@ -19,4 +18,14 @@ export async function getAlbumImages(id: string) {
       ([, mod]) => (mod as { default: ImageMetadata }).default
     );
   return sortedImages;
+}
+
+export async function getIntroImages() {
+  const imageImports = import.meta.glob<{ default: ImageMetadata }>(
+    "/public/assets/images/intro/*.{jpeg,jpg}",
+    { eager: true }
+  );
+  return Object.values(imageImports).map(
+    (mod) => (mod as { default: ImageMetadata }).default
+  );
 }

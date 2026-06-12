@@ -1,0 +1,154 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from "astro:assets";
+import ListTags from '../../components/navigation/ListTags.astro';
+import PrevNextPost from '../../components/navigation/PrevNextPost.astro';
+import { getCollection } from 'astro:content';
+
+const { work } = Astro.props;
+
+export async function getStaticPaths() {
+  const workItems = await getCollection('work');
+
+  return workItems.map((work) => ({
+    params: {
+      category: work.data.category,
+      slug: work.id.split('/').pop()
+    },
+    props: { work },
+  }));
+}
+
+const customBreadcrumbLinks = [
+  {
+    text: work.data.title,
+    index: "last"
+  }
+];
+---
+
+<Layout
+  pageTitle=`${work.data.title}`
+  customBreadcrumbLinks={customBreadcrumbLinks}
+>
+  <div class="work">
+    <div class="meta">
+      <Image
+        src={work.data.cover}
+        alt={work.data.coverAlt}
+        class="cover"
+        format="webp"
+        width={400}
+        quality={80}
+        inferSize={true}
+      />
+      <div class="data">
+        {work.data.description && <p class="intro">{work.data.description}</p>}
+        {work.data.role && <span class="role"><strong>Role: </strong>{work.data.role}</span>}
+        {work.data.launched && <span class="launched"><strong>Launched: </strong>{work.data.launched}</span>}
+        {work.data.skills?.length > 0 && <span class="skills"><strong>Contributed: </strong>{work.data.skills.join(', ')}</span>}
+      </div>
+    </div>
+
+    {work.rendered?.html && (
+      <div id="work-content" set:html={work.rendered.html} />
+    )}
+
+  </div>
+
+  <PrevNextPost collection="work" currentPostId={work.id} />  
+</Layout>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  document.querySelectorAll('#work-content img').forEach((img) => {
+    const anchor = document.createElement('a');
+    anchor.href = img.src;
+    anchor.target = '_blank';
+
+    const setSizes = () => {
+      anchor.dataset.pswpWidth = String(img.naturalWidth);
+      anchor.dataset.pswpHeight = String(img.naturalHeight);
+    };
+
+    img.complete ? setSizes() : img.addEventListener('load', setSizes);
+    img.replaceWith(anchor);
+    anchor.appendChild(img);
+  });
+
+  new PhotoSwipeLightbox({
+    gallery: '#work-content',
+    children: 'a[data-pswp-width]',
+    pswpModule: () => import('photoswipe'),
+  }).init();
+</script>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .work {
+    .meta {
+      display: flex;
+      flex-direction: column;
+
+      @include bp(mobile) {
+        display: block;
+      }
+
+      img {
+        order: 2;
+
+        @include bp(mobile) {
+          order: 1;
+        }
+      }
+
+      .data {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include bp(mobile) {
+          flex-direction: column;
+          flex-wrap: nowrap;
+        }
+
+        p {
+          margin-bottom: 1rem;
+          width: 100%;
+          text-align: center;
+
+          @include bp(mobile) {
+            text-align: left;
+          }
+        }
+
+        span {
+          display: block;
+          text-align: left;
+        }
+      }
+    }
+
+    #work-content {
+      a {
+        img {
+            transform: scale(1);
+  transition: transform var.$tran-slow ease;
+  backface-visibility: hidden;
+        }
+
+        &:hover,
+        &:focus {
+          img {
+            transform: scale(0.95);
+          }
+        }
+      }
+    }
+  }
+</style>

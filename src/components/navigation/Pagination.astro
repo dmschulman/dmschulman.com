@@ -1,0 +1,46 @@
+---
+interface Props {
+  page: {
+    currentPage: number;
+    lastPage: number;
+    url: {
+      prev?: string;
+      next?: string;
+    };
+  };
+}
+
+const { page } = Astro.props;
+---
+
+{page.lastPage > 1 && (
+  <nav class="pagination" aria-label="Pagination">
+    {page.url.prev && <a class="prev" href={page.url.prev} rel="prev">← Prev</a>}
+    <span class="current">Page {page.currentPage} of {page.lastPage}</span>
+    {page.url.next && <a class="next" href={page.url.next} rel="next">Next →</a>}
+  </nav>
+)}
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  nav.pagination {
+    display: flex;
+    flex-direction: row;
+
+    span {
+      display: block;
+    }
+
+    a {
+      &.prev {
+        margin-right: 1rem;
+      }
+
+      &.next {
+        margin-left: 1rem;
+      }
+    }
+  }
+</style>

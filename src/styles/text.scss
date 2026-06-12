@@ -8,7 +8,7 @@
 
 // HEADINGS
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   &.page-heading {
     text-transform: capitalize;
     margin: 0;
@@ -16,6 +16,10 @@ h1 {
     @include bp(tablet) {
       margin: 0 0 0.5rem;
     }
+  }
+
+  &.heading {
+    margin: 0 0 1rem;
   }
 }
 

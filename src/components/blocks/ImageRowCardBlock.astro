@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import ImageRowCard from '../../components/elements/ImageRowCard.astro';
+
+const { category, collection, heading } = Astro.props
+
+const allItems = await getCollection(collection);
+const categoryItems = allItems.filter(
+  item => item.data.published && item.data.category === category
+);
+
+const allCategoryItems = categoryItems
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    return new Date(b.data.timestamp || b.data.date) - new Date(a.data.timestamp || a.data.date);
+  });
+---
+
+<div class="card-block">
+  <h2>{heading}</h2>
+  {
+    <ul>
+      {allCategoryItems.map((item) => (
+        <li class={`item d_press-down ${item.data.featured ? 'featured' : ''}`}>
+          <ImageRowCard
+            id={item.id}
+            collection={item.collection}
+            category={item.data.category}
+            date={item.data.date}
+            cover={item.data.cover}
+            coverAlt={item.data.coverAlt}
+            title={item.data.title}
+            description={item.data.description}
+            role={item.data.role}
+            launched={item.data.launched}
+            skills={item.data.skills}
+            published={item.data.published}
+          />
+        </li>
+      ))}
+    </ul>
+  }
+</div>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .card-block {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 2rem;
+      align-items: flex-start;
+
+      @include bp(desktop) {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      li {
+        order: 1;
+
+        &.item.featured {
+          order: 0;
+
+          @include bp(desktop) {
+            width: 100%;
+          }
+        }
+
+        &:not(.featured) {
+          .image-row-card {
+            a {
+              .content {
+                .meta {
+                  display: none;
+
+                  @include bp(tablet) {
+                    display: flex;
+                  }
+
+                  @include bp(desktop) {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        @include bp(desktop) {
+          gap: 1rem;
+          width: calc(50% - 2rem);
+        }
+      }
+    }
+  }
+</style>

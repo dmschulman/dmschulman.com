@@ -3,14 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import resume from '../../data/resume.json';
 import AnimatedList from '../../components/elements/AnimatedList.astro';
 import AnimatedWrapper from '../../components/elements/AnimatedWrapper.astro';
-import WorkCardBlock from '../../components/blocks/WorkCardBlock.astro';
+import ResumeCardBlock from '../../components/blocks/ResumeCardBlock.astro';
 import Spacer from '../../components/elements/Spacer.astro';
 ---
 
 <Layout pageTitle="Resume">
 
   <p class="intro">I've been involved with computers for as long as I can remember. From the early days hacking away at Geocities sites to the current era building out complex pattern libraries, <em>the web has been a major part of my craft</em>.</p>
-  <p class="intro">My work has taken me across boutique agencies working with clients of all sizes, to the freelance world, and currently to the academy solving complex frontend challenges in the higher ed space. Like what you see? Feel free to <a href="/contact">get in touch</a> and ask me anything!</p>
+  <p>My work has taken me across boutique agencies working with clients of all sizes, to the freelance world, and currently to the academy solving complex frontend challenges in the higher ed space. Like what you see? Feel free to <a href="/contact">get in touch</a> and ask me anything!</p>
   
   <Spacer />
 
@@ -30,17 +30,17 @@ import Spacer from '../../components/elements/Spacer.astro';
 
     <AnimatedWrapper direction="bottom" distance="200px" triggerAt="40%" initialDelay="3000">
       <h2 class="heading">Work Experience</h2>
-      <WorkCardBlock content="jobs" />
+      <ResumeCardBlock content="jobs" />
 
       <Spacer />
 
       <h2 class="heading">Education</h2>
-      <WorkCardBlock content="education" />
+      <ResumeCardBlock content="education" />
 
       <Spacer />
 
       <h2 class="heading">Awards & Accolades</h2>
-      <WorkCardBlock content="awards" />
+      <ResumeCardBlock content="awards" />
     </AnimatedWrapper>
 
   </div>
@@ -57,9 +57,9 @@ import Spacer from '../../components/elements/Spacer.astro';
         margin: 0 0 2rem 0;
       }
 
-      &.work-card-block {
+      &.resume-card-block {
         li {
-          ul.work-cards {
+          ul.resume-cards {
             margin-bottom: 1rem;
 
             @include bp(tablet) {
@@ -67,7 +67,7 @@ import Spacer from '../../components/elements/Spacer.astro';
             }
 
             li {
-              .work-card {
+              .resume-card {
                 padding: 1rem 0;
                 transition: background ease-in-out var.$tran-slow;
 

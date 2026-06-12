@@ -1,6 +1,7 @@
 ---
 import { about } from '../../data/site.json';
-import Button from '../../components/elements/Button.astro'
+import Button from '../../components/elements/Button.astro';
+import Polaroid from '../../components/elements/Polaroid.astro';
 
 import { getRandomItem } from '../../utils/parseItems';
 const randomItem = getRandomItem(about.hello);
@@ -8,10 +9,7 @@ const randomItem = getRandomItem(about.hello);
 
 <div class="intro-block">
   <div class="intro">
-    <figure class="d_polaroid">
-      <img src="/assets/images/david-m-schulman-portrait.jpg" alt="A handsome man against a blue backdrop" />
-      <figcaption>The author himself, in their natural habitat</figcaption>
-    </figure>
+    <Polaroid />
     <p><span class="hello">{randomItem}</span> My name is <em>{about.fullName}</em> and I'm a <em>{about.jobRole}</em> based in <em>{about.location}</em>. {about.pitch}</p>
   </div>
   <div class="buttons">
@@ -20,7 +18,7 @@ const randomItem = getRandomItem(about.hello);
       href="/contact"
     />
     <Button
-      label="View my resume"
+      label="See my resume"
       href="/about/resume"
     />
   </div>
@@ -68,32 +66,6 @@ const randomItem = getRandomItem(about.hello);
 
         span.hello {
           text-decoration: underline;
-        }
-      }
-
-      figure {
-        margin: 0;
-        transform: rotate(4deg);
-        display: none;
-
-        @include bp(tablet) {
-          display: block;
-          width: 20%;
-          float: right;
-          margin: 2rem 0 0.5rem 3rem;
-        }
-
-        @include bp(desktop) {
-          width: 18%;
-          margin: 0 0 0.5rem 2rem;
-        }
-
-        @include bp(xl) {
-          width: 15%;
-        }
-
-        figcaption {
-          clear: both;
         }
       }
     }

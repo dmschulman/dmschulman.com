@@ -22,6 +22,10 @@
           {
             "title": "Work",
             "href": "/work"
+          },
+          {
+            "title": "Contact",
+            "href": "/contact"
           }
         ]
       }

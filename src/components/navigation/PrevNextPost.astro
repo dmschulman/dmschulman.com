@@ -1,0 +1,200 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  collection: string;
+  currentPostId: string;
+  urlPath?: string;
+  includeYear?: boolean;
+}
+
+const { collection, currentPostId, urlPath, includeYear = false } = Astro.props;
+const basePath = urlPath || collection;
+
+const allEntries = await getCollection(collection);
+
+const sortedEntries = allEntries.sort((a, b) => {
+  const dateA = a.data.date || a.data.pubDate;
+  const dateB = b.data.date || b.data.pubDate;
+  return new Date(dateA).getTime() - new Date(dateB).getTime();
+});
+
+const currentIndex = sortedEntries.findIndex(entry => entry.id === currentPostId);
+
+const prevPost = currentIndex > 0 ? sortedEntries[currentIndex - 1] : null;
+const nextPost = currentIndex < sortedEntries.length - 1 ? sortedEntries[currentIndex + 1] : null;
+
+function formatPostUrl(postId: string) {
+  const cleanId = postId.replace(/\.(md|mdx)$/, '');
+
+  if (includeYear) {
+    const [datePart, ...slugParts] = cleanId.split('_');
+    const slug = slugParts.join('_');
+    const year = datePart.split('-')[0];
+    return `/${basePath}/${year}/${slug}`;
+  }
+
+  const slug = cleanId.split('/').pop();
+  return `/${basePath}/${slug}`;
+}
+---
+
+{currentPostId ? (
+  <nav class="post-navigation">
+    <div class="nav-links">
+      {prevPost ? (
+        <a href={formatPostUrl(prevPost.id)} class="nav-link prev">
+          <span class="nav-title">{prevPost.data.title}</span>
+        </a>
+      ) : (
+        <div class="nav-link disabled"></div>
+      )}
+
+      {nextPost ? (
+        <a href={formatPostUrl(nextPost.id)} class="nav-link next">
+          <span class="nav-title">{nextPost.data.title}</span>
+        </a>
+      ) : (
+        <div class="nav-link disabled"></div>
+      )}
+    </div>
+  </nav>
+) : null}
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .post-navigation {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var.$color-grey;
+
+    .nav-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      @include bp(mobile) {
+        gap: 3rem;
+      }
+
+      a {
+        &.nav-link {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          position: relative;
+
+          &.disabled {
+            visibility: hidden;
+          }
+
+          &.prev {
+            text-align: left;
+            justify-content: flex-start;
+
+            &:before {
+              content: '➜';
+              transform: rotate(180deg);
+              position: absolute;
+              left: 0;
+              transition: transform var.$tran-fast ease;
+            }
+
+            &:hover,
+            &:focus {
+              &:before {
+                transform: rotate(180deg) translateX(6px);
+              }
+            }
+
+            .nav-title {
+              padding-left: 1.75rem;
+
+              @include bp(tablet) {
+                padding-left: 2rem;
+              }
+
+              @include bp(xl) {
+                padding-left: 2.25rem;
+              }
+            }
+          }
+
+          &.next {
+            text-align: right;
+            justify-content: flex-end;
+
+            &:after {
+              content: '➜';
+              position: absolute;
+              right: 0;
+              transition: transform var.$tran-fast ease;
+            }
+
+            .nav-title {
+              padding-right: 0.5rem;
+            }
+
+            &:hover,
+            &:focus {
+              &:after {
+                transform: translateX(6px);
+              }
+            }
+
+            .nav-title {
+              padding-right: 1.75rem;
+
+              @include bp(tablet) {
+                padding-right: 2rem;
+              }
+
+              @include bp(xl) {
+                padding-right: 2.25rem;
+              }
+            }
+          }
+
+          &.prev,
+          &.next {
+            &:before,
+            &:after {
+              font-size: 1.25rem;
+
+              @include bp(tablet) {
+                font-size: 1.5rem;
+              }
+
+              @include bp(xl) {
+                font-size: 1.75rem;
+              }
+            }
+          }
+
+          .nav-title {
+            text-decoration: underline;
+            font-weight: var.$weight-bold;
+            font-size: 1.25rem;
+
+            @include bp(tablet) {
+              font-size: 1.5rem;
+            }
+
+            @include bp(xl) {
+              font-size: 1.75rem;
+            }
+          }
+
+          &:hover:not(.disabled) {
+            .nav-title {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+</style>

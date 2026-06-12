@@ -1,5 +1,5 @@
 ---
-export const prerender = false;
+export const prerender = true;
 import json from '../../data/site.json'
 import { Icon } from 'astro-icon/components';
 
@@ -13,7 +13,7 @@ const socials = Object.entries(json.about.social || {});
     </li>
   ))}
   <li>
-    <span style="cursor:pointer"><Icon name="fa-twitter" /><s><u>Twitter</u></s></span>
+    <span style="cursor:not-allowed;font-weight:bold;"><Icon name="fa-twitter" /><s><u>Twitter</u></s></span>
   </li>
 </ul>
 

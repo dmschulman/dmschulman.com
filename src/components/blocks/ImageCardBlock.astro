@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import ImageCard from '../../components/elements/ImageCard.astro';
+
+const { category, collection, heading } = Astro.props
+
+const allItems = await getCollection(collection);
+const categoryItems = allItems.filter(
+  item => item.data.published && item.data.category === category
+);
+
+const allCategoryItems = categoryItems
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    return new Date(b.data.timestamp || b.data.date) - new Date(a.data.timestamp || a.data.date);
+  });
+---
+
+<div class="card-block">
+  <h2>{heading}</h2>
+  {
+    <ul>
+      {allCategoryItems.map((item) => (
+        <li class={`item ${item.data.featured ? 'featured' : ''}`}>
+          <ImageCard
+            id={item.id}
+            collection={item.collection}
+            category={item.data.category}
+            date={item.data.date}
+            cover={item.data.cover}
+            coverAlt={item.data.coverAlt}
+            hoverColor={item.data.hoverColor}
+            title={item.data.title}
+            published={item.data.published}
+          />
+        </li>
+      ))}
+    </ul>
+  }
+</div>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .card-block {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: opacity var.$tran-med ease, transform var.$tran-med ease;
+
+      @include bp(mobile) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include bp(tablet) {
+        gap: 1.5rem;
+      }
+
+      @include bp(desktop) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      li {
+        order: 1;
+
+        &.item.featured {
+          order: 0;
+        }
+      }
+    }
+  }
+</style>

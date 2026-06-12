@@ -1,7 +1,7 @@
 ---
-export const prerender = false;
+export const prerender = true;
 import resumeData from '../../data/resume.json'
-import WorkCard from '../../components/elements/WorkCard.astro'
+import ResumeCard from '../../components/elements/ResumeCard.astro'
 
 const { content = 'jobs' } = Astro.props;
 
@@ -15,14 +15,14 @@ const grouped = sortedWork.reduce((acc, job) => {
 }, {});
 ---
 
-<ul class="work-card-block">
+<ul class="resume-card-block">
   {Object.entries(grouped).map(([category, jobs]) => (
     <li>
       {category && <h3 class="heading">{category}</h3>}
-      <ul class="work-cards">
+      <ul class="resume-cards">
         {jobs.map((job) => (
           <li>
-            <WorkCard
+            <ResumeCard
               img={job.img}
               org={job.org}
               time={job.time}
@@ -42,7 +42,7 @@ const grouped = sortedWork.reduce((acc, job) => {
   @use '../../styles/base/breakpoints.scss' as *;
 
   ul {
-    &.work-card-block {
+    &.resume-card-block {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -60,5 +60,4 @@ const grouped = sortedWork.reduce((acc, job) => {
       }
     }
   }
-
 </style>

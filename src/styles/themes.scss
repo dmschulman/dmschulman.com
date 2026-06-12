@@ -71,6 +71,8 @@ body {
       padding-top: 0;
       padding-bottom: 1rem;
 
+      // TYPOGRAPHY
+
       h1, h2, h3, h4, h5, h6 {
         line-height: calc(10px + 2ex);
 
@@ -104,6 +106,8 @@ body {
       a {
         transition: text-decoration var.$tran-fast ease;
       }
+
+      // LISTS
 
       li {
         &.badge {
@@ -149,6 +153,7 @@ body {
           font-weight: bold;
           cursor: pointer;
           padding: 0.75rem 1.5rem;
+          filter: drop-shadow(2px 2px 0 var.$color-black);
           border-radius: 5px;
           font-size: var.$font-size-h6;
           font-family: var.$bayside-font-sans;
@@ -196,8 +201,37 @@ body {
 
       ul.tags {
         li {
+          display: inline;
+          filter: drop-shadow(2px 2px 0 var.$color-black);
+          border: 1px solid var.$color-black;
+          border-radius: 10px;
+          margin: 0 1rem 1rem 0;
+          background-color: var.$color-white;
+          transition: all var.$tran-med ease-in-out;
+
+          &:hover,
+          &:focus {
+            filter: drop-shadow(4px 4px 0 var.$color-black);
+          }
+
           a {
             font-weight: var.$weight-normal;
+            color: var.$color-black;
+            padding: 0.25rem 0.5rem;
+
+            &:before {
+              content: "#";
+            }
+
+            &:hover,
+            &:focus {
+              text-decoration: none;
+            }
+
+            i {
+              text-decoration: none;
+              text-decoration-thickness: 0px;
+            }
           }
         }
       }

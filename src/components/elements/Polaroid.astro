@@ -1,0 +1,48 @@
+---
+import { getRandomItem, getIntroImages } from '../../utils/parseItems';
+
+const images = await getIntroImages();
+const randomImage = getRandomItem(images);
+---
+
+<figure class="d_polaroid">
+  <img src={randomImage.src} alt="A handsome man" />
+  <figcaption>The author himself, in their natural habitat</figcaption>
+</figure>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  figure {
+    &.d_polaroid {
+      margin: 0;
+      transform: rotate(4deg);
+      display: none;
+
+      @include bp(tablet) {
+        display: block;
+        width: 20%;
+        float: right;
+        margin: 2rem 0 0.5rem 3rem;
+      }
+
+      @include bp(desktop) {
+        width: 18%;
+        margin: 0 0 0.5rem 2rem;
+      }
+
+      @include bp(xl) {
+        width: 15%;
+      }
+
+      img {
+        cursor: help;
+      }
+
+      figcaption {
+        clear: both;
+      }
+    }
+  }
+</style>

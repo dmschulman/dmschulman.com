@@ -3,7 +3,7 @@ const { img, org, time, role, contract, bullets } = Astro.props
 const roles = Array.isArray(role) ? role : [role];
 ---
 
-<div class="work-card">
+<div class="resume-card">
   <span class="org">
     {img && <img class="icon" src={img} alt={`Icon for ${org}`} />}
     {org}
@@ -25,7 +25,7 @@ const roles = Array.isArray(role) ? role : [role];
   @use '../../styles/base/vars.scss' as var;
   @use '../../styles/base/breakpoints.scss' as *;
 
-  .work-card {
+  .resume-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

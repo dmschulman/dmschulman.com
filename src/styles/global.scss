@@ -37,9 +37,6 @@ ul.tags {
     display: inline;
     background-color: var.$color-white;
     transition: all var.$tran-med ease-in-out;
-    margin:0 0.5rem 0.5rem 0;
-    transition: all var.$tran-med ease-in-out;
-
 
     &:last-child {
       margin-right: 0;

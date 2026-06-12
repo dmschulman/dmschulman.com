@@ -42,7 +42,7 @@
 }
 
 // EFFECTS
-// TYPE
+// TYPOGRAPHY
 .d_underline-slide {
   position: relative;
   width: fit-content;
@@ -62,7 +62,20 @@
   }
 }
 
+// BLOCKS
+.d_press-down {
+  transform: scale(1);
+  transition: transform var.$tran-slow ease;
+  backface-visibility: hidden;
+
+  &:hover,
+  &:focus {
+    transform: scale(0.95);
+  }
+}
+
 // ANIMATIONS
+// MOVEMENT
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -82,5 +95,16 @@
 @keyframes boldMe {
   to {
     font-weight: bold;
+  }
+}
+
+// VISUAL FX
+@keyframes hueRotate {
+  0%, 100% {
+    filter: hue-rotate(0);
+  }
+
+  70% {
+    filter: hue-rotate(-190deg);
   }
 }

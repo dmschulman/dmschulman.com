@@ -140,6 +140,7 @@ const airformEndpoint = `https://airform.io/${recipientEmail}`;
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit') as HTMLButtonElement;
 
+  // Real-time validation helpers
   function showError(field: HTMLInputElement | HTMLTextAreaElement, message: string) {
     field.classList.add('invalid');
     const errorEl = field.nextElementSibling as HTMLElement;
@@ -169,6 +170,7 @@ const airformEndpoint = `https://airform.io/${recipientEmail}`;
     return true;
   }
 
+  // Attach blur validation to each field
   form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input:not([type="hidden"]):not(#_honeypot), textarea').forEach(field => {
     field.addEventListener('blur', () => validateField(field));
     field.addEventListener('input', () => {
@@ -177,7 +179,7 @@ const airformEndpoint = `https://airform.io/${recipientEmail}`;
   });
 
   form.addEventListener('submit', (e) => {
-
+    // Validate all fields before allowing native POST
     const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
       'input[required], textarea[required]'
     );
@@ -190,12 +192,14 @@ const airformEndpoint = `https://airform.io/${recipientEmail}`;
       return;
     }
 
+    // Honeypot check — silently block bots
     const honeypot = form.querySelector<HTMLInputElement>('#_honeypot');
     if (honeypot && honeypot.value) {
       e.preventDefault();
       return;
     }
 
+    // Valid — show loading state and let the native POST go through to Airform
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
   });
