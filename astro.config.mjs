@@ -6,7 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://localhost',
+  site: 'https://dmschulman.com',
   base: '/',
   cacheDir: './node_modules/.astro',
   trailingSlash: "never",

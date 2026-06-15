@@ -18,5 +18,24 @@ const theme = site.meta.theme;
 <title>{site.meta.title}</title>
 <link rel="canonical" href={`https://${site.meta.name}`}>
 <meta name="description" content={site.meta.description}>
+
+{
+  import.meta.env.PROD && (
+    <>
+      <!-- Google tag (gtag.js) -->
+      <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-6KR51SG28T"></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6KR51SG28T');
+      </script>
+    </>
+  )
+}
+
 <link rel="sitemap" href="/sitemap-index.xml" />
 <meta name="robots" content="index, follow">
