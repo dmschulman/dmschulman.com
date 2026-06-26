@@ -1,6 +1,6 @@
  {
-  "skills": [ "Frontend web development",  "component development", "design systems architecture", "accessible design (WCAG 2.2)", "responsive web design", "search engine optimization (SEO/SEM)", "web analytics analysis"],
-  "tools": [ "HTML & CSS", "SASS", "React", "Javascript", "XML/XSLT", "PHP", "Twig", "Markdown", "Astro", "Drupal", "Jekyll", "Wordpress" ],
+  "skills": [ "Frontend web development",  "component development", "design systems architecture", "web accessibility (WCAG 2.2)", "responsive atomic design", "answer engine optimization (AEO)", "search engine optimization (SEO/SEM)", "web analytics", "technical writing"],
+  "tools": [ "HTML & CSS", "SASS", "React", "Javascript", "XML/XSLT", "PHP", "Python", "Twig", "Patternlab", "Markdown", "Astro", "Drupal", "Jekyll", "Wordpress", "Docker", "Git", "Figma" ],
   "jobs": [
     {
       "category": "Web Development",
@@ -13,8 +13,10 @@
       "role": "Web Developer",
       "contract": "Full time",
       "bullets": [
-        "Established university's website pattern library and integrated atomic design into the SJU web team's development process",
-        "Led project team to design and develop the next iteration of the SJU web theme"
+        "Established and maintained SJU's web component pattern library, integrating atomic design principals into the university's web production ecosystem.",
+        "Designed, developed, and implemented new components across all university Drupal instances, performed upkeep and modification of existing components.",
+        "Adapted bi-annual university magazine and university report to fully digital experiences, led development and design of multiple interactive features.",
+        "Strategized and participated in a variety of digital marketing efforts, landing page activations, lead generation campaigns, and brand awareness efforts."
       ]
     },
     {
@@ -29,8 +31,10 @@
       "role": "Web Developer",
       "contract": "Full time",
       "bullets": [
-        "Established university's website pattern library and integrated atomic design into the SJU web team's development process.",
-        "Led project team to design and develop the next iteration of the SJU web theme."
+        "Conceptualized, developed, and deployed new web features, functional improvements, third-party integrations, and designed new webpage templates to support enrollment, marketing, and institutional goals.",
+        "Developed numerous web projects including admission campaign landing pages, database-oriented resources, USciences Online microsite, and digitized the university magazine.",
+        "Managed web team and performed lead implementation duties as the university website transitioned to ModernCampus (aka OU Campus), met critical deadlines and milestones throughout the 16-monthlong project.",
+        "Generated technical documentation for web components and designs to allow for cross-team training and reference."
       ]
     },
     {
@@ -160,6 +164,7 @@
   "education": [
     {
       "org": "Ithaca College",
+      "img": "/assets/images/favicon/ithaca-college-logo.png",
       "time": {
         "start": "2004",
         "end": "2008"
