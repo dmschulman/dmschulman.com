@@ -31,10 +31,12 @@
       }
     },
     "stack": {
-      "powered": "Astro",
+      "poweredBy": "Astro",
       "poweredUrl": "https://astro.build/",
-      "host": "Vultr",
-      "hostUrl": "https://www.vultr.com/"
+      "hostedBy": "Vultr",
+      "hostUrl": "https://www.vultr.com/",
+      "repoBy": "Github",
+      "repoUrl": "https://github.com/dmschulman/dmschulman.com"
     }
   },
   "about": {
@@ -59,15 +61,20 @@
         "href": "https://www.linkedin.com/in/dmschulman/",
         "icon": "fa-linkedin"
       },
-      "bsky": {
-        "title": "Bluesky",
-        "href": "https://bsky.app/profile/schul.dev",
-        "icon": "fa-bluesky"
-      },
       "codepen": {
         "title": "CodePen",
         "href": "https://codepen.io/dmschulman",
         "icon": "fa-codepen"
+      },
+      "instagram": {
+        "title": "Instagram",
+        "href": "https://www.instagram.com/dmschulman/",
+        "icon": "fa-instagram"
+      },
+      "bsky": {
+        "title": "Bluesky",
+        "href": "https://bsky.app/profile/schul.dev",
+        "icon": "fa-bluesky"
       }
     }
   }

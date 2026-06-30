@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer>
-  <span>Powered by <a href={json.site.stack.poweredUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.powered}</a>, hosted by <a href={json.site.stack.hostUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.host}</a>, and open-sourced on <a href={json.about.social.github.href} target="_blank" rel="noopener">Github</a></span>
+  <span>Powered by <a href={json.site.stack.poweredUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.poweredBy}</a>, hosted by <a href={json.site.stack.hostUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.hostedBy}</a>, and open-sourced on <a href={json.site.stack.repoUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.repoBy}</a></span>
   <ListSocials />
   <span>&copy; {json.site.meta.firstYear}-{year} {json.about.fullName}</span>
 </footer>
