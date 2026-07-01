@@ -54,27 +54,32 @@
       "github": {
         "title": "Github",
         "href": "https://github.com/dmschulman",
-        "icon": "fa-github"
+        "icon": "fa-github",
+        "hoverColor": "brightness(0) saturate(100%) invert(71%) sepia(31%) saturate(890%) hue-rotate(56deg) brightness(93%) contrast(85%);"
       },
       "linkedin": {
         "title": "LinkedIn",
         "href": "https://www.linkedin.com/in/dmschulman/",
-        "icon": "fa-linkedin"
+        "icon": "fa-linkedin",
+        "hoverColor": "brightness(0) saturate(100%) invert(26%) sepia(62%) saturate(6265%) hue-rotate(186deg) brightness(96%) contrast(101%);"
       },
       "codepen": {
         "title": "CodePen",
         "href": "https://codepen.io/dmschulman",
-        "icon": "fa-codepen"
+        "icon": "fa-codepen",
+        "hoverColor": "brightness(0) saturate(100%) invert(38%) sepia(48%) saturate(5255%) hue-rotate(337deg) brightness(107%) contrast(116%);"
       },
       "instagram": {
         "title": "Instagram",
         "href": "https://www.instagram.com/dmschulman/",
-        "icon": "fa-instagram"
+        "icon": "fa-instagram",
+        "hoverColor": "brightness(0) saturate(100%) invert(47%) sepia(13%) saturate(2796%) hue-rotate(278deg) brightness(88%) contrast(75%);"
       },
       "bsky": {
         "title": "Bluesky",
         "href": "https://bsky.app/profile/schul.dev",
-        "icon": "fa-bluesky"
+        "icon": "fa-bluesky",
+        "hoverColor": "brightness(0) saturate(100%) invert(58%) sepia(58%) saturate(5815%) hue-rotate(176deg) brightness(103%) contrast(112%);"
       }
     }
   }

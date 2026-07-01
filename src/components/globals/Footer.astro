@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 <footer>
   <span>Powered by <a href={json.site.stack.poweredUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.poweredBy}</a>, hosted by <a href={json.site.stack.hostUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.hostedBy}</a>, and open-sourced on <a href={json.site.stack.repoUrl} target="_blank" rel="noopener,nofollow">{json.site.stack.repoBy}</a></span>
   <ListSocials />
-  <span>&copy; {json.site.meta.firstYear}-{year} {json.about.fullName}</span>
+  <span>&copy; {json.site.meta.firstYear}-{year} <strong>{json.about.fullName}</strong></span>
 </footer>
 
 <style lang="scss">
@@ -19,6 +19,15 @@ const year = new Date().getFullYear();
 
     span {
       display: block;
+      font-size: 1rem;
+
+      @include bp(tablet) {
+        font-size: 1.25rem;
+      }
+
+      strong {
+        cursor: cell;
+      }
 
       a {
         color: var.$color-black;

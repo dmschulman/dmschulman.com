@@ -1,6 +1,6 @@
 ---
 title: University Report 2024
-description: "Full of facts, figures, and fascinating stories about students and alumni, the annual SJU university report goes fully digital"
+description: "Full of facts, figures, and fascinating stories about students and alumni, the annual SJU university report goes fully digital."
 date: 2024-03-15T04:00:00.000Z
 category: sju
 cover: 2024-sju-university-report.jpg
@@ -20,6 +20,8 @@ stack:
   - Drupal
   - PHP
   - Twig
+  - Pattern Lab
+  - Handlebars
 launched: "March 2024"
 link: https://www.sju.edu/news/university-report/2023-2024
 published: true

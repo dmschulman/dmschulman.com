@@ -12,13 +12,15 @@ tags:
 role: "Web Developer"
 skills:
   - Component design & development
-  - interaction design
+  - UX design
   - build out
   - project management
 stack:
   - Drupal
   - PHP
   - Twig
+  - Pattern Lab
+  - Handlebars
 launched: "July 2024"
 link: https://www.sju.edu/offices/student-life/wellbeing
 published: true

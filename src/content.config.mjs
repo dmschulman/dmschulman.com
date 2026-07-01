@@ -27,7 +27,14 @@ const work = defineCollection({
     category: z.string(), // Grouping the work belongs within
     cover: image(), // Thumbnail representing the work
     coverAlt: z.string(), // Thumbnail alt tag
-    hoverColor: z.string().optional(), // For Image Card, optional hover color definition
+    hoverColor: z.string().optional(), // For Image Card, optional hover color definition,
+    role: z.string().optional(), // Role on project
+    skills: z.array(z.string()).optional(), // Skills used within project
+    stack: z.array(z.string()).optional(), // Tech stack for project
+    launched: z.string().optional(), // Launch date for project
+    features: z.string().optional(), // Features involved in project creation
+    impact: z.string().optional(), // Impact project had
+    link: z.string().optional(), // URL link to live project
     tags: z.array(z.string()), // Tags
     published: z.boolean(), // Is this draft or published?
     featured: z.boolean(), // Is this supposed to run in the featured feed?

@@ -18,7 +18,11 @@ skills:
 stack:
   - Drupal
   - PHP
+  - Javascript
   - Twig
+  - Pattern Lab
+  - Handlebars
+  - Vimeo
 launched: "April 2025"
 link: https://www.sju.edu/tastemakers
 published: true

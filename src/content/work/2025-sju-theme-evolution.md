@@ -21,7 +21,8 @@ stack:
   - Drupal
   - PHP
   - Twig
-  - Patternlab
+  - Pattern Lab
+  - Handlebars
 launched: "January 2025"
 link: https://www.sju.edu/location
 published: true

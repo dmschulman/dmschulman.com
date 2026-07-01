@@ -11,7 +11,7 @@ interface Props {
 const { collection, currentPostId, urlPath, includeYear = false } = Astro.props;
 const basePath = urlPath || collection;
 
-const allEntries = await getCollection(collection);
+const allEntries = await getCollection(collection, ({ data }) => data.published === true);
 
 const sortedEntries = allEntries.sort((a, b) => {
   const dateA = a.data.date || a.data.pubDate;
