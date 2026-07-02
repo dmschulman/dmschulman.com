@@ -5,9 +5,7 @@ interface Props {
   isH1?: boolean;
 }
 
-const {
-  isH1 = false,
-} = Astro.props;
+const { isH1 = false } = Astro.props;
 
 const sitename = json.site.meta.sitename;
 const tagline = json.site.meta.tagline;
@@ -27,11 +25,14 @@ const tagline = json.site.meta.tagline;
       <text aria-hidden="true" x="51" y="51" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="66" font-weight="bold" fill="#444444">D</text>
       <text aria-hidden="true" x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="66" font-weight="bold" fill="#ffffff">D</text>
     </svg>
-    {isH1 ? (
-      <h1 class="name">{sitename}</h1>
-    ) : (
-      <span class="name">{sitename}</span>
-    )}
+    <div class="sitename">
+      {isH1 ? (
+        <h1 class="name">{sitename}</h1>
+      ) : (
+        <span class="name">{sitename}</span>
+      )}
+      {tagline && <p class="tagline">{tagline}</p>}
+    </div>
   </a>
 </div>
 
@@ -39,44 +40,87 @@ const tagline = json.site.meta.tagline;
   @use '../../styles/base/vars.scss' as var;
   @use '../../styles/base/breakpoints.scss' as *;
 
-  a.logo {
-    text-decoration: none;
-    font-weight: bold;
+  .branding {
+    width: 100%;
+    margin: 0 auto;
+    display: contents;
 
-    img,
-    svg {
-      width: 70px;
-      height: auto;
+    a.logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-decoration: none;
+      font-weight: bold;
 
-      @include bp(tablet) {
-        width: 60px;
+      img,
+      svg {
+        width: 20%;
+        max-width: 80px;
+        height: auto;
+        margin: 0 0.5rem 0 0;
+
+        @include bp(mobile) {
+          margin: 0 1.5rem 0 0;
+          width: 40%;
+        }
+        
+        @include bp(tablet) {
+          margin: 0 1rem 0 0;
+          max-width: 70px;
+        }
       }
-    }
 
-    h1,
-    span {
-      font-size: var.$font-size-h5;
-      margin: 0;
-
-      @include bp(tablet) {
-        margin: 0 0 0 0.5rem;
-      }
-    }
-
-    svg {
-      .bg-circle {
-        animation: hueRotate 5s ease-in-out infinite;
+      svg {
+        .bg-circle {
+          animation: hueRotate 5s ease-in-out infinite;
+        }
       }
 
-      @keyframes hueRotate {
-        0%, 100% {
-          filter: hue-rotate(0);
+      .sitename {
+        width: 80%;
+
+        @include bp(mobile) {
+          width: 60%;
         }
 
-        70% {
-          filter: hue-rotate(-190deg);
+        h1,
+        span {
+          font-size: var.$font-size-h4;
+          margin: 0;
+          padding: 0;
+          display: block;
+          line-height: 1;
+
+          @include bp(mobile) {
+            font-size: var.$font-size-h3;
+          }
+
+          @include bp(tablet) {
+            font-size: var.$font-size-h5;
+          }
+        }
+
+        p {
+          margin: 0;
+          text-transform: lowercase;
+          font-weight: normal;
+          font-size: var.$font-size-sm;
+
+          @include bp(mobile) {
+            font-size: var.$font-size-h6;
+          }
+
+          @include bp(tablet) {
+            font-size: var.$font-size-sm;
+          }
+
+          &:before {
+            content: "//";
+            margin-right: 0.5rem;
+          }
         }
       }
     }
   }
+
 </style>
