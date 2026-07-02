@@ -23,13 +23,32 @@ const navItems = json.site.navigation.mainNav.items;
       display: flex;
       flex-direction: row;
       list-style: none;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
+      gap: 0 1rem;
+
+      @include bp(desktop) {
+        gap: 0 1.5rem;
+      }
 
       li {
         a {
+          min-height: 44px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           font-weight: bold;
-          color: var.$color-black;
+          font-size: 1rem;
+
+          @include bp(mobile) {
+            font-size: 1.5rem;
+          }
+          
+          @include bp(tablet) {
+            font-size: 1.25rem;
+          }
+
+
         }
       }
     }

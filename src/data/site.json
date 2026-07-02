@@ -3,7 +3,7 @@
     "meta": {
       "title": "David M. Schulman / Web Wonderland",
       "sitename": "dmschulman.com",
-      "tagline": "The Wonderful Website of David M. Schulman",
+      "tagline": "A Web Wonderland",
       "theme": "bayside",
       "firstYear": "2006"
     },
@@ -11,10 +11,6 @@
       "mainNav": {
         "ariaLabel": "Main",
         "items": [
-          {
-            "title": "Home",
-            "href": "/"
-          },
           {
             "title": "About",
             "href": "/about"
@@ -24,8 +20,16 @@
             "href": "/work"
           },
           {
-            "title": "Contact",
-            "href": "/contact"
+            "title": "Studio",
+            "href": "/studio"
+          },
+          {
+            "title": "Collections",
+            "href": "/collections"
+          },
+          {
+            "title": "Words",
+            "href": "/words"
           }
         ]
       }
@@ -55,7 +59,7 @@
         "title": "Github",
         "href": "https://github.com/dmschulman",
         "icon": "fa-github",
-        "hoverColor": "brightness(0) saturate(100%) invert(71%) sepia(31%) saturate(890%) hue-rotate(56deg) brightness(93%) contrast(85%);"
+        "hoverColor": "brightness(0) saturate(100%) invert(63%) sepia(3%) saturate(382%) hue-rotate(87deg) brightness(93%) contrast(87%);"
       },
       "linkedin": {
         "title": "LinkedIn",

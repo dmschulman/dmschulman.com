@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout pageTitle="Page not found">
+	<p class="intro">Well, it appears something has gone wrong...</p>
+	<p>It's likely you mistyped a URL or may need to refresh the page.</p>
+	<p>If there's really something here that's broken, please reach out and contact me <a href="/contact">via this form</a>.</p>
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+
+</style>
