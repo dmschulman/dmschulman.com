@@ -19,6 +19,12 @@ body {
     }
 
     header {
+      margin: 1rem auto 0.5rem;
+
+      @include bp(tablet) {
+        margin: 1rem auto 1.5rem;
+      }
+      
       .branding {
         a.logo {
           color: var.$color-black;
@@ -27,9 +33,6 @@ body {
 
       nav {
         ul {
-          justify-content: center;
-          flex-wrap: wrap;
-
           li {
             a {
               color: var.$color-black;
@@ -40,8 +43,16 @@ body {
     }
 
     main {
-      padding-top: 0;
-      padding-bottom: 1rem;
+      margin: 0 auto 2.5rem;
+      padding: 0;
+
+      @include bp(tablet) {
+        margin: 0 auto 4rem;
+      }
+
+      @include bp(desktop) {
+        margin: 0 auto 2rem;
+      }
 
       // TYPOGRAPHY
 
@@ -50,8 +61,12 @@ body {
 
         &.page-title
         &.post-title {
-          margin-bottom: 1rem;
+          // margin-bottom: 1rem;
         }
+      }
+
+      a {
+        transition: text-decoration var.$tran-fast ease;
       }
 
       p, span, a, li {
@@ -62,9 +77,15 @@ body {
         &.intro {
           font-size: 1.5rem;
           font-family: var.$bayside-font-sans;
+          margin: 0 0 1rem;
+
+          @include bp(mobile) {
+            margin: 0.5rem 0 1rem;
+          }
 
           @include bp(tablet) {
             font-size: 1.75rem;
+
           }
 
           em {
@@ -72,11 +93,34 @@ body {
             text-decoration: underline;
           }
         }
-
       }
 
-      a {
-        transition: text-decoration var.$tran-fast ease;
+      // ELEMENTS
+
+      div.button {
+        display: block;
+        width: fit-content;
+
+        button,
+        a {
+          text-decoration: none;
+          font-weight: bold;
+          cursor: pointer;
+          padding: 0.75rem 1.5rem;
+          filter: drop-shadow(2px 2px 0 var.$color-black);
+          border-radius: 5px;
+          font-size: var.$font-size-h6;
+          font-family: var.$bayside-font-sans;
+          color: var.$color-black;
+          background: var.$color-white;
+          border: 2px solid var.$color-black;
+          transition: all var.$tran-med ease-in-out;
+          text-align: center;
+
+          &:hover {
+            filter: drop-shadow(5px 5px 0 var.$color-black);
+          }
+        }
       }
 
       // LISTS
@@ -113,33 +157,7 @@ body {
         }
       }
 
-      // ELEMENTS
-
-      div.button {
-        display: block;
-        width: fit-content;
-
-        button,
-        a {
-          text-decoration: none;
-          font-weight: bold;
-          cursor: pointer;
-          padding: 0.75rem 1.5rem;
-          filter: drop-shadow(2px 2px 0 var.$color-black);
-          border-radius: 5px;
-          font-size: var.$font-size-h6;
-          font-family: var.$bayside-font-sans;
-          color: var.$color-black;
-          background: var.$color-white;
-          border: 2px solid var.$color-black;
-          transition: all var.$tran-med ease-in-out;
-          text-align: center;
-
-          &:hover {
-            filter: drop-shadow(5px 5px 0 var.$color-black);
-          }
-        }
-      }
+      // FORMS
 
       form input,
       form textarea {
@@ -247,10 +265,8 @@ body {
       }
     }
 
-    // GLOBALS
-
     footer {
-      display: flex;
+      margin: 0 auto;
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -261,21 +277,15 @@ body {
       }
 
       ul.socials {
-        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-
-        li {
-          margin: 0 1rem 0 0;
-        }
       }
     }
 
     header,
     main,
     footer {
-      margin: 1rem auto;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
 
@@ -299,7 +309,4 @@ body {
       }
     }
   }
-
-
-
 }

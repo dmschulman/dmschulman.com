@@ -29,19 +29,22 @@ const socials = Object.entries(json.about.social || {});
   @use '../../styles/base/breakpoints.scss' as *;
 
   ul.socials {
+    display: flex;
     list-style: none;
-    margin: 0.75rem 0 0;
+    margin: 0;
     padding: 0;
+    gap: 1rem;
 
     li {
+
       a,
       span {
+        min-height: 44px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         color: var.$color-black;
-        padding: 0.25rem 0;
         font-size: 1rem;
         
         @include bp(tablet) {

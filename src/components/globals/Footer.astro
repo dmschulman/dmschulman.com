@@ -16,6 +16,7 @@ const year = new Date().getFullYear();
   @use '../../styles/base/breakpoints.scss' as *;
 
   footer {
+    display: flex;
 
     span {
       display: block;
@@ -31,6 +32,8 @@ const year = new Date().getFullYear();
 
       a {
         color: var.$color-black;
+        display: inline-block;
+        min-height: 44px;
 
         &:hover,
         &:focus {

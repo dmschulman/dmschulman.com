@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import * as uses from "../../data/uses.md";
+import Layout from '../layouts/Layout.astro';
+import * as uses from "../data/uses.md";
 const compiled= await uses.compiledContent();
 
 const customBreadcrumbLinks = [
@@ -23,6 +23,6 @@ const customBreadcrumbLinks = [
 </Layout>
 
 <style lang="scss">
-  @use '../../styles/base/vars.scss' as var;
-  @use '../../styles/base/breakpoints.scss' as *;
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
 </style>

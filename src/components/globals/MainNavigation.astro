@@ -22,6 +22,8 @@ const navItems = json.site.navigation.mainNav.items;
     ul {
       display: flex;
       flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
       list-style: none;
       margin: 0 auto;
       padding: 0;
@@ -47,8 +49,6 @@ const navItems = json.site.navigation.mainNav.items;
           @include bp(tablet) {
             font-size: 1.25rem;
           }
-
-
         }
       }
     }
