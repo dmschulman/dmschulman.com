@@ -12,6 +12,10 @@
         "ariaLabel": "Main",
         "items": [
           {
+            "title": "Home",
+            "href": "/"
+          },
+          {
             "title": "About",
             "href": "/about"
           },
@@ -20,16 +24,8 @@
             "href": "/work"
           },
           {
-            "title": "Studio",
-            "href": "/studio"
-          },
-          {
-            "title": "Collections",
-            "href": "/collections"
-          },
-          {
-            "title": "Words",
-            "href": "/words"
+            "title": "Contact",
+            "href": "/contact"
           }
         ]
       }
