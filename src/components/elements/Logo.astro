@@ -60,12 +60,11 @@ const tagline = json.site.meta.tagline;
         margin: 0 0.5rem 0 0;
 
         @include bp(mobile) {
-          margin: 0 1.5rem 0 0;
+          margin: 0 1rem 0 0;
           width: 40%;
         }
         
         @include bp(tablet) {
-          margin: 0 1rem 0 0;
           max-width: 70px;
         }
       }
@@ -112,11 +111,6 @@ const tagline = json.site.meta.tagline;
 
           @include bp(tablet) {
             font-size: var.$font-size-sm;
-          }
-
-          &:before {
-            content: "//";
-            margin-right: 0.5rem;
           }
         }
       }

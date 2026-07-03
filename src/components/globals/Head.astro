@@ -2,6 +2,8 @@
 import { site } from '../../data/site.json';
 
 const theme = site.meta.theme;
+
+const { pageTitle } = Astro.props;
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,9 +20,11 @@ const theme = site.meta.theme;
 
 {theme === 'bayside' && <link href="https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">}
 
-<title>{site.meta.title}</title>
-<link rel="canonical" href={`https://${site.meta.name}`}>
-<meta name="description" content={site.meta.description}>
+<title>{pageTitle ? `${pageTitle} | ${site.meta.title}` : site.meta.title}</title>
+
+<link rel="canonical" href={`https://${site.meta.sitename}${Astro.url.pathname}`}>
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="robots" content="index, follow">
 
 {
   import.meta.env.PROD && (
@@ -39,6 +43,3 @@ const theme = site.meta.theme;
     </>
   )
 }
-
-<link rel="sitemap" href="/sitemap-index.xml" />
-<meta name="robots" content="index, follow">

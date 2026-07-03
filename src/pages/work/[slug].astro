@@ -56,6 +56,7 @@ const customBreadcrumbLinks = [
 
   </div>
 
+  <ListTags collection="work" tags={work.data.tags} styled={true} />
   <PrevNextPost collection="work" currentPostId={work.id} />  
 </Layout>
 
@@ -120,11 +121,7 @@ const customBreadcrumbLinks = [
         p {
           margin-bottom: 1rem;
           width: 100%;
-          text-align: center;
-
-          @include bp(mobile) {
-            text-align: left;
-          }
+          text-align: left;
         }
 
         span {

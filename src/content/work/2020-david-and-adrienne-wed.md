@@ -1,5 +1,5 @@
 ---
-title: DavidAndAdrienneWed.com
+title: David and Adrienne Wed
 description: "My first name is David, her maiden name is Webb, and this was our little wedding website detailing all the festivities for our guests."
 date: 2020-09-15T04:00:00.000Z
 category: personal
