@@ -27,7 +27,7 @@ body {
       
       .branding {
         a.logo {
-          color: var.$color-black;
+          color: var.$bayside-color-primary-text;
         }
       }
 
@@ -35,7 +35,7 @@ body {
         ul {
           li {
             a {
-              color: var.$color-black;
+              color: var.$bayside-color-primary-text;
             }
           }
         }
@@ -97,48 +97,80 @@ body {
 
       // ELEMENTS
 
-      div.button {
+      a.share {
         display: block;
+        font-size: 1.25rem;
+        margin: 1rem auto 0;
+        text-align: right;
+        
+        svg {
+          transition: all var.$tran-med;
+        }
+
+        &:hover,
+        &:focus {
+          svg {
+            filter: var.$filter-orange;
+          }
+        }
+      }
+
+      div.button {
+        display: flex;
         width: fit-content;
 
         button,
         a {
           text-decoration: none;
-          font-weight: bold;
+          font-weight: var.$weight-bold;
           cursor: pointer;
           padding: 0.75rem 1.5rem;
-          filter: drop-shadow(2px 2px 0 var.$color-black);
+          filter: drop-shadow(2px 2px 0 var.$bayside-color-primary-text);
           border-radius: 5px;
           font-size: var.$font-size-h6;
           font-family: var.$bayside-font-sans;
           color: var.$color-black;
           background: var.$color-white;
-          border: 2px solid var.$color-black;
+          border: 2px solid var.$bayside-color-primary-text;
           transition: all var.$tran-med ease-in-out;
           text-align: center;
 
           &:hover {
-            filter: drop-shadow(5px 5px 0 var.$color-black);
+            filter: drop-shadow(5px 5px 0 var.$bayside-color-primary-text);
           }
+        }
+      }
+
+      button {
+        color: var.$bayside-color-primary-text;
+        font-family: var.$bayside-font-sans;
+
+        &:hover:not(:disabled),
+        &:focus:not(:disabled) {
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        &.active {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
         }
       }
 
       // LISTS
 
-      li {
-        &.badge {
-          display: inline;
-          margin:0 0.25rem 0.5rem 0;
-
-          a {
-            color: var.$color-black;
-            display: inline-block;
-            text-transform: lowercase;
-            padding: 0.25rem 0.5rem;
-            filter: drop-shadow(2px 2px 0 var.$color-black);
-            border: 2px solid var.$color-black;
+      ul,
+      ol {
+        li {
+          &.chip {
+            border: 2px solid var.$bayside-color-primary-text;
             border-radius: 10px;
             background-color: var.$color-white;
+            padding: 0.25rem 0.5rem;
+            filter: drop-shadow(2px 2px 0 var.$bayside-color-primary-text);
             transition: all var.$tran-med ease-in-out;
 
             &:last-child {
@@ -147,12 +179,47 @@ body {
 
             &:hover,
             &:focus {
-              filter: drop-shadow(4px 4px 0 var.$color-black);
+              filter: drop-shadow(4px 4px 0 var.$bayside-color-primary-text);
             }
 
-            /* &:before {
-              content: "#";
-            } */
+            button {
+              font-size: 1rem;
+              padding: 0 0.25rem;
+
+              @include bp(tablet) {
+                font-size: 1.15rem;
+              }
+            }
+          }
+
+          &.badge {
+            display: inline;
+            margin:0 0.25rem 0.5rem 0;
+
+            a {
+              color: var.$color-black;
+              display: inline-block;
+              text-transform: lowercase;
+              padding: 0.25rem 0.5rem;
+              filter: drop-shadow(2px 2px 0 var.$color-black);
+              border: 2px solid var.$color-black;
+              border-radius: 10px;
+              background-color: var.$color-white;
+              transition: all var.$tran-med ease-in-out;
+
+              &:last-child {
+                margin-right: 0;
+              }
+
+              &:hover,
+              &:focus {
+                filter: drop-shadow(4px 4px 0 var.$color-black);
+              }
+
+              /* &:before {
+                content: "#";
+              } */
+            }
           }
         }
       }
@@ -190,7 +257,7 @@ body {
 
       // COMPONENTS
 
-      ul.tags {
+      /* ul.tags {
         li {
           display: inline;
           filter: drop-shadow(2px 2px 0 var.$color-black);
@@ -221,7 +288,7 @@ body {
             }
           }
         }
-      }
+      } */
 
       .accordion-tab-block {
         .accordion-radio {

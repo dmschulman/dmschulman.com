@@ -3,14 +3,14 @@ title: Health & Well-being
 description: "A student-centered resource highlighting nine different dimensions of personal health and well-being, with a nod to cura personalis."
 date: 2024-07-10T04:00:00.000Z
 category: sju
-cover: 2024-sju-health-wellbeing.gif
-coverAlt: "Screenshot of a website with a student surrounded by a ring of icons representing different dimensions of health and wellbeing"
+image: 2024-sju-health-wellbeing.gif
+imageAlt: "Screenshot of a website with a student surrounded by a ring of icons representing different dimensions of health and wellbeing"
 tags:
   - web development
   - user experience
   - SJU
 role: "Web Developer"
-skills:
+bullets:
   - Component design & development
   - UX design
   - build out
@@ -21,8 +21,8 @@ stack:
   - Twig
   - Pattern Lab
   - Handlebars
-launched: "July 2024"
-link: https://www.sju.edu/offices/student-life/wellbeing
+timestamp: "July 2024"
+linkUrl: https://www.sju.edu/offices/student-life/wellbeing
 published: true
 featured: false
 archived: false

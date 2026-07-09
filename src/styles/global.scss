@@ -21,6 +21,16 @@ html {
   }
 }
 
+// ELEMENTS
+
+button {
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+}
+
 // LISTS
 ul.tags {
   list-style: none;
@@ -29,45 +39,29 @@ ul.tags {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 0.25rem;
 
   li {
-    filter: drop-shadow(2px 2px 0 var.$color-black);
-    border: 1px solid var.$color-black;
-    border-radius: 10px;
     display: inline;
-    background-color: var.$color-white;
-    transition: all var.$tran-med ease-in-out;
 
     &:last-child {
       margin-right: 0;
-    }
-
-    &:hover,
-    &:focus {
-      filter: drop-shadow(4px 4px 0 var.$color-black);
     }
 
     a {
       color: var.$color-black;
       display: block;
       padding: 0.25rem 0.5rem;
-
-      &:before {
-        content: "#";
-      }
     }
   }
 }
 
 // NAVIGATION
+
 nav.breadcrumbs {
   ol {
     list-style: none;
     padding: 0;
-    margin: 0;
-   // display: flex;
-   // flex-direction: row;
-   // flex-wrap: wrap;
     margin: 0 0 1rem;
 
     @include bp(tablet) {
@@ -87,7 +81,7 @@ nav.breadcrumbs {
         text-transform: capitalize;
         display: inline-block;
         width: fit-content;
-        margin:0 0.25rem 0 0.25rem;
+        margin: 0 0.25rem;
 
         &:hover,
         &:focus {

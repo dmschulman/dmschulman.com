@@ -3,14 +3,14 @@ title: David and Adrienne Wed
 description: "My first name is David, her maiden name is Webb, and this was our little wedding website detailing all the festivities for our guests."
 date: 2020-09-15T04:00:00.000Z
 category: personal
-cover: 2020-david-and-adrienne-wed.jpg
-coverAlt: "A man and a woman, recently engaged, smiling while on the beach"
+image: 2020-david-and-adrienne-wed.jpg
+imageAlt: "A man and a woman, recently engaged, smiling while on the beach"
 tags:
   - web design
   - web development
   - personal
 role: "Web Developer, Web Designer"
-skills:
+bullets:
   - Web design
   - web development
 stack:
@@ -18,8 +18,8 @@ stack:
   - CSS
   - JavaScript
   - jQuery
-launched: "September 2020"
-link: https://dmschulman.com/work/david-and-adrienne-wed
+timestamp: "September 2020"
+linkUrl: https://dmschulman.com/work/david-and-adrienne-wed
 published: true
 featured: false
 archived: false

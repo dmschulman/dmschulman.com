@@ -3,15 +3,15 @@ title: Saint Joseph's University Magazine 2024
 description: "In this edition we explore 7 campus institutes, investigate developments in psychedelic medicine, and much more."
 date: 2024-05-07T04:00:00.000Z
 category: sju
-cover: 2024-sju-university-magazine.jpg
-coverAlt: "Photo illustration of a driverless car, robot, and a scale of justice on a crimson background"
+image: 2024-sju-university-magazine.jpg
+imageAlt: "Photo illustration of a driverless car, robot, and a scale of justice on a crimson background"
 tags:
   - web design
   - web development
   - magazine
   - SJU
 role: "Web Developer"
-skills:
+bullets:
   - Web design
   - component design & development
   - build out
@@ -21,8 +21,8 @@ stack:
   - Twig
   - Pattern Lab
   - Handlebars
-launched: "May 2024"
-link: https://www.sju.edu/news/magazine-spring24
+timestamp: "May 2024"
+linkUrl: https://www.sju.edu/news/magazine-spring24
 published: true
 featured: false
 archived: false

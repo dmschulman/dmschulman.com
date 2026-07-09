@@ -3,15 +3,15 @@ title: Drupal Theme Evolution
 description: "Introducing a new design aesthetic and a variety of 'universal' components as we reimagined key landing pages on the SJU website."
 date: 2025-01-23T04:00:00.000Z
 category: sju
-cover: 2025-sju-theme-evolution.jpg
-coverAlt: "Screenshot of a webpage detailing financial aid information and with a photo of 3 students sitting down"
+image: 2025-sju-theme-evolution.jpg
+imageAlt: "Screenshot of a webpage detailing financial aid information and with a photo of 3 students sitting down"
 tags:
   - web design
   - web development
   - SJU
   - design systems
 role: "Web Developer, Web Designer"
-skills:
+bullets:
   - Component design & development
   - wireframing
   - implementation
@@ -23,8 +23,8 @@ stack:
   - Twig
   - Pattern Lab
   - Handlebars
-launched: "January 2025"
-link: https://www.sju.edu/location
+timestamp: "January 2025"
+linkUrl: https://www.sju.edu/location
 published: true
 featured: false
 archived: false

@@ -3,14 +3,14 @@ title: TasteMakers Food Tour
 description: "Digital magazine feature profiling 17 Saint Joseph's University alumni involved in the food, beverage, and hospitality industries."
 date: 2025-04-07T04:00:00.000Z
 category: sju
-cover: 2025-sju-tastemakers.jpg
-coverAlt: "A serif font logo for the Saint Joseph's University TasteMakers series"
+image: 2025-sju-tastemakers.jpg
+imageAlt: "A serif font logo for the Saint Joseph's University TasteMakers series"
 tags:
   - web development
   - magazine
   - SJU
 role: "Web Developer"
-skills:
+bullets:
   - Component design & development
   - implementation
   - build out
@@ -23,8 +23,8 @@ stack:
   - Pattern Lab
   - Handlebars
   - Vimeo
-launched: "April 2025"
-link: https://www.sju.edu/tastemakers
+timestamp: "April 2025"
+linkUrl: https://www.sju.edu/tastemakers
 published: true
 featured: true
 archived: false

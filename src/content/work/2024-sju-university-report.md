@@ -3,15 +3,15 @@ title: University Report 2024
 description: "Full of facts, figures, and fascinating stories about students and alumni, the annual SJU university report goes fully digital."
 date: 2024-03-15T04:00:00.000Z
 category: sju
-cover: 2024-sju-university-report.jpg
-coverAlt: "A colorful K logo representing the Kinney Center"
+image: 2024-sju-university-report.jpg
+imageAlt: "A colorful K logo representing the Kinney Center"
 tags:
   - web design
   - web development
   - magazine
   - SJU
 role: "Web Developer, Web Designer"
-skills:
+bullets:
   - Web design
   - component design & development
   - interaction design
@@ -22,8 +22,8 @@ stack:
   - Twig
   - Pattern Lab
   - Handlebars
-launched: "March 2024"
-link: https://www.sju.edu/news/university-report/2023-2024
+timestamp: "March 2024"
+linkUrl: https://www.sju.edu/news/university-report/2023-2024
 published: true
 featured: false
 archived: false
