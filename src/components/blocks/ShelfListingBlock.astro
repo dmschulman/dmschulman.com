@@ -1,0 +1,401 @@
+---
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import FilterButtons from '../../components/navigation/FilterButtons.astro';
+import LoadMoreButton from '../../components/navigation/LoadMoreButton.astro';
+
+export interface Props {
+  itemsPerPage?: number;
+  showFilterButtons?: boolean;
+  showLinkButton?: boolean;
+  showLoadMore?: boolean;
+  loadMoreText?: string;
+  title?: string;
+}
+
+const {
+  itemsPerPage = 6,
+  showFilterButtons = true,
+  showLinkButton = false,
+  showLoadMore = true,
+  loadMoreText = "Load More",
+  title = "",
+} = Astro.props;
+
+// Single source of truth for category → icon mapping (used by both Astro and JS)
+const ICON_MAP: Record<string, string> = {
+  album: 'fa-compact-disc',
+  book: 'fa-book',
+  mix: 'fa-headphones',
+  movie: 'fa-film',
+  podcast: 'fa-microphone-lines',
+};
+
+const allItems = await getCollection('shelf');
+const sortedItems = allItems.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const categories = [...new Set(sortedItems.map(item => item.data.category))];
+const itemsData = sortedItems.map(i => i.data);
+---
+
+<div
+  class="shelf-listing-block"
+  data-items-per-page={itemsPerPage}
+  data-show-load-more={showLoadMore ? "true" : "false"}
+>
+  {showFilterButtons && <FilterButtons categories={categories} />}
+
+  {title && (
+    <h2 class="post-title">
+      {title}
+      {showLinkButton && (
+        <a class="link" href="shelf" aria-label="See more" role="link">
+          <Icon name="fa-share" />
+        </a>
+      )}
+    </h2>
+  )}
+
+  {/* Pre-render icon symbols so JS-rendered items can reference them */}
+  <div hidden aria-hidden="true">
+    {[...Object.values(ICON_MAP), 'fa-share'].map(name => <Icon name={name} />)}
+  </div>
+
+  <ul class="shelf">
+    {sortedItems.slice(0, itemsPerPage).map((item) => (
+      <li>
+        <div class:list={["card", "media", item.data.category]}>
+          <a href={item.data.href} target="_blank" rel="nofollow noreferrer">
+            <div class="image">
+              <img
+                class={item.data.category}
+                src={item.data.imageUrl}
+                alt={`Cover of the ${item.data.category} ${item.data.title} by ${item.data.subtitle}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="content">
+              <span class="subtitle">{item.data.subtitle}</span>
+              <span class="title">{item.data.title}</span>
+              <svg><use href={`#ai:local:${ICON_MAP[item.data.category] ?? 'fa-share'}`} /></svg>
+              <span class="year"><i>{item.data.timestamp}</i></span>
+            </div>
+          </a>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <script type="application/json" data-shelf-items set:html={JSON.stringify(itemsData)} />
+
+  <LoadMoreButton show={showLoadMore} buttonText={loadMoreText} />
+</div>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .shelf-listing-block {
+    display: flex;
+    flex-direction: column;
+
+    ul.shelf {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      gap: 2rem;
+      align-items: flex-start;
+
+      @include bp(mobile) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include bp(desktop) {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      li {
+
+        .card {
+          display: flex;
+          flex-direction: column;
+
+          &.album {
+            a {
+              margin-right: 12px;
+
+              .image {
+                img {
+                  aspect-ratio: 1 / 1;
+                  border-top: 1px solid #000000;
+                  border-left: 1px solid #000000;
+                  box-shadow: 1px 1px 0px 0px #000000,
+                  1px 1px 0px 0px #ffffff,
+                  2px 2px 0px 0px #ffffff,
+                  3px 3px 0px 0px #ffffff,
+                  4px 4px 0px 0px #ffffff,
+                  5px 5px 0px 0px #ffffff,
+                  6px 6px 1px 0px #999999,
+                  7px 7px 0px 0px #ffffff,
+                  8px 8px 0px 0px #ffffff,
+                  9px 9px 0px 0px #ffffff,
+                  9px 9px 1px 1px #000000,
+                  10px 10px 1px 0px #000000,
+                  7px 7px 1px 1px #000000,
+                  6px 6px 1px 1px #000000,
+                  5px 5px 1px 1px #000000,
+                  4px 4px 1px 1px #000000,
+                  3px 3px 1px 1px #000000,
+                  2px 2px 1px 1px #000000
+                }
+              }
+            }
+          }
+
+          &.book {
+            a {
+              margin-right: 15px;
+
+              .image {
+                img {
+                  margin-bottom: 6px;
+                  aspect-ratio: 2 / 3;
+                  border-top: 1px solid #000000;
+                  border-left: 1px solid #000000;
+                  box-shadow: 1px 1px 0px 0px #000000,
+                  2px 1px 0px 0px #ffffff,
+                  4px 2px 0px 0px #bbbbbb,
+                  5px 3px 0px 0px #ffffff,
+                  6px 4px 0px 0px #cccccc,
+                  7px 5px 0px 0px #ffffff,
+                  8px 6px 0px 0px #bbbbbb,
+                  9px 7px 0px 0px #ffffff,
+                  10px 8px 0px 0px #cccccc,
+                  11px 9px 0px 0px #ffffff,
+                  12px 10px 0px 0px #bbbbbb,
+                  13px 11px 1px 1px #000000,
+                  11px 11px 1px 1px #000000,
+                  10px 10px 1px 1px #000000,
+                  9px 9px 1px 1px #000000,
+                  8px 8px 1px 1px #000000,
+                  7px 7px 1px 1px #000000,
+                  6px 6px 1px 1px #000000,
+                  5px 5px 1px 1px #000000,
+                  4px 4px 1px 1px #000000,
+                  3px 3px 1px 1px #000000,
+                  2px 2px 1px 1px #000000
+                }
+              }
+            }
+          }
+
+          &.mix {
+            a {
+              margin-right: 8px;
+
+              .image {
+                img {
+                  aspect-ratio: 1 / 1;
+                  border-top: 1px solid #000000;
+                  border-left: 1px solid #000000;
+                  box-shadow: 1px 1px 0px 0px #000000,
+                  2px 2px 0px 0px #000000,
+                  3px 3px 0px 0px #000000,
+                  4px 4px 0px 0px #000000,
+                  5px 5px 0px 0px #000000,
+                  6px 6px 0px 0px #000000,
+                  7px 7px 0px 0px #000000,
+                  8px 8px 0px 0px #000000
+                }
+              }
+            }
+          }
+
+          &.movie {
+            a {
+              margin-right: 10px;
+
+              .image {
+                img {
+                  aspect-ratio: 2 / 3;
+                  border-top: 1px solid #000000;
+                  border-left: 1px solid #000000;
+                  box-shadow: 1px 1px 0px 0px #000000,
+                  2px 2px 0px 0px #000000,
+                  3px 3px 0px 0px #000000,
+                  4px 4px 0px 0px #000000,
+                  5px 5px 0px 0px #999999,
+                  6px 6px 0px 0px #666666,
+                  7px 7px 1px 1px #000000,
+                  8px 8px 1px 1px #000000,
+                  6px 6px 1px 1px #000000,
+                  5px 5px 1px 1px #000000,
+                  4px 4px 1px 1px #000000,
+                  3px 3px 1px 1px #000000,
+                  2px 2px 1px 1px #000000
+                }
+              }
+            }
+          }
+
+          &.podcast {
+            a {
+              margin-right: 8px;
+
+              .image {
+                img {
+                  aspect-ratio: 1 / 1;
+                  border-top: 1px solid #000000;
+                  border-left: 1px solid #000000;
+                  box-shadow: 1px 1px 0px 0px #000000,
+                  2px 2px 0px 0px #ffffff,
+                  3px 3px 0px 0px #ffffff,
+                  4px 4px 0px 0px #ffffff,
+                  5px 5px 0px 0px #ffffff,
+                  6px 6px 0px 0px #ffffff,
+                  2px 2px 1px 1px #000000,
+                  3px 3px 1px 1px #000000,
+                  4px 4px 1px 1px #000000,
+                  5px 5px 1px 1px #000000,
+                  6px 6px 1px 1px #000000
+                }
+              }
+            }
+          }
+
+          a {
+            text-decoration: none;
+
+            .content {
+              margin-top: 1rem;
+
+              span {
+                display: block;
+
+                &.title {
+                  font-weight: bold;
+                  margin: 0 0 0.5rem;
+                }
+
+                &.subtitle {
+                  display: block;
+                  font-weight: normal;
+                }
+
+                &.year {
+                  display: inline;
+                  font-style: italic;
+                  font-weight: var.$weight-normal;
+                }
+              }
+
+              svg {
+                vertical-align: middle;
+                width: 26px;
+                height: 26px;
+                padding-right: 0.25rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .load-more {
+      margin: 2rem auto;
+
+      button {
+        width: unset;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.shelf-listing-block').forEach((block) => {
+    const shelf = block.querySelector('.shelf');
+    const loadMoreBtn = block.querySelector('.load-more button') as HTMLButtonElement | null;
+    const dataScript = block.querySelector('script[data-shelf-items]');
+    const perPage = Number((block as HTMLElement).dataset.itemsPerPage);
+    const showLoadMore = (block as HTMLElement).dataset.showLoadMore === 'true';
+
+    if (!shelf || !dataScript) return;
+
+    const allItems = JSON.parse(dataScript.textContent || '[]');
+
+    const ICON_MAP: Record<string, string> = {
+      album: 'fa-compact-disc',
+      book: 'fa-book',
+      mix: 'fa-headphones',
+      movie: 'fa-film',
+      podcast: 'fa-microphone-lines',
+    };
+
+    function itemHtml(item: any): string {
+      const icon = ICON_MAP[item.category] ?? 'fa-share';
+      return `
+        <li>
+          <div class="card media ${item.category}">
+            <a href="${item.href}" target="_blank" rel="nofollow noreferrer">
+              <div class="image">
+                <img class="${item.category}" src="${item.imageUrl}" alt="Cover of the ${item.category} ${item.title} by ${item.subtitle}" loading="lazy" />
+              </div>
+              <div class="content">
+                <span class="subtitle">${item.subtitle}</span>
+                <span class="title">${item.title}</span>
+                <svg><use href="#ai:local:${icon}"></use></svg>
+                <span class="year"><i>${item.timestamp}</i></span>
+              </div>
+            </a>
+          </div>
+        </li>
+      `;
+    }
+
+    let currentItems = allItems;
+    let displayedCount = perPage;
+
+    function updateLoadMore() {
+      if (!loadMoreBtn || !showLoadMore) return;
+      loadMoreBtn.hidden = displayedCount >= currentItems.length;
+    }
+
+    function render(items: any[], replace: boolean) {
+      const html = items.map(itemHtml).join('');
+      if (replace) {
+        shelf.innerHTML = html;
+      } else {
+        shelf.insertAdjacentHTML('beforeend', html);
+      }
+    }
+
+    function filterBy(category: string) {
+      currentItems = category === 'all'
+        ? allItems
+        : allItems.filter((i: any) => i.category === category);
+      displayedCount = Math.min(perPage, currentItems.length);
+      render(currentItems.slice(0, displayedCount), true);
+      updateLoadMore();
+    }
+
+    function loadMore() {
+      const next = Math.min(displayedCount + perPage, currentItems.length);
+      render(currentItems.slice(displayedCount, next), false);
+      displayedCount = next;
+      updateLoadMore();
+    }
+
+    block.addEventListener('categoryFilter', (e) => {
+      filterBy((e as CustomEvent).detail.category);
+    });
+
+    loadMoreBtn?.addEventListener('click', loadMore);
+
+    updateLoadMore();
+  });
+</script>

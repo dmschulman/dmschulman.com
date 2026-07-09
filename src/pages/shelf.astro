@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ShelfListingBlock from '../components/blocks/ShelfListingBlock.astro';
+---
+
+<Layout pageTitle="Shelf">
+  <p class="intro">Welcome to the library, an infinite bookshelf of sorts. I've put together a living collection of some of my favorite media, all available for you to peruse, check out, and take in.</p>
+
+  <ShelfListingBlock
+    showFilterButtons={true}
+    showLoadMore={true}
+    itemsPerPage={12}
+  />
+
+  <p><i>Items on this page may contain Amazon Affiliate links.</i></p>
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+
+  .shelf-listing-block {
+    margin: 2rem auto 0;
+  }
+  
+</style>

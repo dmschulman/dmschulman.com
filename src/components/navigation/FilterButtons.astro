@@ -1,0 +1,74 @@
+---
+export interface Props {
+  categories: string[];
+  activeCategory?: string;
+}
+
+const { categories, activeCategory = 'all' } = Astro.props;
+
+const capitalizeFirst = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);
+---
+
+<ul class="filter-buttons" aria-label="Filter by category">
+  <li class="chip">
+    <button
+      type="button"
+      class:list={["filter-btn", activeCategory === 'all' && "active"]}
+      data-category="all"
+    >
+      All
+    </button>
+  </li>
+  {categories.map((category) => (
+    <li class="chip">
+      <button
+        type="button"
+        class:list={["filter-btn", activeCategory === category && "active"]}
+        data-category={category}
+      >
+        {capitalizeFirst(category)}
+      </button>
+    </li>
+  ))}
+</ul>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as vars;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.filter-buttons {
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    z-index: 10;
+
+    @include bp(tablet) {
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.filter-buttons').forEach((group) => {
+    const buttons = group.querySelectorAll('.filter-btn');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = (btn as HTMLElement).dataset.category;
+        if (!category) return;
+
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        group.dispatchEvent(new CustomEvent('categoryFilter', {
+          detail: { category },
+          bubbles: true,
+        }));
+      });
+    });
+  });
+</script>

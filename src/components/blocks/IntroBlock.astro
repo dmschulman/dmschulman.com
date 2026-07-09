@@ -2,8 +2,8 @@
 import { about } from '../../data/site.json';
 import Button from '../../components/elements/Button.astro';
 import Polaroid from '../../components/elements/Polaroid.astro';
-
 import { getRandomItem } from '../../utils/parseItems';
+
 const randomItem = getRandomItem(about.hello);
 ---
 
@@ -30,9 +30,6 @@ const randomItem = getRandomItem(about.hello);
 
   .intro-block {
     .intro {
-      transform: translateY(200px);
-      opacity: 0;
-      animation: slideInFadeBottom 1s ease-out forwards;
       position: relative;
 
       @include bp(xl) {

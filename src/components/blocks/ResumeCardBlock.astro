@@ -1,11 +1,11 @@
 ---
 export const prerender = true;
 import resumeData from '../../data/resume.json'
-import ResumeCard from '../../components/elements/ResumeCard.astro'
+import Card from '../../components/elements/Card.astro'
 
 const { content = 'jobs' } = Astro.props;
 
-const sortedWork = [...(resumeData[content] ?? [])].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+const sortedWork = [...(resumeData[content] ?? [])].sort((a, b) => new Date(b.date) - new Date(a.date));
 
 const grouped = sortedWork.reduce((acc, job) => {
   const key = job.category ?? '';
@@ -22,12 +22,13 @@ const grouped = sortedWork.reduce((acc, job) => {
       <ul class="resume-cards">
         {jobs.map((job) => (
           <li>
-            <ResumeCard
-              img={job.img}
-              org={job.org}
-              time={job.time}
+            <Card
+              cardType="resume"
+              imageUrl={job.imageUrl}
+              title={job.title}
+              subtitle={job.subtitle}
               role={job.role}
-              contract={job.contract}
+              timestamp={job.timestamp}
               bullets={job.bullets}
             />
           </li>
@@ -49,13 +50,24 @@ const grouped = sortedWork.reduce((acc, job) => {
 
       li {
         h3 {
-          margin: 0;
           text-decoration: underline;
+          margin-bottom: 0;
+
+          @include bp(tablet) {
+            margin-bottom: 0.5rem;
+          }
         }
 
         ul {
           padding: 0;
+          margin: 0;
           list-style: none;
+
+          li {
+            &:last-child {
+              padding: 0 0 1.5rem;
+            }
+          }
         }
       }
     }

@@ -1,0 +1,78 @@
+---
+import { getCollection, type CollectionKey } from 'astro:content';
+import Card from '../elements/Card.astro';
+
+interface Props {
+  cardType?: "linkroll" | "photos" | "work" | "media";
+  layoutClass?: string;
+  cardClass?: string;
+  collection: CollectionKey;
+  id?: string;
+  category?: string;
+  published?: boolean;
+  archived?: boolean;
+  count?: number;
+  buttonHref?: string;
+  buttonText?: string;
+  title?: string;
+}
+
+const { cardType, layoutClass, cardClass, collection, count = 1, buttonHref, buttonText, title } = Astro.props;
+
+const entries = (await getCollection(collection))
+  .filter(entry => entry.data.published !== false)
+  .filter(entry => entry.data.archived !== true);
+
+const shuffled = [...entries];
+for (let i = shuffled.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+}
+const picks = shuffled.slice(0, Math.min(count, shuffled.length));
+---
+
+<div class="random-items">
+  {title && <h2>{title}</h2>}
+  <ul class="cards">
+    {picks.map((entry) => 
+      <li>
+        <Card
+          id={entry.id}
+          category={entry.data.category}
+          cardType={cardType}
+          layoutClass={layoutClass}
+          cardClass={cardClass}
+          {...entry.data} 
+        />
+      </li>
+    )}
+  </ul>
+
+  {buttonHref && (
+    <div class="button">
+      <a href={buttonHref}>
+        {buttonText ?? 'See more'}
+      </a>
+    </div>
+  )}
+</div>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .random-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    ul {
+      &.cards {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin: 0 0 1rem;
+      }
+    }
+  }
+</style>

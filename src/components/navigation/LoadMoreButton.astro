@@ -1,0 +1,26 @@
+---
+export interface Props {
+  buttonText?: string;
+  containerClass?: string;
+  show?: boolean;
+}
+
+const {
+  buttonText = "Load More",
+  containerClass = "load-more",
+  show = true,
+} = Astro.props;
+---
+
+{show && (
+  <div class:list={[containerClass, "button"]}>
+    <button type="button" hidden>
+      {buttonText}
+    </button>
+  </div>
+)}
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as vars;
+  @use '../../styles/base/breakpoints.scss' as *;
+</style>

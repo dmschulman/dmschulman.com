@@ -25,3 +25,14 @@ const themeClass = json.site.meta.theme;
 	</body>
 
 </html>
+
+<style lang="scss" is:global>
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+
+  footer {
+    opacity: 0;
+    animation: fadeIn 4s ease-out forwards;
+  }
+
+</style>

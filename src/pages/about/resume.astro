@@ -17,7 +17,7 @@ import Spacer from '../../components/elements/Spacer.astro';
   <div class="resume">
 
     <AnimatedWrapper direction="left" triggerAt="0%" initialDelay="200">
-      <h2 class="heading">Fundimental Skills</h2>
+      <h2 class="heading">Fundamental Skills</h2>
       <AnimatedList items={resume.skills} triggerAt="0%" initialDelay="600" />
     </AnimatedWrapper>
 
@@ -67,16 +67,19 @@ import Spacer from '../../components/elements/Spacer.astro';
             }
 
             li {
-              .resume-card {
-                padding: 1rem 0;
-                transition: background ease-in-out var.$tran-slow;
+              .card {
 
-                @include bp(tablet) {
-                  padding: 1rem 1.5rem;
+                &.resume {
+                  padding: 1rem 0;
+                  transition: background ease-in-out var.$tran-slow;
 
-                  &:hover {
-                    background: var.$color-light-grey;
-                    cursor: grab;
+                  @include bp(tablet) {
+                    padding: 1rem 1.5rem;
+
+                    &:hover {
+                      background: var.$color-light-grey;
+                      cursor: grab;
+                    }
                   }
                 }
               }

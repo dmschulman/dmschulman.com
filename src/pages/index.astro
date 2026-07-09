@@ -1,10 +1,22 @@
 ---
 import Layout from '../layouts/Homepage.astro';
-import IntroBlock from '../components/blocks/IntroBlock.astro'
+import IntroBlock from '../components/blocks/IntroBlock.astro';
+import GetRandomItems from '../components/blocks/GetRandomItems.astro';
 ---
 
 <Layout pageTitle="David M. Schulman, now on the web!">
   <IntroBlock />
+
+  <GetRandomItems 
+    cardType="media"
+    layoutClass="column"
+    cardClass="media"
+    collection="shelf"
+    count={4}
+    buttonHref="/shelf"
+    buttonText="Browse the full collection"
+    title="Something from the shelf:"
+  />
 </Layout>
 
 <style lang="scss" is:global>
@@ -12,12 +24,55 @@ import IntroBlock from '../components/blocks/IntroBlock.astro'
   @use '../styles/base/breakpoints.scss' as *;
 
   .intro-block {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+    transform: translateY(200px);
+    opacity: 0;
+    animation: slideInFadeBottom 1s ease-out forwards;
   }
 
-  .shelf-listing-block {
+  .random-items {
+    margin-bottom: 2rem;
+    transform: translateY(500px);
     opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 2.5s;
+    animation: slideInFadeBottom 2.5s ease-out forwards;
+
+    ul.cards {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      gap: 2rem;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      @include bp(mobile) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      li {
+        width: fit-content;
+
+        .card {
+
+          .image {
+            width: fit-content;
+
+            img {
+              max-width: 200px;
+            }
+          }
+
+          .content {
+            max-width: 200px;
+          }
+        }
+      }
+    }
+
+    .button {
+      margin: 1.5rem 0;
+    }
   }
 </style>

@@ -1,0 +1,693 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	// card globals
+	cardType?:		"linkroll" | "photos" | "resume" | "work" | "media";		// sets card variant type to control card info display
+	layoutClass?:	string;		// for applying additional layout rules (.row, .column)
+	cardClass?:		string;		// for applying additional style rules
+
+	// links
+	href?:				string;		// link that wraps around the entire card
+	url?:					string;		// link that appears within the card content
+	linkUrl?:			string;		// link that goes to external site
+	alive?:				boolean;	// is the link active and should i display it?
+
+	// content
+	title?:				string;		// heading or title on card
+	subtitle?:		string | string[];	// text that sits under the title
+	description?:	string;		// paragraph of text on the card
+	bullets?:			string[];	// bullet points associated with item
+	role?:				string;		// describes a contribution or role in a project
+
+	// date
+	timestamp?:		string;		// human-readable date associated with item
+
+	// metadata
+	id?:					string;		// the id associated with the content
+	category?:		string;		// categorization of the item
+	tags?:				string[];	// array of tags associated with an item
+
+	// images
+	image?:				ImageMetadata	// displays an image using Astro's image handler
+	imageAlt?:		string;		// image alt tag
+	imageWidth?:	number;		// image width
+	imageQuality?:number;		// image quality
+	icon?:				string;		// displays an icon from my icon library
+	imageUrl?:		string;		// fetches image from a url
+}
+
+const {
+	cardType,
+	layoutClass,
+	cardClass,
+	id,
+	category,
+	href,
+	linkUrl,
+	alive,
+	title,
+	subtitle = [],
+	description,
+	bullets = [],
+	role,
+	timestamp,
+	tags = [],
+	image,
+	imageAlt = '',
+	imageWidth,
+	imageQuality	= 60,
+	icon,
+	imageUrl
+} = Astro.props
+
+const iconMap = {
+  'album': 'fa-compact-disc',
+  'book': 'fa-book',
+  'mix': 'fa-headphones',
+  'movie': 'fa-film',
+  'podcast': 'fa-microphone-lines',
+};
+const iconName = iconMap[category] || 'fa-share';
+
+let collectionHref = href;
+if (!collectionHref && id) {
+  if (cardType === "photos" && category) {
+    collectionHref = `/photos/${category}/${id}`;
+  } else if (cardType === "work") {
+    collectionHref = `/work/${id}`;
+  }
+}
+
+const Element = collectionHref ? 'a' : 'div';
+---
+
+<Element
+  class:list={["card", cardType, layoutClass, category]}
+  href={collectionHref}
+	target={cardType === "media" ? "_blank" : undefined}
+  rel={cardType === "media" ? "nofollow noreferrer" : undefined}
+>
+  {(image || icon) && (
+    <div class="image">
+      {image ? (
+        <Image
+          src={image}
+          alt={imageAlt}
+          format="webp"
+          width={imageWidth}
+          quality={imageQuality}
+        />
+      ) : (
+        <Icon name={icon} />
+      )}
+    </div>
+  )}
+
+	{imageUrl && cardType === "linkroll" && (
+		<div class="icon">
+			<img class="favicon" src={imageUrl} alt={`Icon representing ${title}`} loading="lazy" />
+		</div>
+	)}
+
+	{imageUrl && cardType === "media" && (
+		<div class="image">
+			<img src={imageUrl} alt=`Cover of the ${category} ${title} by ${subtitle}` loading="lazy" />
+		</div>
+	)}
+
+	<div class:list={["content", cardClass]}>
+
+    {cardType === "photos" ? (
+
+      <>
+        {title && <span class="title">{title}</span>}
+				{timestamp && <span class="date">{timestamp}</span>}
+        {description && <p class="description">{description}</p>}
+				{tags.length > 0 && (
+					<ul class="tags">
+						{tags.map((tag, i) => (
+							<li>{tag}{i < tags.length - 1 ? ',' : ''}</li>
+						))}
+					</ul>
+				)}
+      </>
+
+    ) : cardType === "resume" ? (
+
+      <>
+				<span class="title">
+					{imageUrl && <img class="icon" src={imageUrl} alt=`Icon representing ${title}` loading="lazy" />}
+					{title}
+				</span>
+				{(subtitle || role) && (
+					<div class="subtitle">
+						{subtitle && (
+							Array.isArray(subtitle) ? (
+								<ul>
+									{subtitle.map((s) => <li>{s}</li>)}
+								</ul>
+							) : (
+								<p>{subtitle}</p>
+							)
+						)}
+						{role && <span class="role">({role})</span>}
+					</div>
+				)}
+				{timestamp && <span class="timestamp">{timestamp}</span>}
+				{bullets?.length > 0 && (
+				<ul class="bullets">
+					{bullets.map((bullet) => (
+						<li>{bullet}</li>
+					))}
+				</ul>
+			)}
+			</>
+
+    ) : cardType === "linkroll" ? (
+
+      <>
+        {title && <span class="title">{title}</span>}
+				{alive && (
+					<a class="share" href={linkUrl} title=`Visit ${title}` target="_blank" rel="nofollow,noopener">
+						<Icon name="fa-share" />
+					</a>
+				)}
+        {description && <p class="description">{description}</p>}
+				{tags.length > 0 && (
+					<ul class="tags">
+						{tags.map((tag, i) => (
+							<li>{tag}{i < tags.length - 1 ? ',' : ''}</li>
+						))}
+					</ul>
+				)}
+      </>
+
+    ) : cardType === "work" ? (
+
+      <>
+        {title && <h3 class="title">{title}</h3>}
+				{description && <p>{description}</p>}
+				<div class="meta">
+          {role && <span class="role"><strong>Role: </strong>{role}</span>}
+          {timestamp && <span class="timestamp"><strong>Launched: </strong>{timestamp}</span>}
+          {bullets?.length > 0 && <span class="skills"><strong>Contributed: </strong>{bullets.join(', ')}</span>}
+        </div>
+      </>
+
+    ) : cardType === "media" ? (
+
+      <>
+				{title && <span class="title">{title}</span>}
+        {subtitle && <span class="subtitle">{subtitle}</span>}
+				<Icon name={iconName} />
+				{timestamp && <span class="year">{timestamp}</span>}
+      </>
+
+    ) : (
+
+      <>
+        {title && <h3 class="title">{title}</h3>}
+        {subtitle && <p class="subtitle">{subtitle}</p>}
+        {description && <p class="blurb">{description}</p>}
+        {linkUrl && <a href={linkUrl} class="url">{title}</a>}
+      </>
+    )}
+    <slot />
+  </div>
+
+</Element>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+	a.card {
+		text-decoration: none;
+		font-weight: normal;
+
+		&:hover,
+		&:focus {
+			.content {
+				span {
+					&.title {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+
+	.card {
+		display: flex;
+
+		.content {
+			span {
+				display: inline-block;
+
+				&.title {
+					font-weight: var.$weight-bold;
+				}
+
+				&.date {
+					display: block;
+					font-style: italic;
+				}
+			}
+
+			ul {
+				&.tags {
+					text-transform: capitalize;
+
+					&:before {
+						content: "Tags:";
+						font-weight: var.$weight-bold;
+						margin-right: 0.25rem;
+					}
+				}
+			}
+		}
+
+		&.row {
+			flex-direction: row;
+			gap: 0 1rem;
+		}
+
+		&.column {
+			flex-direction: column;
+		}
+
+		.icon {
+			img {
+				&.favicon {
+					width: 24px;
+					height: 24px;
+					vertical-align: top;
+
+					@include bp(mobile) {
+						width: 32px;
+						height: 32px;
+					}
+				}
+			}
+		}
+
+		// SPECIFIC CARD LAYOUTS
+
+		&.linkroll {
+			align-items: baseline;
+
+			.content {
+
+				span {
+					&.title {
+						display: inline;
+						font-size: 1.25rem;
+					}
+				}
+
+				a {
+					&.share {
+						display: inline;
+						text-decoration: none;
+
+						svg {
+							margin-left: 0.5rem;
+							vertical-align: text-top;
+						}
+					}
+				}
+
+				p {
+					&.description {
+						display: block;
+						margin: 0;
+					}
+				}
+
+				ul {
+					margin-top: 1rem;
+				}
+			}
+		}
+
+		&.photos {
+			display: flex;
+			flex-direction: column;
+
+			.image {
+				margin-bottom: 0.75rem;
+				
+				img {
+					aspect-ratio: 4 / 3;
+				}
+			}
+
+			.content {
+				span {
+					&.title {
+						display: block;
+						font-size: 1.25rem;
+					}
+
+					&.date {
+						margin-bottom: 1rem;
+					}
+				}
+
+				p {
+					&.description {
+						margin-top: 0;
+						display: none;
+
+						@include bp(desktop) {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+
+		&.resume {
+			display: flex;
+			flex-direction: column;
+
+			.content {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				flex-wrap: wrap;
+
+				span {
+
+					&.title {
+						order: 0;
+						font-weight: var.$weight-bold;
+						font-size: 1.25rem;
+						width: 100%;
+
+						@include bp(tablet) {
+							width: 60%;
+							font-size: 1.5rem;
+						}
+
+						img.icon {
+							width: auto;
+							height: 24px;
+							vertical-align: text-bottom;
+							margin: 0 0.25rem 0 0;
+
+							&:hover {
+								cursor: grab;
+							}
+
+							@include bp(tablet) {
+								height: 30px;
+							}
+						}
+					}
+
+					&.timestamp {
+						order: 3;
+						width: 100%;
+
+						@include bp(tablet) {
+							order: 2;
+							display: flex;
+							justify-content: flex-end;
+							text-align: right;
+							width: unset;
+						}
+					}
+				}
+			}
+
+			.subtitle {
+				order: 1;
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				width: 100%;
+
+				@include bp(tablet) {
+					order: 3;
+				}
+
+				p {
+					font-style: italic;
+					margin: 0;
+				}
+
+				span {
+					display: block;
+					margin: 0 0 0 0.25rem;
+				}
+
+				ul {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					li {
+						display: block;
+					}
+				}
+			}
+
+			ul {
+
+				&.bullets {
+					order: 3;
+					margin: 0;
+					padding: 0 0 0 2rem;
+					margin: 0.5rem 0 0 0;
+					list-style: disc;
+				}
+			}
+		}
+
+		&.work {
+
+			.image {
+				width: 40%;
+				max-width: 260px;
+				flex-shrink: 0;
+				margin-right: 1rem;
+				vertical-align: top;
+
+        @include bp(mobile) {
+          margin-right: 1.5rem;
+          max-width: 360px;
+        }
+
+				@include bp(desktop) {
+					margin-right: 2rem;
+				}
+			}
+
+			.content {
+				
+				h3 {
+					margin: 0;
+					width: fit-content;
+					word-break: break-word;
+
+
+					@include bp(mobile) {
+            font-size: 1.75rem;
+          }
+
+          @include bp(desktop) {
+            font-size: 2rem;
+          }
+				}
+
+				.meta {
+					display: none;
+
+					@include bp(tablet) {
+						display: flex;
+						flex-direction: column;
+					}
+
+					@include bp(desktop) {
+						display: none;
+					}
+        }
+			}
+		}
+
+		&.media {
+
+			&.album {
+				margin-right: 12px;
+
+				.image {
+					img {
+						aspect-ratio: 1 / 1;
+						border-top: 1px solid #000000;
+						border-left: 1px solid #000000;
+						box-shadow: 1px 1px 0px 0px #000000,
+						1px 1px 0px 0px #ffffff,
+						2px 2px 0px 0px #ffffff,
+						3px 3px 0px 0px #ffffff,
+						4px 4px 0px 0px #ffffff,
+						5px 5px 0px 0px #ffffff,
+						6px 6px 1px 0px #999999,
+						7px 7px 0px 0px #ffffff,
+						8px 8px 0px 0px #ffffff,
+						9px 9px 0px 0px #ffffff,
+						9px 9px 1px 1px #000000,
+						10px 10px 1px 0px #000000,
+						7px 7px 1px 1px #000000,
+						6px 6px 1px 1px #000000,
+						5px 5px 1px 1px #000000,
+						4px 4px 1px 1px #000000,
+						3px 3px 1px 1px #000000,
+						2px 2px 1px 1px #000000
+					}
+				}
+			}
+
+			&.book {
+
+				.image {
+					margin-right: 15px;
+
+					img {
+						margin-bottom: 6px;
+						aspect-ratio: 2 / 3;
+						border-top: 1px solid #000000;
+						border-left: 1px solid #000000;
+						box-shadow: 1px 1px 0px 0px #000000,
+						2px 1px 0px 0px #ffffff,
+						4px 2px 0px 0px #bbbbbb,
+						5px 3px 0px 0px #ffffff,
+						6px 4px 0px 0px #cccccc,
+						7px 5px 0px 0px #ffffff,
+						8px 6px 0px 0px #bbbbbb,
+						9px 7px 0px 0px #ffffff,
+						10px 8px 0px 0px #cccccc,
+						11px 9px 0px 0px #ffffff,
+						12px 10px 0px 0px #bbbbbb,
+						13px 11px 1px 1px #000000,
+						11px 11px 1px 1px #000000,
+						10px 10px 1px 1px #000000,
+						9px 9px 1px 1px #000000,
+						8px 8px 1px 1px #000000,
+						7px 7px 1px 1px #000000,
+						6px 6px 1px 1px #000000,
+						5px 5px 1px 1px #000000,
+						4px 4px 1px 1px #000000,
+						3px 3px 1px 1px #000000,
+						2px 2px 1px 1px #000000
+					}
+				}
+			}
+
+			&.mix {
+
+				.image {
+					margin-right: 8px;
+
+					img {
+						aspect-ratio: 1 / 1;
+						border-top: 1px solid #000000;
+						border-left: 1px solid #000000;
+						box-shadow: 1px 1px 0px 0px #000000,
+						2px 2px 0px 0px #000000,
+						3px 3px 0px 0px #000000,
+						4px 4px 0px 0px #000000,
+						5px 5px 0px 0px #000000,
+						6px 6px 0px 0px #000000,
+						7px 7px 0px 0px #000000,
+						8px 8px 0px 0px #000000
+					}
+				}
+			}
+
+			&.movie {
+
+				.image {
+					margin-right: 10px;
+
+					img {
+						aspect-ratio: 2 / 3;
+						border-top: 1px solid #000000;
+						border-left: 1px solid #000000;
+						box-shadow: 1px 1px 0px 0px #000000,
+						2px 2px 0px 0px #000000,
+						3px 3px 0px 0px #000000,
+						4px 4px 0px 0px #000000,
+						5px 5px 0px 0px #999999,
+						6px 6px 0px 0px #666666,
+						7px 7px 1px 1px #000000,
+						8px 8px 1px 1px #000000,
+						6px 6px 1px 1px #000000,
+						5px 5px 1px 1px #000000,
+						4px 4px 1px 1px #000000,
+						3px 3px 1px 1px #000000,
+						2px 2px 1px 1px #000000
+					}
+				}
+			}
+
+			&.podcast {
+
+				.image {
+					margin-right: 8px;
+
+					img {
+						aspect-ratio: 1 / 1;
+						border-top: 1px solid #000000;
+						border-left: 1px solid #000000;
+						box-shadow: 1px 1px 0px 0px #000000,
+						2px 2px 0px 0px #ffffff,
+						3px 3px 0px 0px #ffffff,
+						4px 4px 0px 0px #ffffff,
+						5px 5px 0px 0px #ffffff,
+						6px 6px 0px 0px #ffffff,
+						2px 2px 1px 1px #000000,
+						3px 3px 1px 1px #000000,
+						4px 4px 1px 1px #000000,
+						5px 5px 1px 1px #000000,
+						6px 6px 1px 1px #000000
+					}
+				}
+			}
+
+			.content {
+				margin-top: 1rem;
+
+				span {
+					display: block;
+
+					&.title {
+						font-weight: bold;
+						margin: 0 0 0.5rem;
+					}
+
+					&.subtitle {
+						display: block;
+						font-weight: normal;
+					}
+
+					&.year {
+						display: inline;
+						font-style: italic;
+						font-weight: var.$weight-normal;
+					}
+				}
+
+				svg {
+					vertical-align: middle;
+					width: 26px;
+					height: 26px;
+					padding-right: 0.25rem;
+				}
+			}
+		}
+	}
+
+</style>

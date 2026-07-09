@@ -20,6 +20,9 @@ $color-ui-success: #03804D;
 // accent colors
 $color-link-hover-accent: #ff671f;
 
+// filter colors
+$filter-orange: brightness(0) saturate(100%) invert(49%) sepia(67%) saturate(3024%) hue-rotate(347deg) brightness(103%) contrast(101%);
+
 // box-shadow
 $box-shadow-thin: 0 17px 20px rgba(0, 0, 0, 0.30), 1px 1px 1px rgba(0, 0, 0, 0.22);
 

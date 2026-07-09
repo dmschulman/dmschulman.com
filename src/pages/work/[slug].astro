@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Image } from "astro:assets";
-import ListTags from '../../components/navigation/ListTags.astro';
 import PrevNextPost from '../../components/navigation/PrevNextPost.astro';
 import { getCollection } from 'astro:content';
 
@@ -34,8 +33,8 @@ const customBreadcrumbLinks = [
   <div class="work">
     <div class="meta">
       <Image
-        src={work.data.cover}
-        alt={work.data.coverAlt}
+        src={work.data.image}
+        alt={work.data.imageAlt}
         class="cover"
         format="webp"
         width={400}
@@ -45,8 +44,8 @@ const customBreadcrumbLinks = [
       <div class="data">
         {work.data.description && <p class="intro">{work.data.description}</p>}
         {work.data.role && <span class="role"><strong>Role: </strong>{work.data.role}</span>}
-        {work.data.launched && <span class="launched"><strong>Launched: </strong>{work.data.launched}</span>}
-        {work.data.skills?.length > 0 && <span class="skills"><strong>Contributed: </strong>{work.data.skills.join(', ')}</span>}
+        {work.data.timestamp && <span class="launched"><strong>Launched: </strong>{work.data.timestamp}</span>}
+        {work.data.bullets?.length > 0 && <span class="skills"><strong>Contributed: </strong>{work.data.bullets.join(', ')}</span>}
       </div>
     </div>
 
@@ -56,7 +55,6 @@ const customBreadcrumbLinks = [
 
   </div>
 
-  <ListTags collection="work" tags={work.data.tags} styled={true} />
   <PrevNextPost collection="work" currentPostId={work.id} />  
 </Layout>
 
