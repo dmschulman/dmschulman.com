@@ -153,7 +153,6 @@ Disallow: /
 
 # SITEMAPS
 Sitemap: ${site}sitemap-index.xml
-Sitemap: ${site}sitemap-blog.xml
 `;
  
   return new Response(body, {

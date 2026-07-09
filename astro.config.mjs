@@ -1,10 +1,9 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
 // Astro modules
 import icon from "astro-icon";
+import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://dmschulman.com',
   base: '/',
@@ -24,26 +23,30 @@ export default defineConfig({
       }
     }
   },
-  integrations: [icon({
-    iconDir: "src/assets/icons",
-    svgoOptions: {
-      multipass: true,
-      plugins: [
-        {
-          name: "preset-default",
-          params: {
-            overrides: {
-              // customize default plugin options
-              inlineStyles: {
-                onlyMatchedOnce: false,
-              },
+  integrations: [
+    sitemap({
+    }),
+    icon({
+      iconDir: "src/assets/icons",
+      svgoOptions: {
+        multipass: true,
+        plugins: [
+          {
+            name: "preset-default",
+            params: {
+              overrides: {
+                // customize default plugin options
+                inlineStyles: {
+                  onlyMatchedOnce: false,
+                },
 
-              // or disable plugins
-              removeDoctype: false,
+                // or disable plugins
+                removeDoctype: false,
+              },
             },
           },
-        },
-      ],
-    },
-  })]
+        ],
+      },
+    })
+  ]
 });

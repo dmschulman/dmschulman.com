@@ -13,3 +13,4 @@ The personal blog and portfolio of David M. Schulman, grown from the primordial 
 ### Astro-specific modules
 * [astro-icon](https://www.astroicon.dev/getting-started/)
 * [astro-breadcrumb](https://docs.astro-breadcrumbs.kasimir.dev/start-here/getting-started/)
+* [astro-seo](https://github.com/jonasmerlin/astro-seo)
