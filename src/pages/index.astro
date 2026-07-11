@@ -2,6 +2,7 @@
 import Layout from '../layouts/Homepage.astro';
 import IntroBlock from '../components/blocks/IntroBlock.astro';
 import GetRandomItems from '../components/blocks/GetRandomItems.astro';
+
 ---
 
 <Layout pageTitle="David M. Schulman, now on the web!">
@@ -72,7 +73,11 @@ import GetRandomItems from '../components/blocks/GetRandomItems.astro';
     }
 
     .button {
-      margin: 1.5rem 0;
+      margin: 1.5rem auto;
+
+      @include bp(tablet) {
+        margin: 1.5rem 0;
+      }
     }
   }
 </style>
