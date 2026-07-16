@@ -1,8 +1,9 @@
 {
   "site": {
     "meta": {
-      "title": "David M. Schulman / A web wonderland",
-      "sitename": "dmschulman.com",
+      "siteTitle": "David M. Schulman.com",
+      "description": "Welcome to the personal website of David M. Schulman, frontend web developer and design systems engineer based in Philadelphia, PA 🥨.",
+      "siteName": "dmschulman.com",
       "tagline": "A web wonderland",
       "theme": "bayside",
       "firstYear": "2006"

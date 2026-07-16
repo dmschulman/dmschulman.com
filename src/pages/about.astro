@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/elements/Button.astro'
+import Button from '../components/elements/Button.astro';
+import Spacer from '../components/elements/Spacer.astro';
+import Card from '../components/elements/Card.astro';
 
 import { about } from '../data/site.json';
 import { getRandomItem } from '../utils/parseItems';
 const randomItem = getRandomItem(about.hello);
 ---
 
-<Layout pageTitle="About">
+<Layout pageTitle="About" description="With over 25 years of experience designing and developing in the digital domain, I've come to know a thing or two about what drives a good website.">
   <p class="intro"><strong>{randomItem}</strong> My name is <em>{about.fullName}</em> and I'm a <em>{about.jobRole}</em> based in <em>{about.location}</em>. I currently work as a <u>{about.currentRole}</u> in the {about.currentDept} at <span style="color:#9E1B32;font-weight:bold;">{about.currentOrg}</span><img class="seal" src="/assets/images/sju-seal.png" alt="A shield with 4 panels" />.</p>
   <p>With over 25 years of experience designing and developing in the digital domain, I've come to know a thing or two about what drives a good website. My work honors the core fundamentals of the web: <strong>semantic programming</strong>, <strong>lightweight performance</strong>, <strong>agnostic accessibility</strong>, and <strong>functional design</strong> while making space for new technologies and novel techniques.</p>
   <p>I strive to build concise projects unburdened by excessive frameworks or libraries, structured to scale with your organization, and open to any user who will find it. <u>Because honestly</u>, <strong>if your website can't be viewed by everybody on every platform, across every device, and at remarkable speeds, then what’s the point?</strong></p>
@@ -17,29 +19,25 @@ const randomItem = getRandomItem(about.hello);
     <Button label="View my resume" href="/about/resume" />
   </div>
 
- <!-- <p>Wonderful websites are born through thoughtful decision making, deep expertise, passion, originality, and attention to detail. Especially now, as websites evolve into web systems, it's critical to work with a partner who understands how to translate the needs of a project into a comprehensive and cohesive design library, one flexible enough to meet the needs of launch day but forward-thinking enough to allow for growth the day after and beyond. My work sits at the intersection of web development, design systems thinking, and cross-team collaboration (mostly with teams on the design and UX side of the house).</p>
-
-  <h2>Background</h2>
-  <p>My career has taken me inside agencies and over to the client side and back, with stints of independent work in-between. Since the early days of writing HTML in Notepad (thanks summer computer camp!) building websites has always been a hobby of mine. My first entree into the industry was via search engine marketing and SEO.</p>
-  <h2>Extracurricular</h2>
-
-  <p>My work takes place at the intersection of web development, design systems thinking, and collaboration between design and engineering teams to
-
-    my coding work combines with cross-team collaboration and is informed by systems thinking to produce a collection of</p><p>If you're looking for a developer to spin up a website with the hottest new frameworks and latest component libraries, <u><a href="https://www.google.com" target="_blank" rel="noopener,noreferrer">look elsewhere</a></u>! </p>
-  <p>Early</p>
-  <p>College/early career</p>
-  <p>My earliest introduction with technology came from our family computer, the Macintosh IIsi. </p>
-  <p>Playing around with blogging sites during high school led to me to stand up my first LAMP stack with Drupal, Joomla, and eventually Wordpress in 2004. Working with Wordpress changed <u>everything</u>. It launched me into the world of modern web development, gave me a functional platform to project my web design intentions on to, but also opened my eyes as to what was possible with a website beyond mere HTML files. Much plugin and theme development ensued.</p>
-  <p>Current</p>
-  <p>Hobbies, fun stuff</p>
-  <p>Hypercard, Macintosh IIsi, internet radio, radio club, the index (school paper), the ithacan, model un, quake, asheron's call, quake modding, unreal map making </p>
-  <ul>
-    <li><a href="about/uses">Uses</a></li>
-  </ul> -->
+  <Spacer />
+  <h2>What's going on</h2>
+  <p>Rather than write a big long biography no one wants to read I've put together a few purposeful pages to share more about my craft, what I've been up to recently, and what I hope to be working on soon:</p>
+  <Spacer />
+  <ul class="cards">
+    <li class="chip">
+      <Card
+        layoutClass="column"
+        icon="fa-code"
+        title="Uses"
+        description="A somewhat comprehensive list of the hardware, software, and accessories I use to get the job done."
+        href="/uses"
+      />
+    </li>
+  </ul>
 
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   @use '../styles/base/vars.scss' as var;
   @use '../styles/base/breakpoints.scss' as *;
 
@@ -63,5 +61,35 @@ const randomItem = getRandomItem(about.hello);
     justify-content: flex-start;
     gap: 1.5rem;
     margin: 2rem 0;
+  }
+
+  ul {
+    &.cards {
+      margin: 0 0 3rem;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      @include bp(tablet) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      li {
+
+        a {
+          padding: 0.75rem;
+
+          .content {
+            p {
+              &.description {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 </style>

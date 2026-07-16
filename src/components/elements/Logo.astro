@@ -1,13 +1,7 @@
 ---
 import json from '../../data/site.json';
 
-interface Props {
-  isH1?: boolean;
-}
-
-const { isH1 = false } = Astro.props;
-
-const sitename = json.site.meta.sitename;
+const sitename = json.site.meta.siteName;
 const tagline = json.site.meta.tagline;
 ---
 
@@ -26,11 +20,7 @@ const tagline = json.site.meta.tagline;
       <text aria-hidden="true" x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="66" font-weight="bold" fill="#ffffff">D</text>
     </svg>
     <div class="sitename">
-      {isH1 ? (
-        <h1 class="name">{sitename}</h1>
-      ) : (
-        <span class="name">{sitename}</span>
-      )}
+      <span class="name">{sitename}</span>
       {tagline && <p class="tagline">{tagline}</p>}
     </div>
   </a>
@@ -88,7 +78,6 @@ const tagline = json.site.meta.tagline;
           align-items: flex-start;
         }
 
-        h1,
         span {
           font-size: var.$font-size-h4;
           margin: 0;

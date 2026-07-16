@@ -89,19 +89,15 @@ const Element = collectionHref ? 'a' : 'div';
 	target={cardType === "media" ? "_blank" : undefined}
   rel={cardType === "media" ? "nofollow noreferrer" : undefined}
 >
-  {(image || icon) && (
+  {(image &&
     <div class="image">
-      {image ? (
-        <Image
-          src={image}
-          alt={imageAlt}
-          format="webp"
-          width={imageWidth}
-          quality={imageQuality}
-        />
-      ) : (
-        <Icon name={icon} />
-      )}
+			<Image
+				src={image}
+				alt={imageAlt}
+				format="webp"
+				width={imageWidth}
+				quality={imageQuality}
+			/>
     </div>
   )}
 
@@ -208,9 +204,10 @@ const Element = collectionHref ? 'a' : 'div';
     ) : (
 
       <>
-        {title && <h3 class="title">{title}</h3>}
-        {subtitle && <p class="subtitle">{subtitle}</p>}
-        {description && <p class="blurb">{description}</p>}
+				{icon && <Icon class="icon" name={icon} /> }
+        {title && <span class="title">{title}</span>}
+        {subtitle && <span class="subtitle">{subtitle}</span>}
+        {description && <p class="description">{description}</p>}
         {linkUrl && <a href={linkUrl} class="url">{title}</a>}
       </>
     )}
@@ -230,7 +227,7 @@ const Element = collectionHref ? 'a' : 'div';
 		&:hover,
 		&:focus {
 			.content {
-				span {
+				span {					
 					&.title {
 						text-decoration: underline;
 					}
@@ -243,11 +240,19 @@ const Element = collectionHref ? 'a' : 'div';
 		display: flex;
 
 		.content {
+			svg.icon {
+				width: 32px;
+				height: 32px;
+				vertical-align: bottom;
+				margin: 0 1rem 0 0;
+			}
+
 			span {
 				display: inline-block;
 
 				&.title {
 					font-weight: var.$weight-bold;
+					font-size: 1.5rem;
 				}
 
 				&.date {

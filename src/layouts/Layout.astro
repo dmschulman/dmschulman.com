@@ -8,13 +8,13 @@ import json from '../data/site.json';
 
 const themeClass = json.site.meta.theme;
 
-const { pageTitle = "Page", customBreadcrumbLinks = [], } = Astro.props
+const { pageTitle, description, customBreadcrumbLinks = [], } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-    <Head />
+    <Head pageTitle={pageTitle} description={description} />
 	</head>
 
 	<body {...(themeClass && {class: themeClass})}>
@@ -49,3 +49,8 @@ const { pageTitle = "Page", customBreadcrumbLinks = [], } = Astro.props
     });
   });
 </script>
+
+<style lang="scss">
+  @use '../styles/base/vars.scss' as var;
+  @use '../styles/base/breakpoints.scss' as *;
+</style>

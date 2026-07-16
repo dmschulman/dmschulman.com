@@ -2,10 +2,9 @@
 import Layout from '../layouts/Homepage.astro';
 import IntroBlock from '../components/blocks/IntroBlock.astro';
 import GetRandomItems from '../components/blocks/GetRandomItems.astro';
-
 ---
 
-<Layout pageTitle="David M. Schulman, now on the web!">
+<Layout pageTitle="David M. Schulman, on the web since 2006!">
   <IntroBlock />
 
   <GetRandomItems 
@@ -26,16 +25,22 @@ import GetRandomItems from '../components/blocks/GetRandomItems.astro';
 
   .intro-block {
     margin-bottom: 3rem;
-    transform: translateY(200px);
-    opacity: 0;
-    animation: slideInFadeBottom 1s ease-out forwards;
+
+    @include bp(tablet) {
+      opacity: 0;
+      transform: translateY(200px);
+      animation: slideInFadeBottom 1s ease-out forwards;
+    }
   }
 
   .random-items {
     margin-bottom: 2rem;
-    transform: translateY(500px);
-    opacity: 0;
-    animation: slideInFadeBottom 2.5s ease-out forwards;
+    
+    @include bp(tablet) {
+      opacity: 0;
+      transform: translateY(500px);
+      animation: slideInFadeBottom 2.5s ease-out forwards;
+    }
 
     ul.cards {
       margin: 0;

@@ -56,9 +56,13 @@ const randomItem = getRandomItem(about.hello);
         }
 
         em {
-          font-weight: normal;
+          font-weight: var.$weight-bold;
           font-style: normal;
-          animation: boldMe 0.3s ease-out 1s forwards;
+          
+          @include bp(tablet) {
+            font-weight: normal;
+            animation: boldMe 0.3s ease-out 1s forwards;
+          }
         }
 
         span.hello {
@@ -72,12 +76,12 @@ const randomItem = getRandomItem(about.hello);
       flex-direction: row;
       justify-content: center;
       gap: 1.5rem;
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 1.3s;
 
       @include bp(tablet) {
         justify-content: flex-start;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+        animation-delay: 1.3s;
       }
     }
   }

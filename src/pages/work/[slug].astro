@@ -1,8 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { Image } from "astro:assets";
-import PrevNextPost from '../../components/navigation/PrevNextPost.astro';
 import { getCollection } from 'astro:content';
+import { Image } from "astro:assets";
+
+import Layout from '../../layouts/Layout.astro';
+import PrevNextPost from '../../components/navigation/PrevNextPost.astro';
 
 const { work } = Astro.props;
 
@@ -28,6 +29,7 @@ const customBreadcrumbLinks = [
 
 <Layout
   pageTitle=`${work.data.title}`
+  description=`${work.data.description}`
   customBreadcrumbLinks={customBreadcrumbLinks}
 >
   <div class="work">

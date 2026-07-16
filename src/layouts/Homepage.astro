@@ -6,18 +6,18 @@ import Footer from '../components/globals/Footer.astro';
 import json from '../data/site.json';
 
 const themeClass = json.site.meta.theme;
+
+const { pageTitle, description } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-    <Head />
+    <Head pageTitle={pageTitle} description={description} />
 	</head>
 
 	<body {...(themeClass && {class: themeClass})}>
-    <Header
-      isH1={true}
-    />
+    <Header />
     <main>
       <slot />
     </main>
@@ -31,9 +31,11 @@ const themeClass = json.site.meta.theme;
   @use '../styles/base/breakpoints.scss' as *;
 
   footer {
-    opacity: 0;
-    transform: translateY(300px);
-    animation: slideInFadeBottom 4.5s ease-out forwards;
+    @include bp(tablet) {
+      opacity: 0;
+      transform: translateY(300px);
+      animation: slideInFadeBottom 4s ease-out forwards;
+    }
   }
 
 </style>
