@@ -35,7 +35,7 @@ const picks = shuffled.slice(0, Math.min(count, shuffled.length));
   {title && <h2>{title}</h2>}
   <ul class="cards">
     {picks.map((entry) => 
-      <li>
+      <li class="d_press-down">
         <Card
           id={entry.id}
           category={entry.data.category}

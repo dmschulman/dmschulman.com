@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import FilterButtons from '../../components/navigation/FilterButtons.astro';
 import LoadMoreButton from '../../components/navigation/LoadMoreButton.astro';
@@ -11,6 +11,7 @@ export interface Props {
   showLoadMore?: boolean;
   loadMoreText?: string;
   title?: string;
+  items?: CollectionEntry<'shelf'>[];
 }
 
 const {
@@ -20,9 +21,9 @@ const {
   showLoadMore = true,
   loadMoreText = "Load More",
   title = "",
+  items,
 } = Astro.props;
 
-// Single source of truth for category → icon mapping (used by both Astro and JS)
 const ICON_MAP: Record<string, string> = {
   album: 'fa-compact-disc',
   book: 'fa-book',
@@ -31,7 +32,7 @@ const ICON_MAP: Record<string, string> = {
   podcast: 'fa-microphone-lines',
 };
 
-const allItems = await getCollection('shelf');
+const allItems = items ?? await getCollection('shelf');
 const sortedItems = allItems.sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
@@ -65,7 +66,7 @@ const itemsData = sortedItems.map(i => i.data);
 
   <ul class="shelf">
     {sortedItems.slice(0, itemsPerPage).map((item) => (
-      <li>
+      <li class="d_press-down">
         <div class:list={["card", "media", item.data.category]}>
           <a href={item.data.href} target="_blank" rel="nofollow noreferrer">
             <div class="image">
@@ -339,7 +340,7 @@ const itemsData = sortedItems.map(i => i.data);
     function itemHtml(item: any): string {
       const icon = ICON_MAP[item.category] ?? 'fa-share';
       return `
-        <li>
+        <li class="d_press-down">
           <div class="card media ${item.category}">
             <a href="${item.href}" target="_blank" rel="nofollow noreferrer">
               <div class="image">
