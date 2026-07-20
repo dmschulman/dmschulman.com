@@ -1,11 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Button from '../components/elements/Button.astro';
-import Spacer from '../components/elements/Spacer.astro';
-import Card from '../components/elements/Card.astro';
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/elements/Button.astro';
+import Spacer from '../../components/elements/Spacer.astro';
+import Card from '../../components/elements/Card.astro';
 
-import { about } from '../data/site.json';
-import { getRandomItem } from '../utils/parseItems';
+import { about } from '../../data/site.json';
+import { getRandomItem } from '../../utils/parseItems';
 const randomItem = getRandomItem(about.hello);
 ---
 
@@ -33,13 +33,22 @@ const randomItem = getRandomItem(about.hello);
         href="/uses"
       />
     </li>
+    <li class="chip">
+      <Card
+        layoutClass="column"
+        icon="fa-comment-dots"
+        title="Now"
+        description="What I'm reading, listening to, thinking about, seeing, and encountering. See what I'm doing now, now!"
+        href="/now"
+      />
+    </li>
   </ul>
 
 </Layout>
 
 <style lang="scss" is:global>
-  @use '../styles/base/vars.scss' as var;
-  @use '../styles/base/breakpoints.scss' as *;
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
 
   p.intro {
     img.seal {
