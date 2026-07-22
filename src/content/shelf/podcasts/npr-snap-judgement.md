@@ -7,6 +7,6 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/44/38/a9/4438a
 href: https://podcasts.apple.com/us/podcast/snap-judgment/id283657561
 timestamp: '2010'
 tags:
-  - non-fiction
+  - nonfiction
   - storytelling
 ---

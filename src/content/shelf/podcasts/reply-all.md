@@ -9,6 +9,6 @@ timestamp: '2014'
 tags:
   - culture
   - internet
-  - techonology
-  - non-fiction
+  - technology
+  - nonfiction
 ---

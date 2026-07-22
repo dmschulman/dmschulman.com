@@ -1,15 +1,28 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import Layout from '../layouts/Layout.astro';
 import ListTags from '../components/navigation/ListTags.astro';
 import PrevNextPost from '../components/navigation/PrevNextPost.astro';
-import { Icon } from 'astro-icon/components';
 
 const { frontmatter, collection, postId } = Astro.props;
 const collectionFromUrl = collection || frontmatter.collection || Astro.url.pathname.split('/')[1];
 const dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+const article = {
+  publishedTime: frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined,
+  modifiedTime: frontmatter.updated ? new Date(frontmatter.updated).toISOString() : undefined,
+  author: frontmatter.author,
+  tags: frontmatter.tags,
+};
 ---
 
-<Layout pageTitle={frontmatter.title}>
+<Layout
+  pageTitle={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image}
+  article={article}
+>
   <div class="content">
     <article>
       <div class="meta">

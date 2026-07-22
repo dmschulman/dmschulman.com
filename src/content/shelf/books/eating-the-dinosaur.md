@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication126/v4/00/76/e0/00
 href: https://amzn.to/3SEfRoK
 timestamp: '2006'
 tags:
-  - non-fiction
+  - nonfiction
   - culture
   - music
 ---

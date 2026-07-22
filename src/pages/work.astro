@@ -1,9 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ImageRowCardBlock from '../components/blocks/ImageRowCardBlock.astro'
+import ImageRowCardBlock from '../components/blocks/ImageRowCardBlock.astro';
+import Spacer from '../components/elements/Spacer.astro';
 ---
 
-<Layout pageTitle="Work" description="Whether it's a design library I've built, a new landing page, or a side project I'm tinkering with you'll find it here, filed under W, for 'Work'.">
+<Layout 
+  pageTitle="Work"
+  description="Whether it's a design library I've built, a new landing page, or a side project I'm tinkering with you'll find it here, filed under W, for 'Work'."
+>
   <p class="intro">Some may call it a portfolio, a curriculum vitae, a mappe, or even 作品集, but I like to think of it as a showcase of great work I'm really proud of. Whether it's a design library I've built for a client, a new landing page my team and I have launched at the office, or a side project I'm tinkering with you'll find it here, filed under W, for 'Work'.</p>
 
   <div class="work">
@@ -11,15 +15,18 @@ import ImageRowCardBlock from '../components/blocks/ImageRowCardBlock.astro'
     <p>In my role as Web Developer in the Office of Marketing & Communications I've participated in projects that run the gamut, from building a new digital magazine user experience, to supporting augmented reality postcards, iterating on component frameworks all along the way.</p>
 
     <ImageRowCardBlock
+      cardType="work"
       collection="work",
       category="sju"
     />
 
-    <br />
+    <Spacer size="md" />
+
     <h2>Personal projects</h2>
     <p>These are a handful of small personal websites and other digital projects I've built over the years. Not only were they fun to craft and create but I'm proud of the work that came out of it (no matter how big or small).</p>
 
     <ImageRowCardBlock
+      cardType="work"
       collection="work",
       category="personal"
     />

@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/e7/f6/d0/e7f6d
 href: https://podcasts.apple.com/us/podcast/this-american-life/id201671138
 timestamp: '2007'
 tags:
-  - non-fiction
+  - nonfiction
   - storytelling
   - culture
 ---

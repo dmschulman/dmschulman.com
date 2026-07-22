@@ -7,13 +7,32 @@ import json from '../data/site.json';
 
 const themeClass = json.site.meta.theme;
 
-const { pageTitle, description } = Astro.props
+const {
+  pageTitle,
+  description,
+  image,
+  noindex,
+  nofollow,
+  article,
+  frontmatter
+} = Astro.props;
+
+const finalPageTitle = pageTitle ?? frontmatter?.title;
+const finalDescription = description ?? frontmatter?.description;
+const finalImage = image ?? frontmatter?.image;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 	<head>
-    <Head pageTitle={pageTitle} description={description} />
+    <Head
+      pageTitle={finalPageTitle}
+      description={finalDescription}
+      image={finalImage}
+      noindex={noindex}
+      nofollow={nofollow}
+      article={article}
+    />
 	</head>
 
 	<body {...(themeClass && {class: themeClass})}>

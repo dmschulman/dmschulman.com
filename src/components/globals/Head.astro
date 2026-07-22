@@ -1,41 +1,101 @@
 ---
-import { SEO } from "astro-seo";
 import { site } from '../../data/site.json';
+import { SEO } from "astro-seo";
+
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  image?: { src: string; alt: string; width?: number; height?: number };
+  noindex?: boolean;
+  nofollow?: boolean;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    tags?: string[];
+  };
+}
+
+const { pageTitle, description, image, noindex, nofollow, article } = Astro.props;
 
 const theme = site.meta.theme;
-const { pageTitle, description, openGraph } = Astro.props;
+const seo = site.seo;
+
+const finalTitle = pageTitle ? `${pageTitle} | ${site.meta.siteTitle}` : site.meta.siteTitle;
+const finalDescription = description ?? site.meta.description;
+const canonicalURL = new URL(Astro.url.pathname, `https://${site.meta.siteName}`).href;
+const ogImage = image ?? seo.defaultOgImage;
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  ...seo.schema.person,
+}
 ---
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
+<meta name="color-scheme" content="light">
+{seo.author && <meta name="author" content={seo.author}>}
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<link rel="preload" href="https://fonts.googleapis.com">
+<link rel="preload" href="https://fonts.gstatic.com" crossorigin>
 {theme === 'bayside' && <link href="https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">}
 
-<title>{pageTitle ? `${pageTitle} | ${site.meta.siteTitle}` : site.meta.siteTitle}</title>
-<meta name="description" content={description ?? site.meta.description}>
-<SEO 
+<SEO
+  title={finalTitle}
+  description={finalDescription}
+  canonical={canonicalURL}
+  noindex={noindex}
+  nofollow={nofollow}
   openGraph={{
     basic: {
-      title: "David M. Schulman.com / A web wonderland",
-      type: "website",
-      image: "https://dmschulman.com/dmschulman-og-1200x630.jpg",
-      url: Astro.url.href,
+      title: finalTitle,
+      type: article ? "article" : "website",
+      image: ogImage.src,
+      url: canonicalURL,
     },
+    optional: {
+      description: finalDescription,
+      siteName: site.meta.siteTitle,
+      locale: seo.locale,
+    },
+    image: {
+      alt: ogImage.alt,
+      width: ogImage.width,
+      height: ogImage.height,
+    },
+    ...(article && {
+      article: {
+        publishedTime: article.publishedTime,
+        modifiedTime: article.modifiedTime,
+        authors: article.author ? [article.author] : (seo.author ? [seo.author] : undefined),
+        tags: article.tags,
+      },
+    }),
+  }}
+  twitter={{
+    card: seo.twitter?.card,
+    site: seo.twitter?.site,
+    creator: seo.twitter?.creator,
+  }}
+  extend={{
+    meta: [
+      { name: "twitter:title", content: finalTitle },
+      { name: "twitter:description", content: finalDescription },
+      { name: "twitter:image", content: ogImage.src },
+    ],
   }}
 />
 
 <link rel="sitemap" href="/sitemap-index.xml" />
-<meta name="robots" content="index, follow">
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
 {
   import.meta.env.PROD && (

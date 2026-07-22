@@ -7,6 +7,6 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication116/v4/cf/55/56/cf
 href: https://amzn.to/4dVxmuE
 timestamp: '1989'
 tags:
-  - non-fiction
+  - nonfiction
   - memoir
 ---

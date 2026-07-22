@@ -7,6 +7,6 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/b7/6e/25/b76e2
 href: https://podcasts.apple.com/us/podcast/s-town/id1212558767
 timestamp: '2017'
 tags:
-  - non-fiction
+  - nonfiction
   - storytelling
 ---

@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication221/v4/75/f8/73/75
 href: https://amzn.to/456Efa7
 timestamp: '2018'
 tags:
-  - non-fiction
+  - nonfiction
   - music
   - indie
   - rock

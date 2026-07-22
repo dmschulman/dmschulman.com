@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication1/v4/8e/f6/c6/8ef6
 href: https://amzn.to/3HrSnRj
 timestamp: '2004'
 tags:
-  - non-fiction
+  - nonfiction
   - america
   - biography
 ---

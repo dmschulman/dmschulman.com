@@ -1,12 +1,78 @@
 {
   "site": {
     "meta": {
-      "siteTitle": "David M. Schulman.com",
+      "siteTitle": "David M. Schulman",
       "description": "Welcome to the personal website of David M. Schulman, frontend web developer and design systems engineer based in Philadelphia, PA 🥨.",
       "siteName": "dmschulman.com",
-      "tagline": "A web wonderland",
+      "tagline": "a web wonderland",
       "theme": "bayside",
       "firstYear": "2006"
+    },
+    "seo": {
+      "locale": "en_US",
+      "themeColor": "#ffffff",
+      "author": "David M. Schulman",
+      "defaultOgImage": {
+        "src": "https://dmschulman.com/dmschulman-og-1200x630.jpg",
+        "alt": "David M. Schulman.com / a web wonderland",
+        "width": 1200,
+        "height": 630
+      },
+      "schema": {
+        "person": {
+          "name": "David M. Schulman",
+          "givenName": "David",
+          "additionalName": "Michael",
+          "familyName": "Schulman",
+          "url": "https://dmschulman.com",
+          "image": "https://dmschulman.com/david-m-schulman.jpg",
+          "jobTitle": "Design Systems Engineer",
+          "description": "Design System Engineer based in Philadelphia, PA, focused on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
+          "worksFor": {
+            "@type": "CollegeOrUniversity",
+            "name": "Saint Joseph's University",
+            "url": "https://www.sju.edu"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Ithaca College",
+            "url": "https://www.ithaca.edu"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Philadelphia",
+            "addressRegion": "PA",
+            "addressCountry": "US"
+          },
+          "knowsAbout": [
+            "Design Systems",
+            "Frontend Development",
+            "Web Accessibility",
+            "Atomic Design",
+            "Responsive Design",
+            "Answer Engine Optimization",
+            "Search Engine Optimization",
+            "Web Analytics",
+            "HTML",
+            "CSS",
+            "SASS",
+            "JavaScript",
+            "React",
+            "Astro",
+            "Drupal",
+            "Twig",
+            "Pattern Lab",
+            "Figma"
+          ],
+          "sameAs": [
+            "https://github.com/dmschulman",
+            "https://www.linkedin.com/in/dmschulman/",
+            "https://codepen.io/dmschulman",
+            "https://bsky.app/profile/schul.dev",
+            "https://www.instagram.com/dmschulman/"
+          ]
+        }
+      }
     },
     "navigation": {
       "mainNav": {

@@ -7,24 +7,43 @@ import { Breadcrumbs } from "astro-breadcrumbs";
 import json from '../data/site.json';
 
 const themeClass = json.site.meta.theme;
+const { 
+  pageTitle, 
+  description, 
+  customBreadcrumbLinks = [], 
+  image, 
+  noindex, 
+  nofollow, 
+  article, 
+  frontmatter
+} = Astro.props
 
-const { pageTitle, description, customBreadcrumbLinks = [], } = Astro.props
+const finalPageTitle = pageTitle ?? frontmatter?.title;
+const finalDescription = description ?? frontmatter?.description;
+const finalImage = image ?? frontmatter?.image;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 	<head>
-    <Head pageTitle={pageTitle} description={description} />
+    <Head 
+      pageTitle={finalPageTitle} 
+      description={finalDescription}
+      image={finalImage}
+      noindex={noindex}
+      nofollow={nofollow}
+      article={article}
+    />
 	</head>
 
 	<body {...(themeClass && {class: themeClass})}>
     <Header />
     <main>
-      <h1 class="page-heading">{pageTitle}</h1>
+      <h1 class="page-heading">{finalPageTitle}</h1>
       <Breadcrumbs
         mainBemClass="breadcrumbs"
         linkTextFormat="capitalized"
-        customTitle={Astro.props.frontmatter?.title || Astro.props.pageTitle}
+        customTitle={finalPageTitle}
         customizeLinks={customBreadcrumbLinks}
         crumbs={Astro.props.crumbs}
       />
@@ -32,7 +51,6 @@ const { pageTitle, description, customBreadcrumbLinks = [], } = Astro.props
     </main>
     <Footer />
 	</body>
-
 </html>
 
 <script>

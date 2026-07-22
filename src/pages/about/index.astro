@@ -9,7 +9,10 @@ import { getRandomItem } from '../../utils/parseItems';
 const randomItem = getRandomItem(about.hello);
 ---
 
-<Layout pageTitle="About" description="With over 25 years of experience designing and developing in the digital domain, I've come to know a thing or two about what drives a good website.">
+<Layout 
+  pageTitle="About" 
+  description="With over 25 years of experience designing and developing in the digital domain, I've come to know a thing or two about what drives a good website."
+>
   <p class="intro"><strong>{randomItem}</strong> My name is <em>{about.fullName}</em> and I'm a <em>{about.jobRole}</em> based in <em>{about.location}</em>. I currently work as a <u>{about.currentRole}</u> in the {about.currentDept} at <span style="color:#9E1B32;font-weight:bold;">{about.currentOrg}</span><img class="seal" src="/assets/images/sju-seal.png" alt="A shield with 4 panels" />.</p>
   <p>With over 25 years of experience designing and developing in the digital domain, I've come to know a thing or two about what drives a good website. My work honors the core fundamentals of the web: <strong>semantic programming</strong>, <strong>lightweight performance</strong>, <strong>agnostic accessibility</strong>, and <strong>functional design</strong> while making space for new technologies and novel techniques.</p>
   <p>I strive to build concise projects unburdened by excessive frameworks or libraries, structured to scale with your organization, and open to any user who will find it. <u>Because honestly</u>, <strong>if your website can't be viewed by everybody on every platform, across every device, and at remarkable speeds, then what’s the point?</strong></p>

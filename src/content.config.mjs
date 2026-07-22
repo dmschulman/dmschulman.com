@@ -1,8 +1,8 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 
 const work = defineCollection({
-  loader: glob({ pattern: '**/**/*.md', base: "src/content/work" }),
+  loader: glob({ pattern: '**/**/*.md', base: 'src/content/work' }),
   schema: ({ image }) =>
     z.object({
     title: z.string(), // Display title of the content
@@ -25,19 +25,30 @@ const work = defineCollection({
 });
 
 const shelf = defineCollection({
-  loader: glob({ pattern: '**/**/*.md', base: "src/content/shelf" }),
+  loader: glob({ pattern: '**/**/*.md', base: 'src/content/shelf' }),
   schema: ({ image }) =>
     z.object({
-    category: z.string(),
-    date: z.date(),
-    title: z.string(),
-    subtitle: z.string().optional(),
-    timestamp: z.string().optional(),
-    href: z.string().optional(),
-    imageUrl: image(),
-    tags: z.array(z.string()).optional(),
-    featured: z.boolean().optional(),
+    category: z.string(), // Is this a book? An album?
+    date: z.date(), // Date I added it to the shelf
+    title: z.string(), // Work title
+    subtitle: z.string().optional(), // Work author
+    timestamp: z.string().optional(), // Year work was produced
+    href: z.string().optional(), // Where the item links out to
+    imageUrl: image(), // Cover of the work
+    tags: z.array(z.string()).optional() // Tags
   })
 });
 
-export const collections = { work, shelf };
+const now = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: 'src/content/now'}),
+  schema: z.object({
+    reading: z.array(reference('shelf')).default([]), // What I'm reading
+    readingIntro: z.string().optional(), // Paragraph before books display
+    listening: z.array(reference('shelf')).default([]), // What I'm listening to
+    listeningIntro: z.string().optional(), // Paragraph before albums display
+    watching: z.array(reference('shelf')).default([]), // What I'm watching
+    watchingIntro: z.string().optional() // Paragraph before film display
+  })
+});
+
+export const collections = { work, shelf, now };

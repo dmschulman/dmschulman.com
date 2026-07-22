@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication126/v4/6c/b7/7a/6c
 href: https://amzn.to/4dRAI1C
 timestamp: '2006'
 tags:
-  - non-fiction
+  - nonfiction
   - music
   - america
   - rock

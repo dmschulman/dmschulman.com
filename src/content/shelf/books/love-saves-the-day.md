@@ -11,5 +11,5 @@ tags:
   - disco
   - nyc
   - culture
-  - non-fiction
+  - nonfiction
 ---

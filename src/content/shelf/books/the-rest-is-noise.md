@@ -7,7 +7,7 @@ imageUrl: https://is1-ssl.mzstatic.com/image/thumb/Publication/f3/68/54/mzi.rfyy
 href: https://amzn.to/4krS7Ak
 timestamp: '2008'
 tags:
-  - non-fiction
+  - nonfiction
   - music
   - history
 ---
