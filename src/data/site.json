@@ -2,7 +2,7 @@
   "site": {
     "meta": {
       "siteTitle": "David M. Schulman",
-      "description": "Welcome to the personal website of David M. Schulman, frontend web developer and design systems engineer based in Philadelphia, PA 🥨.",
+      "description": "Welcome to the personal website of David M. Schulman, frontend web developer and design system engineer based in Philadelphia, PA 🥨.",
       "siteName": "dmschulman.com",
       "tagline": "a web wonderland",
       "theme": "bayside",
@@ -26,7 +26,7 @@
           "familyName": "Schulman",
           "url": "https://dmschulman.com",
           "image": "https://dmschulman.com/david-m-schulman.jpg",
-          "jobTitle": "Design Systems Engineer",
+          "jobTitle": "Design System Engineer",
           "description": "Design System Engineer based in Philadelphia, PA, focused on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
           "worksFor": {
             "@type": "CollegeOrUniversity",
@@ -91,6 +91,10 @@
             "href": "/work"
           },
           {
+            "title": "Words",
+            "href": "/words"
+          },
+          {
             "title": "Contact",
             "href": "/contact"
           }
@@ -110,9 +114,9 @@
     "fullName": "David M. Schulman",
     "firstName": "David",
     "location": "Philadelphia, PA",
-    "jobRole": "Design Systems Engineer",
+    "jobRole": "Design System Engineer",
     "pitch": "I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
-    "fullPitch": "My name is David M. Schulman and I'm a Design Systems Engineer based in Philadelphia, PA. I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
+    "fullPitch": "My name is David M. Schulman and I'm a Design System Engineer based in Philadelphia, PA. I focus on creating clean and tidy web ecosystems architected to manage complexity and built on good design.",
     "currentRole": "Web Developer and Frontend Lead",
     "currentDept": "Office of Marketing & Communications",
     "currentOrg": "Saint Joseph's University",

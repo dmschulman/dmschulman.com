@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostListBlock from '../../components/blocks/PostListBlock.astro';
+import Spacer from '../../components/elements/Spacer.astro';
+import Pagination from '../../components/navigation/Pagination.astro';
+import TagsListingBlock from '../../components/blocks/TagsListingBlock.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const blogPosts = await getCollection('words');
+  const allPosts = blogPosts
+    .filter(post => post.data.published !== false && post.data.archived !== true)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+  return paginate(allPosts, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout 
+  pageTitle="Words"
+  description="My little corner of the internet. Read some of my writing, my write-ups, and my ramblings. These posts represent self-contained coherent thoughts."
+  crumbs={[
+    { text: 'Home', href: '/' },
+    { text: 'Words', href: '/words' },
+  ]}
+>
+
+  <p class="intro">My little corner of the internet. Read some of my writing, my write-ups, and my ramblings. These posts represent self-contained coherent thoughts but if you'd like to see my less coherent and more personal takes, check out my <a href="/now">Now</a> page.</p>
+  
+  <Spacer size="md" />
+
+  <div class="posts">
+    <PostListBlock posts={page.data} />
+    <Pagination page={page} />
+  </div>
+
+  <TagsListingBlock collection="words" showNumber={true} />
+</Layout>

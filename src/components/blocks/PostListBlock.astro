@@ -1,0 +1,190 @@
+---
+import { Icon } from 'astro-icon/components';
+import { marked } from 'marked';
+import { getAllPosts, getPostUrl, getPostDate, getTagUrl, type Post } from '../../lib/posts';
+
+interface Props {
+  posts?: Post[];
+  archived?: 'only' | 'exclude' | 'include';
+  featured?: 'only' | 'exclude' | 'include';
+  showExcerpt?: boolean;
+  showTags?: boolean;
+  excerptWords?: number;
+  limit?: number;
+  emptyMessage?: string;
+}
+
+const {
+  posts: inputPosts,
+  archived = 'exclude',
+  featured = 'include',
+  showExcerpt = true,
+  showTags = false,
+  excerptWords = 100,
+  limit,
+  emptyMessage = 'No posts yet.',
+} = Astro.props;
+
+let posts = inputPosts ?? await getAllPosts({
+  includeArchived: archived !== 'exclude',
+});
+
+if (archived === 'only')    posts = posts.filter(p => p.data.archived);
+if (featured === 'only')    posts = posts.filter(p => p.data.featured);
+if (featured === 'exclude') posts = posts.filter(p => !p.data.featured);
+
+if (limit) posts = posts.slice(0, limit);
+
+// Build the post excerpt
+function truncateHtml(html: string, wordLimit: number): string {
+  const voidTags = new Set(['br', 'hr', 'img', 'input', 'meta', 'link']);
+  const openTags: string[] = [];
+  let wordCount = 0;
+  let result = '';
+  let i = 0;
+
+  while (i < html.length && wordCount < wordLimit) {
+    if (html[i] === '<') {
+      const end = html.indexOf('>', i);
+      if (end === -1) break;
+      const tag = html.slice(i, end + 1);
+      const match = tag.match(/^<\/?([a-zA-Z0-9]+)/);
+      if (match) {
+        const name = match[1].toLowerCase();
+        if (tag.startsWith('</')) {
+          const idx = openTags.lastIndexOf(name);
+          if (idx !== -1) openTags.splice(idx, 1);
+        } else if (!voidTags.has(name) && !tag.endsWith('/>')) {
+          openTags.push(name);
+        }
+      }
+      result += tag;
+      i = end + 1;
+    } else {
+      const nextTag = html.indexOf('<', i);
+      const chunk = nextTag === -1 ? html.slice(i) : html.slice(i, nextTag);
+      for (const part of chunk.split(/(\s+)/)) {
+        if (part === '') continue;
+        if (/^\s+$/.test(part)) {
+          result += part;
+        } else {
+          if (wordCount >= wordLimit) break;
+          result += part;
+          wordCount++;
+        }
+      }
+      i = nextTag === -1 ? html.length : nextTag;
+    }
+  }
+
+  if (wordCount >= wordLimit) result += '…';
+  while (openTags.length) result += `</${openTags.pop()}>`;
+  return result;
+}
+
+// Print post excerpt
+function getExcerpt(body: string, words: number): string {
+  const html = marked.parse(body ?? '') as string;
+  return truncateHtml(html, words);
+}
+
+const dateFormat = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' } as const;
+---
+
+{posts.length === 0 ? (
+  <p class="empty">{emptyMessage}</p>
+) : (
+  <ul class="blog-listing">
+    {posts.map(post => (
+      <li class="post" class:list={{ archived: post.data.archived, featured: post.data.featured }}>
+        <div class="meta">
+          <a class="title" href={getPostUrl(post)} aria-label={`Read ${post.data.title}`}>
+            <h2 class="post-title">{post.data.title}</h2>
+          </a>
+          <span class="date">
+            <Icon name="fa-calendar" />
+            {getPostDate(post).toLocaleDateString('en-US', dateFormat)}
+          </span>
+        </div>
+
+        {showExcerpt && (
+          <div class="content" set:html={getExcerpt(post.body ?? '', excerptWords)} />
+        )}
+
+        {showTags && post.data.tags.length > 0 && (
+          <ul class="tags">
+            {post.data.tags.map(tag => (
+              <li class="badge"><a href={getTagUrl(tag)}>{tag}</a></li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.blog-listing {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li.post {
+      margin: 0 0 1rem;
+      padding: 0 0 1rem;
+      border-bottom: 1px solid var.$color-grey;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      @include bp(tablet) {
+        margin: 0 0 2rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 0 1.25rem;
+
+        @include bp(tablet) {
+          flex-wrap: nowrap;
+        }
+
+        a.title {
+          display: block;
+
+          h2.post-title {
+            margin: 0;
+          }
+        }
+
+        span.date {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+
+          svg {
+            margin-right: 0.5rem;
+            vertical-align: text-top;
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  .empty {
+    padding: 2rem 0;
+    text-align: center;
+    color: var.$color-grey;
+  }
+</style>

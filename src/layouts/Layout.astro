@@ -10,7 +10,8 @@ const themeClass = json.site.meta.theme;
 const { 
   pageTitle, 
   description, 
-  customBreadcrumbLinks = [], 
+  customBreadcrumbLinks = [],
+  excludeCurrentPage = false,
   image, 
   noindex, 
   nofollow, 
@@ -46,6 +47,7 @@ const finalImage = image ?? frontmatter?.image;
         customTitle={finalPageTitle}
         customizeLinks={customBreadcrumbLinks}
         crumbs={Astro.props.crumbs}
+        excludeCurrentPage={excludeCurrentPage}
       />
       <slot />
     </main>

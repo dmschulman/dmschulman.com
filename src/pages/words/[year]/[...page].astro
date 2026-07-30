@@ -1,0 +1,47 @@
+---
+// src/pages/words/[year]/[...page].astro
+import type { GetStaticPathsOptions } from 'astro';
+import Layout from '../../../layouts/Layout.astro';
+import PostListBlock from '../../../components/blocks/PostListBlock.astro';
+import Pagination from '../../../components/navigation/Pagination.astro';
+import TagsListingBlock from '../../../components/blocks/TagsListingBlock.astro';
+import { getAllPosts, getAllYears, getPostDate, type Post } from '../../../lib/posts';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = await getAllPosts();
+  const years = await getAllYears(allPosts);
+
+  return years.flatMap(year => {
+    const postsInYear = allPosts.filter(p => getPostDate(p).getFullYear() === year);
+    return paginate(postsInYear, {
+      params: { year: year.toString() },
+      pageSize: 10,
+    });
+  });
+}
+
+interface Props {
+  page: {
+    data: Post[];
+    currentPage: number;
+    lastPage: number;
+    url: { prev?: string; next?: string; current: string };
+  };
+}
+
+const { page } = Astro.props;
+const year = parseInt(Astro.params.year!);
+---
+
+<Layout
+  pageTitle={`Posts from ${year}`}
+  crumbs={[
+    { text: 'Home', href: '/' },
+    { text: 'Words', href: '/words' },
+    { text: year.toString(), href: `/words/${year}` },
+  ]}
+>
+  <PostListBlock posts={page.data} />
+  <Pagination page={page} />
+  <TagsListingBlock collection="words" showNumber={true} year={year} />
+</Layout>

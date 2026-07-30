@@ -1,0 +1,115 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ListTags from '../../components/navigation/ListTags.astro';
+
+// Construction of all the collections I want in the Tags list
+const ALL_COLLECTIONS = ['words', 'shelf'] as const;
+type KnownCollection = typeof ALL_COLLECTIONS[number];
+
+interface Props {
+  collection?: string;
+  showNumber?: boolean;
+  slug?: string;
+  year?: number;
+  segmentByCategory?: boolean;
+  uncategorizedLabel?: string;
+  scopeUrlToCollection?: boolean;
+}
+
+const {
+  collection,
+  showNumber = false,
+  slug,
+  year,
+  segmentByCategory = false,
+  uncategorizedLabel = "Uncategorized",
+  scopeUrlToCollection = false,
+} = Astro.props;
+
+type AnyEntry = CollectionEntry<KnownCollection>;
+let entries: AnyEntry[] = collection
+  ? await getCollection(collection as KnownCollection)
+  : (await Promise.all(ALL_COLLECTIONS.map(c => getCollection(c)))).flat();
+
+if (year) {
+  entries = entries.filter(entry => {
+    return new Date(entry.data.date).getFullYear() === year;
+  });
+}
+
+if (slug && !entries.some(e => e.data.tags?.includes(slug))) {
+  return Astro.redirect("/404");
+}
+
+const shouldScopeUrls = scopeUrlToCollection && !!collection;
+
+const buckets = new Map<string, Map<string, number>>();
+const flatCounts = new Map<string, number>();
+
+for (const entry of entries) {
+  const cat = entry.data.category || uncategorizedLabel;
+  let catMap = buckets.get(cat);
+  if (!catMap) buckets.set(cat, (catMap = new Map()));
+
+  for (const tag of entry.data.tags ?? []) {
+    catMap.set(tag, (catMap.get(tag) ?? 0) + 1);
+    flatCounts.set(tag, (flatCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+type TagGroup = { category: string | null; tags: [string, number][] };
+
+const groups: TagGroup[] = segmentByCategory
+  ? [...buckets.entries()]
+      .sort(([a], [b]) => {
+        if (a === uncategorizedLabel) return 1;
+        if (b === uncategorizedLabel) return -1;
+        return a.localeCompare(b, 'en');
+      })
+      .map(([category, tagMap]) => ({
+        category,
+        tags: [...tagMap.entries()].sort(([, a], [, b]) => b - a),
+      }))
+      .filter(g => g.tags.length > 0)
+  : [{
+      category: null,
+      tags: [...flatCounts.entries()].sort(([, a], [, b]) => b - a),
+    }];
+---
+
+<p>Browse all tags:</p>
+{groups.map(({ category, tags }) => (
+  <section class="tag-category">
+    {category && <span class="category">{category}</span>}
+    <ListTags
+      collection={collection ?? ''}
+      tags={tags}
+      styled={true}
+      showNumber={showNumber}
+      scopeUrlToCollection={shouldScopeUrls}
+      class="tags"
+    />
+  </section>
+))}
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  .tag-category {
+    margin: 0 0 1rem;
+
+    span {
+      display: block;
+      font-weight: var.$weight-bold;
+      text-transform: capitalize;
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
+
+      @include bp(tablet) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+</style>

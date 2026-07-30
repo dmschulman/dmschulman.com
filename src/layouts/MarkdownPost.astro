@@ -4,10 +4,17 @@ import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import ListTags from '../components/navigation/ListTags.astro';
 import PrevNextPost from '../components/navigation/PrevNextPost.astro';
+import { getAdjacentPosts, getAllPosts } from '../lib/posts';
 
 const { frontmatter, collection, postId } = Astro.props;
 const collectionFromUrl = collection || frontmatter.collection || Astro.url.pathname.split('/')[1];
-const dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const dateFormat = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+
+const allPosts = await getAllPosts({ includeArchived: true });
+const currentPost = allPosts.find(p => p.id === postId);
+const { prev, next } = currentPost
+  ? await getAdjacentPosts(currentPost)
+  : { prev: null, next: null };
 
 const article = {
   publishedTime: frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined,
@@ -15,6 +22,7 @@ const article = {
   author: frontmatter.author,
   tags: frontmatter.tags,
 };
+
 ---
 
 <Layout
@@ -22,34 +30,104 @@ const article = {
   description={frontmatter.description}
   image={frontmatter.image}
   article={article}
+  excludeCurrentPage={true}
 >
-  <div class="content">
-    <article>
-      <div class="meta">
-        <span class="date"><Icon name="fa-calendar" />{new Date(frontmatter.date).toLocaleDateString('en-US', dateFormat)}</span>
-      </div>
+  <article>
+    <div class="meta">
+      <span class="date"><Icon name="fa-calendar" />{new Date(frontmatter.date).toLocaleDateString('en-US', dateFormat)}</span>
+    </div>
+
+    <div class="content">
       <slot />
+    </div>
+
+    {frontmatter.tags && frontmatter.tags.length > 0 && (
       <ListTags tags={frontmatter.tags} collection={collectionFromUrl} styled={true} />
-    </article>
-    <PrevNextPost collection="blog" currentPostId={postId} urlPath="words" />
-  </div>
+    )}
+  </article>
+
+  {!frontmatter.archived && (
+    <PrevNextPost prev={prev} next={next} basePath="words" includeYear />
+  )}
 </Layout>
 
 <style lang="scss" is:global>
   @use '../styles/base/vars.scss' as var;
   @use '../styles/base/breakpoints.scss' as *;
 
-  span {
+  nav.breadcrumbs ol li:last-child a {
+    text-decoration: underline;
+    cursor: pointer;
 
-    svg {
-      margin-right: 0.5rem;
-      vertical-align: text-top;
-    }
-
-    &.date {
-      width: 100%;
+    &:hover,
+    &:focus {
+      text-decoration: none;
     }
   }
+  
+  article {
+    margin-bottom: 3rem;
+    
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 0 1.25rem;
+
+        @include bp(tablet) {
+          flex-wrap: nowrap;
+        }
+
+        a.title {
+          display: block;
+
+          h2.post-title {
+            margin: 0;
+          }
+        }
+
+        span.date {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+
+          svg {
+            margin-right: 0.5rem;
+            vertical-align: text-top;
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+
+    .content {
+      p {
+        &:first-of-type {
+          font-size: 1.5rem;
+          font-family: var.$bayside-font-sans;
+          margin: 0 0 1rem;
+
+          @include bp(mobile) {
+            margin: 0.5rem 0 1rem;
+          }
+
+          @include bp(tablet) {
+            font-size: 1.75rem;
+          }
+
+          em {
+            font-style: normal;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+
 </style>
 
 <script>

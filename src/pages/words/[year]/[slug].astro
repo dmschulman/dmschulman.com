@@ -1,0 +1,29 @@
+---
+import { render } from 'astro:content';
+import MarkdownPost from '../../../layouts/MarkdownPost.astro';
+import { getAllPosts, getPostDate, getAdjacentPosts, type Post } from '../../../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts({ includeArchived: true });
+
+  return posts.map(post => {
+    const slug = post.id.split('_').slice(1).join('_');
+    const year = getPostDate(post).getFullYear().toString();
+    return {
+      params: { year, slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MarkdownPost frontmatter={post.data} postId={post.id}>
+  <Content />
+</MarkdownPost>

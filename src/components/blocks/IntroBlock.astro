@@ -2,7 +2,7 @@
 import { about } from '../../data/site.json';
 import Button from '../../components/elements/Button.astro';
 import Polaroid from '../../components/elements/Polaroid.astro';
-import { getRandomItem } from '../../utils/parseItems';
+import { getRandomItem } from '../../lib/parseItems';
 
 const randomItem = getRandomItem(about.hello);
 ---

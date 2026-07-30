@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/elements/Card.astro';
+import PostListBlock from '../../components/blocks/PostListBlock.astro';
+import ShelfListingBlock from '../../components/blocks/ShelfListingBlock.astro';
+import { tagToSlug } from '../../lib/tags';
+
+export async function getStaticPaths() {
+  const [words, shelf] = await Promise.all([
+    getCollection('words'),
+    getCollection('shelf'),
+  ]);
+
+  type TagBucket = {
+    originalTag: string;
+    words: typeof words;
+    shelf: typeof shelf;
+  };
+
+  const tagMap = new Map<string, TagBucket>();
+
+  const register = (tag: string): TagBucket => {
+    const slug = tagToSlug(tag);
+    let bucket = tagMap.get(slug);
+    if (!bucket) {
+      bucket = { originalTag: tag, words: [], shelf: [] };
+      tagMap.set(slug, bucket);
+    }
+    return bucket;
+  };
+
+  for (const item of words) for (const t of item.data.tags ?? []) register(t).words.push(item);
+  for (const item of shelf) for (const t of item.data.tags ?? []) register(t).shelf.push(item);
+
+  return [...tagMap.entries()].map(([slug, data]) => ({
+    params: { tag: slug },
+    props: data,
+  }));
+}
+
+const { originalTag, words, shelf } = Astro.props;
+
+const totalCount = words.length + shelf.length;
+---
+
+<Layout pageTitle={`"${originalTag}"`}>
+
+  {totalCount === 0 && <p>No items found for this tag.</p>}
+
+  {words.length > 0 && (
+    <section>
+      <h2>Posts</h2>
+      <PostListBlock posts={words} showExcerpt={false} archived='exclude'/>
+    </section>
+  )}
+
+  {shelf.length > 0 && (
+    <section>
+      <h2>Shelf</h2>
+      <p class="count">{totalCount} {totalCount === 1 ? 'item' : 'items'} with the term <strong>"{originalTag}"</strong>:</p>
+      <ShelfListingBlock
+        items={shelf}
+        showFilterButtons={false}
+        showLoadMore={true}
+      />
+    </section>
+  )}
+</Layout>
+
+<style lang="scss" is:global>
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  p {
+    &.count {
+      margin: 0 0 1.5rem;
+    }
+  }
+</style>

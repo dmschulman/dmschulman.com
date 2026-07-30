@@ -1,28 +1,42 @@
 ---
-function tagToSlug(tag) {
-  return tag.toLowerCase().replace(/\s+/g, '-');
-}
+import { tagToSlug } from '../../lib/tags';
 
 export interface Props {
   collection: string;
-  tags: string[];
+  tags: (string | [string, number])[];
   styled?: boolean;
+  showNumber?: boolean;
+  scopeUrlToCollection?: boolean;
+  class?: string;
 }
 
-const { collection, tags, styled } = Astro.props;
+const {
+  collection,
+  tags,
+  styled = false,
+  showNumber = false,
+  scopeUrlToCollection = false,
+  class: listClass,
+} = Astro.props;
+
+const basePath = scopeUrlToCollection ? `/${collection}/tag` : `/tag`;
+
+const entries: [string, number | null][] = tags.map(t =>
+  Array.isArray(t) ? t : [t, null]
+);
 ---
 
-<ul class="tag-list">
-  {
-    tags.map((tag, index) => (
-      <li class={styled ? "tag badge" : "tag"}>
-        <a href={`/${collection}/tag/${tagToSlug(tag)}`}>{tag}</a>{!styled && index < tags.length - 1 ? ',' : ''}
-      </li>
-    ))
-  }
+<ul class={listClass ?? 'tag-list'}>
+  {entries.map(([tag, count], index) => (
+    <li class={styled ? 'tag badge' : 'tag'}>
+      <a href={`${basePath}/${tagToSlug(tag)}`}>
+        {tag}{showNumber && count !== null && <i> ({count})</i>}
+      </a>{!styled && index < entries.length - 1 ? ',' : ''}
+    </li>
+  ))}
 </ul>
 
-<style lang="scss">
+<style lang="scss" is:global>
   @use '../../styles/base/vars.scss' as var;
   @use '../../styles/base/breakpoints.scss' as *;
 
@@ -30,18 +44,26 @@ const { collection, tags, styled } = Astro.props;
     list-style: none;
     margin: 0;
     padding: 0;
-    font-weight: bold;
     display: inline-block;
 
     li {
       display: inline-block;
       font-weight: normal;
-      text-transform: capitalize;
+      margin: 0 0.5rem 0 0;
+      
       color: var.$color-black;
-      margin: 0 1rem 1rem 0;
 
       a {
         font-weight: normal;
+      }
+
+      &.badge {
+        text-transform: capitalize;
+        margin: 0 1rem 1rem 0;
+
+        a {
+          font-weight: var.$weight-bold;
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
  {
-  "skills": [ "Frontend web development",  "component development", "design systems architecture", "web accessibility (WCAG 2.2)", "responsive atomic design", "answer engine optimization (AEO)", "search engine optimization (SEO/SEM)", "web analytics", "technical writing"],
+  "skills": [ "Frontend web development",  "component development", "design system architecture", "web accessibility (WCAG 2.2)", "responsive atomic design", "answer engine optimization (AEO)", "search engine optimization (SEO/SEM)", "web analytics", "technical writing"],
   "tools": [ "HTML & CSS", "SASS", "React", "JavaScript", "XML/XSLT", "PHP", "Python", "Twig", "Pattern Lab", "Markdown", "Astro", "Drupal", "Jekyll", "Wordpress", "Docker", "Git", "Figma" ],
   "jobs": [
     {

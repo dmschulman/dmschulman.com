@@ -51,4 +51,19 @@ const now = defineCollection({
   })
 });
 
-export const collections = { work, shelf, now };
+const words = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: 'src/content/words' }),
+  schema: z.object({
+    title: z.string(), // Display title of the content
+    date: z.date(), // File creation date
+    timestamp: z.date().optional(), // Display date
+    updated: z.date().optional(), // Date last updated
+    author: z.string().default('David M. Schulman').optional(), // Author display name
+    tags: z.array(z.string()), // Tags
+    published: z.boolean(), // Draft or published?
+    featured: z.boolean(), // Is this a featured item?
+    archived: z.boolean(), // Is this an archived item?
+  }),
+});
+
+export const collections = { work, shelf, now, words };
