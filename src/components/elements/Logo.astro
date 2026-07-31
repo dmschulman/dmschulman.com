@@ -48,6 +48,10 @@ const tagline = json.site.meta.tagline;
         height: auto;
         margin: 0 1rem 0 0;
         
+        @include bp(mobile) {
+          max-width: 70px;
+        }
+
         @include bp(tablet) {
           max-width: 80px;
         }

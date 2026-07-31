@@ -3,7 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import TagsListingBlock from '../../components/blocks/TagsListingBlock.astro';
 ---
 
-<Layout pageTitle="Tag" metaTitle="Browse content by tag">
+<Layout 
+  pageTitle="Tagged as"
+  description="Browse content by tag"
+>
   <p class="intro">/tăg/ <strong>noun</strong> - <i>a descriptive or identifying epithet</i>. For your convenience, my website collections and content are backed by a strong set of tags and taxonomy. Browse by a specific tag or collection type here.</p>
 
 	<TagsListingBlock showNumber={true} />

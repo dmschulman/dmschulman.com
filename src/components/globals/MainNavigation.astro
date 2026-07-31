@@ -39,15 +39,11 @@ const navItems = json.site.navigation.mainNav.items;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          font-weight: bold;
-          font-size: 1rem;
+          font-weight: var.$weight-bold;
+          font-size: 1.25rem;
 
           @include bp(mobile) {
             font-size: 1.5rem;
-          }
-          
-          @include bp(tablet) {
-            font-size: 1.25rem;
           }
         }
       }
