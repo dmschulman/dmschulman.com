@@ -4,17 +4,10 @@ import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import ListTags from '../components/navigation/ListTags.astro';
 import PrevNextPost from '../components/navigation/PrevNextPost.astro';
-import { getAdjacentPosts, getAllPosts } from '../lib/posts';
 
 const { frontmatter, collection, postId } = Astro.props;
 const collectionFromUrl = collection || frontmatter.collection || Astro.url.pathname.split('/')[1];
 const dateFormat = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
-
-const allPosts = await getAllPosts({ includeArchived: true });
-const currentPost = allPosts.find(p => p.id === postId);
-const { prev, next } = currentPost
-  ? await getAdjacentPosts(currentPost)
-  : { prev: null, next: null };
 
 const article = {
   publishedTime: frontmatter.date ? new Date(frontmatter.date).toISOString() : undefined,
@@ -47,7 +40,11 @@ const article = {
   </article>
 
   {!frontmatter.archived && (
-    <PrevNextPost prev={prev} next={next} basePath="words" includeYear />
+    <PrevNextPost
+      collection="words"
+      currentPostId={postId}
+      includeYear
+    />
   )}
 </Layout>
 

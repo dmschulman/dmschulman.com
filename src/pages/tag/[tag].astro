@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/elements/Card.astro';
 import PostListBlock from '../../components/blocks/PostListBlock.astro';
 import ShelfListingBlock from '../../components/blocks/ShelfListingBlock.astro';
 import { tagToSlug } from '../../lib/tags';
@@ -44,7 +43,15 @@ const { originalTag, words, shelf } = Astro.props;
 const totalCount = words.length + shelf.length;
 ---
 
-<Layout pageTitle={`"${originalTag}"`}>
+<Layout
+  pageTitle={`Tagged as "${originalTag}"`}
+  description=""
+  crumbs={[
+    { text: 'Home', href: '/' },
+    { text: 'Tag', href: '/tag' },
+    { text: `Tagged as "${originalTag}"`, href: `/tag/${tagToSlug(originalTag)}` },
+  ]}
+>
 
   {totalCount === 0 && <p>No items found for this tag.</p>}
 
