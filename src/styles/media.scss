@@ -6,6 +6,19 @@
 
 // MEDIA
 
+article {
+  p {
+    img {
+      height: auto;
+      width: 100%;
+      vertical-align: top;
+      max-width: 800px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}
+
 // IMAGES
 img {
   width: 100%;

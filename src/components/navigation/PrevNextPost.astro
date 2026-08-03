@@ -21,7 +21,9 @@ const {
 
 const basePath = urlPath || collection;
 
-const allEntries = await getCollection(collection, ({ data }) => data.published !== false);
+const allEntries = await getCollection(collection, ({ data }) =>
+  data.published !== false && data.archived !== true
+);
 
 const sortedEntries = allEntries.sort((a, b) => {
   const dateA = a.data[dateField] ?? a.data.date ?? a.data.pubDate ?? a.data.timestamp;

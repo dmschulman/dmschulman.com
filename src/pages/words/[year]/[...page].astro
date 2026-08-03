@@ -35,6 +35,8 @@ const year = parseInt(Astro.params.year!);
 <Layout
   pageTitle={`Posts from ${year}`}
   description="My little corner of the internet. Read some of my writing, my write-ups, and my ramblings. These posts represent self-contained coherent thoughts."
+  noindex=true
+  nofollow=true
   crumbs={[
     { text: 'Home', href: '/' },
     { text: 'Words', href: '/words' },

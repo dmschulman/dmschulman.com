@@ -48,5 +48,15 @@ export default defineConfig({
         ],
       },
     })
-  ]
+  ],
+  redirects: {
+    // GENERAL
+    '/about/portfolio.html': '/work',
+    // BLOG
+    'a-man-a-plan-a-eurorack-modular/': '/words/2014/a-man-a-plan-a-eurorack-modular',
+    '/six-link-saturday-second-helpings-edition/': '/words/2013/six-link-saturday-second-helpings-edition',
+    '/solving-cloud-sync-issues-with-synology-cloudstation/': '/words/2014/solving-cloud-sync-issues-with-synology-cloudstation',
+    '/2014/11/01/Fortune-TV-fortune-files-full-of-TV-quotes.html': '/words/2014/fortune-tv-fortune-files-full-of-tv-quotes',
+    '/2008/11/16/MacDailyNews-more-like-MacDailySnooze.html': '/words/2008/macdailynews-more-like-macdailysnooze'
+  }
 });

@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import { tagToSlug } from '../../lib/tags';
+
 import Layout from '../../layouts/Layout.astro';
 import PostListBlock from '../../components/blocks/PostListBlock.astro';
 import ShelfListingBlock from '../../components/blocks/ShelfListingBlock.astro';
-import { tagToSlug } from '../../lib/tags';
 
 export async function getStaticPaths() {
   const [words, shelf] = await Promise.all([
@@ -44,13 +45,10 @@ const totalCount = words.length + shelf.length;
 ---
 
 <Layout
-  pageTitle={`Tagged as "${originalTag}"`}
-  description=""
-  crumbs={[
-    { text: 'Home', href: '/' },
-    { text: 'Tag', href: '/tag' },
-    { text: `Tagged as "${originalTag}"`, href: `/tag/${tagToSlug(originalTag)}` },
-  ]}
+  pageTitle={`"${originalTag}"`}
+  description="Search by tag to browse between different collections, find what you're looking for by category."
+  noindex=true
+  nofollow=true
 >
 
   {totalCount === 0 && <p>No items found for this tag.</p>}

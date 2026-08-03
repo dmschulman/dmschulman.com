@@ -21,6 +21,8 @@ const { page } = Astro.props;
 <Layout 
   pageTitle="Words"
   description="My little corner of the internet. Read some of my writing, my write-ups, and my ramblings. These posts represent self-contained coherent thoughts."
+  noindex=true
+  nofollow=true
   crumbs={[
     { text: 'Home', href: '/' },
     { text: 'Words', href: '/words' },
@@ -33,7 +35,12 @@ const { page } = Astro.props;
 
   <div class="posts">
     <PostListBlock posts={page.data} />
+    
     <Pagination page={page} />
+
+    <p>
+      <a href="/words/archive">See archived posts</a>
+    </p>
   </div>
 
   <TagsListingBlock collection="words" showNumber={true} />

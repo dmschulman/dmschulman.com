@@ -101,7 +101,7 @@ const article = {
       }
 
     .content {
-      p {
+      > p {
         &:first-of-type {
           font-size: 1.5rem;
           font-family: var.$bayside-font-sans;
@@ -122,9 +122,14 @@ const article = {
         }
       }
     }
+
+    ul,
+    ol {
+      p {
+        margin: 0;
+      }
+    }
   }
-
-
 </style>
 
 <script>

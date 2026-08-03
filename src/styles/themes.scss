@@ -250,83 +250,9 @@ body {
       form span.field-error {
         color: var.$bayside-color-primary-text;
       }
-
-      // COMPONENTS
-
-      /* ul.tags {
-        li {
-          display: inline;
-          filter: drop-shadow(2px 2px 0 var.$color-black);
-          border: 2px solid var.$color-black;
-          border-radius: 10px;
-          margin: 0 1rem 1rem 0;
-          background-color: var.$color-white;
-          transition: all var.$tran-med ease-in-out;
-
-          &:hover,
-          &:focus {
-            filter: drop-shadow(4px 4px 0 var.$color-black);
-          }
-
-          a {
-            font-weight: var.$weight-normal;
-            color: var.$color-black;
-            padding: 0.25rem 0.5rem;
-
-            &:hover,
-            &:focus {
-              text-decoration: none;
-            }
-
-            i {
-              text-decoration: none;
-              text-decoration-thickness: 0px;
-            }
-          }
-        }
-      }
-
-      .accordion-tab-block {
-        .accordion-radio {
-          @include bp(tablet) {
-            &:nth-child(1):checked ~ .accordion-tabs .accordion-tab:nth-child(1),
-            &:nth-child(2):checked ~ .accordion-tabs .accordion-tab:nth-child(2),
-            &:nth-child(3):checked ~ .accordion-tabs .accordion-tab:nth-child(3),
-            &:nth-child(4):checked ~ .accordion-tabs .accordion-tab:nth-child(4),
-            &:nth-child(5):checked ~ .accordion-tabs .accordion-tab:nth-child(5),
-            &:nth-child(6):checked ~ .accordion-tabs .accordion-tab:nth-child(6) {
-              filter: drop-shadow(5px 5px 0 var.$color-black);
-            }
-          }
-        }
-
-        .accordion-tabs {
-          gap: 2rem;
-
-          .accordion-tab {
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            font-size: var.$font-size-h6;
-            font-family: var.$bayside-font-sans;
-            color: var.$color-black;
-            background: var.$color-white;
-            border: 2px solid var.$color-black;
-            transition: all var.$tran-med ease-in-out;
-
-            &:last-child {
-              margin-right: 0;
-            }
-
-            &:hover {
-              filter: drop-shadow(5px 5px 0 var.$color-black);
-            }
-          }
-        }
-      } */
     }
+
+    // GLOBAL
 
     footer {
       margin: 0 auto;
