@@ -25,6 +25,15 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      filter: (page) => !page.includes('/tag/'),
+      serialize(item) {
+        return {
+          ...item,
+          lastmod: new Date().toISOString().split('T')[0],
+          changefreq: 'monthly',
+          priority: 0.8,
+        };
+      },
     }),
     icon({
       iconDir: "src/assets/icons",
