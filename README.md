@@ -3,7 +3,6 @@
 The personal blog and portfolio of David M. Schulman, grown from the primordial soup of Wordpress and later given the spark of life through Jekyll. We've now evolved into a fully fledged Astro website!
 
 ## Packages used
-* [TinaCMS](https://docs.astro.build/en/guides/cms/tina-cms/)
 
 ### Libraries
 * [sass](https://docs.astro.build/en/guides/styling/#sass-and-scss)
@@ -14,3 +13,4 @@ The personal blog and portfolio of David M. Schulman, grown from the primordial 
 * [astro-icon](https://www.astroicon.dev/getting-started/)
 * [astro-breadcrumb](https://docs.astro-breadcrumbs.kasimir.dev/start-here/getting-started/)
 * [astro-seo](https://github.com/jonasmerlin/astro-seo)
+* [astro-sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
