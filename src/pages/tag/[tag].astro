@@ -40,6 +40,11 @@ export async function getStaticPaths() {
 }
 
 const { originalTag, words, shelf } = Astro.props;
+const byDateDesc = (a: { data: { date: Date } }, b: { data: { date: Date } }) =>
+  b.data.date.getTime() - a.data.date.getTime();
+
+const sortedWords = [...words].sort(byDateDesc);
+const sortedShelf = [...shelf].sort(byDateDesc);
 
 const totalCount = words.length + shelf.length;
 ---
@@ -56,7 +61,7 @@ const totalCount = words.length + shelf.length;
   {words.length > 0 && (
     <section>
       <h2>Posts</h2>
-      <PostListBlock posts={words} showExcerpt={false} archived='exclude'/>
+      <PostListBlock posts={sortedWords} showExcerpt={false} archived='exclude'/>
     </section>
   )}
 
@@ -65,7 +70,7 @@ const totalCount = words.length + shelf.length;
       <h2>Shelf</h2>
       <p class="count">{totalCount} {totalCount === 1 ? 'item' : 'items'} with the term <strong>"{originalTag}"</strong>:</p>
       <ShelfListingBlock
-        items={shelf}
+        items={sortedShelf}
         showFilterButtons={false}
         showLoadMore={true}
       />

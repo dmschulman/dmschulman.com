@@ -42,6 +42,17 @@ const tagline = json.site.meta.tagline;
       text-decoration: none;
       font-weight: bold;
 
+      &:hover,
+      &:focus {
+        .sitename {
+          span {
+            &.name {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
       img,
       svg {
         max-width: 66px;

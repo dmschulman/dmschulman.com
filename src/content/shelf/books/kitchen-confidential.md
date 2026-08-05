@@ -1,5 +1,5 @@
 ---
-title: Benjamin Franklin
+title: Kitchen Confidential
 subtitle: Anthony Bordain
 date: 2025-04-20T04:00:00.000Z
 category: book

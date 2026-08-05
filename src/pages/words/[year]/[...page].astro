@@ -11,7 +11,9 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const years = await getAllYears(allPosts);
 
   return years.flatMap(year => {
-    const postsInYear = allPosts.filter(p => getPostDate(p).getFullYear() === year);
+    const postsInYear = allPosts
+      .filter(p => getPostDate(p).getFullYear() === year)
+      .sort((a, b) => getPostDate(b).getTime() - getPostDate(a).getTime());
     return paginate(postsInYear, {
       params: { year: year.toString() },
       pageSize: 10,

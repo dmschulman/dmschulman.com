@@ -1,0 +1,117 @@
+---
+import { getCollection, getEntries, render } from 'astro:content';
+import { marked } from 'marked';
+
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/elements/Card.astro';
+import Spacer from '../../components/elements/Spacer.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('now');
+  return entries.map(entry => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+const readingHtml = entry.data.readingIntro ? marked.parseInline(entry.data.readingIntro) : null;
+const listeningHtml = entry.data.listeningIntro ? marked.parseInline(entry.data.listeningIntro) : null;
+const watchingHtml = entry.data.watchingIntro ? marked.parseInline(entry.data.watchingIntro) : null;
+const books = await getEntries(entry.data.reading ?? []);
+const albums = await getEntries(entry.data.listening ?? []);
+const films = await getEntries(entry.data.watching ?? []);
+
+const formattedDate = new Date(entry.id + 'T00:00:00').toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  pageTitle={`Then: ${formattedDate}`}
+  description={`A snapshot of what I was up to on ${formattedDate}.`}
+  crumbs={[
+    { text: 'Home', href: '/' },
+    { text: 'Now', href: '/now' },
+    { text: 'Then', href: '/now/then' },
+  ]}
+>
+  {entry.data.reading && entry.data.reading.length > 0 && (
+    <>
+      <h2>Reading</h2>
+      {readingHtml && <p set:html={readingHtml} />}
+      <ul class="cards">
+        {books.map(book => (
+          <li class="d_press-down">
+            <Card cardType="media" layoutClass="column" cardClass="media" {...book.data} />
+          </li>
+        ))}
+      </ul>
+      <Spacer />
+    </>
+  )}
+
+  {entry.data.listening && entry.data.listening.length > 0 && (
+    <>
+      <h2>Listening to</h2>
+      {listeningHtml && <p set:html={listeningHtml} />}
+      <ul class="cards">
+        {albums.map(album => (
+          <li class="d_press-down">
+            <Card cardType="media" layoutClass="column" cardClass="media" {...album.data} />
+          </li>
+        ))}
+      </ul>
+      <Spacer />
+    </>
+  )}
+
+  {entry.data.watching && entry.data.watching.length > 0 && (
+    <>
+      <h2>Watching</h2>
+      {watchingHtml && <p set:html={watchingHtml} />}
+      <ul class="cards">
+        {films.map(film => (
+          <li class="d_press-down">
+            <Card cardType="media" layoutClass="column" cardClass="media" {...film.data} />
+          </li>
+        ))}
+      </ul>
+      <Spacer />
+    </>
+  )}
+
+  <Content />
+</Layout>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.cards {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    @include bp(tablet) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .image {
+      img {
+        max-width: 260px;
+      }
+    }
+  }
+
+</style>

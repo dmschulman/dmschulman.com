@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { reverseChronologicalBy } from '../../lib/sortItems';
+
+import Layout from '../../layouts/Layout.astro';
+
+const entries = reverseChronologicalBy(
+  await getCollection('now'),
+  entry => entry.data.date
+);
+
+const formatDate = (id: string) =>
+  new Date(id + 'T00:00:00').toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+---
+
+<Layout
+  pageTitle="Then"
+  description="Look back on previous updates to the Now section. Find out what I was up to then."
+>
+  <p class="intro">Look back on previous updates to the <a href="/now">Now</a> section. See what I was up to then:</p>
+  
+  <ul class="then">
+    {entries.map(entry => (
+      <li>
+        <a href={`/now/${entry.id}`}>{formatDate(entry.id)}</a>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style lang="scss">
+  @use '../../styles/base/vars.scss' as var;
+  @use '../../styles/base/breakpoints.scss' as *;
+
+  ul.then {
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        font-size: 1.5rem;
+      }
+    }
+  }
+</style>
