@@ -42,6 +42,7 @@ const shelf = defineCollection({
 const now = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/now'}),
   schema: z.object({
+    date: z.date(), // File creation date
     reading: z.array(reference('shelf')).default([]), // What I'm reading
     readingIntro: z.string().optional(), // Paragraph before books display
     listening: z.array(reference('shelf')).default([]), // What I'm listening to
