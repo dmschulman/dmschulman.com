@@ -42,7 +42,8 @@ const shelf = defineCollection({
 const now = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/now'}),
   schema: z.object({
-    date: z.date(), // File creation date
+    date: z.date(), // File publish date
+    description: z.string().optional(), // Intro paragraph also used for excerpt
     reading: z.array(reference('shelf')).default([]), // What I'm reading
     readingIntro: z.string().optional(), // Paragraph before books display
     listening: z.array(reference('shelf')).default([]), // What I'm listening to
@@ -56,7 +57,7 @@ const words = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/words' }),
   schema: z.object({
     title: z.string(), // Display title of the content
-    date: z.date(), // File creation date
+    date: z.date(), // File publish date
     timestamp: z.date().optional(), // Display date
     updated: z.date().optional(), // Date last updated
     author: z.string().default('David M. Schulman').optional(), // Author display name

@@ -27,6 +27,7 @@ interface Props {
 	// metadata
 	id?:					string;		// the id associated with the content
 	category?:		string;		// categorization of the item
+	type?:				string;		// a subcategory of the item
 	tags?:				string[];	// array of tags associated with an item
 
 	// images
@@ -44,6 +45,8 @@ const {
 	cardClass,
 	id,
 	category,
+	type,
+	tags = [],
 	href,
 	linkUrl,
 	alive,
@@ -53,7 +56,6 @@ const {
 	bullets = [],
 	role,
 	timestamp,
-	tags = [],
 	image,
 	imageAlt = '',
 	imageWidth,
@@ -223,17 +225,6 @@ const Element = collectionHref ? 'a' : 'div';
 	a.card {
 		text-decoration: none;
 		font-weight: normal;
-
-		&:hover,
-		&:focus {
-			.content {
-				span {					
-					&.title {
-						text-decoration: underline;
-					}
-				}
-			}
-		}
 	}
 
 	.card {
@@ -483,6 +474,10 @@ const Element = collectionHref ? 'a' : 'div';
 				@include bp(desktop) {
 					margin-right: 2rem;
 				}
+
+				img {
+					aspect-ratio: 1 / 1;
+				}
 			}
 
 			.content {
@@ -491,7 +486,7 @@ const Element = collectionHref ? 'a' : 'div';
 					margin: 0;
 					width: fit-content;
 					word-break: break-word;
-
+					font-family: var.$bayside-font-serif;
 
 					@include bp(mobile) {
             font-size: 1.75rem;
@@ -518,6 +513,20 @@ const Element = collectionHref ? 'a' : 'div';
 		}
 
 		&.media {
+
+			a {
+				&:hover,
+				&:focus {
+					.content {
+						span {
+							&.title {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+			}
+
 
 			&.album {
 				margin-right: 12px;

@@ -15,6 +15,7 @@ export default defineConfig({
   image: {
     domains: ["astro.build"],
   },
+  output: 'static',
   vite: {
     server: {
       watch: {

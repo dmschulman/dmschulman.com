@@ -40,9 +40,14 @@ const formattedDate = new Date(entry.id + 'T00:00:00').toLocaleDateString('en-US
     { text: 'Then', href: '/now/then' },
   ]}
 >
+
+  {entry.data.description && (
+    <p>{entry.data.description}</p>
+  )}
+
   {entry.data.reading && entry.data.reading.length > 0 && (
     <>
-      <h2>Reading</h2>
+      <h2 class="section-title">Reading</h2>
       {readingHtml && <p set:html={readingHtml} />}
       <ul class="cards">
         {books.map(book => (
@@ -57,7 +62,7 @@ const formattedDate = new Date(entry.id + 'T00:00:00').toLocaleDateString('en-US
 
   {entry.data.listening && entry.data.listening.length > 0 && (
     <>
-      <h2>Listening to</h2>
+      <h2 class="section-title">Listening to</h2>
       {listeningHtml && <p set:html={listeningHtml} />}
       <ul class="cards">
         {albums.map(album => (
@@ -72,7 +77,7 @@ const formattedDate = new Date(entry.id + 'T00:00:00').toLocaleDateString('en-US
 
   {entry.data.watching && entry.data.watching.length > 0 && (
     <>
-      <h2>Watching</h2>
+      <h2 class="section-title">Watching</h2>
       {watchingHtml && <p set:html={watchingHtml} />}
       <ul class="cards">
         {films.map(film => (

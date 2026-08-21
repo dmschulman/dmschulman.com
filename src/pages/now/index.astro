@@ -38,6 +38,12 @@ const lastUpdated = date.toLocaleDateString('en-US', {
 	<p class="intro">An about page can only tell you so much about a person. To see what I'm involved with and engrossed in right now, check out my Now page (inspired by Derek Silver's <a href="https://nownownow.com/">nownownow.com</a> project). Find previous updates <a href="/now/then">here</a>.</p>
 	<p class="intro">Last updated: <i><strong>{lastUpdated}</strong></i>.</p>
 
+	{entry.data.description && (
+		<p>{entry.data.description}</p>
+	)}
+
+	<Spacer />
+	
 	{entry.data.reading && entry.data.reading.length > 0 && (
 		<>
 			<h2>Reading</h2>
@@ -49,7 +55,7 @@ const lastUpdated = date.toLocaleDateString('en-US', {
 					</li>
 				))}
 			</ul>
-			<Spacer />
+			<Spacer size="lg" />
 		</>
 	)}
 
@@ -64,7 +70,7 @@ const lastUpdated = date.toLocaleDateString('en-US', {
 					</li>
 				))}
 			</ul>
-			<Spacer />
+			<Spacer size="lg" />
 		</>
 	)}
 
@@ -79,11 +85,13 @@ const lastUpdated = date.toLocaleDateString('en-US', {
 					</li>
 				))}
 			</ul>
-			<Spacer />
+			<Spacer size="lg" />
 		</>
 	)}
 
 	<Content />
+
+	<Spacer size="md" />
 
 	<h2>Living</h2>
 	<p><strong>Current location:</strong> Philadelphia, PA 🥨.</p>

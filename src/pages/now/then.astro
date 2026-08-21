@@ -1,7 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection,getEntries } from 'astro:content';
 import { reverseChronologicalBy } from '../../lib/sortItems';
-
 import Layout from '../../layouts/Layout.astro';
 
 const entries = reverseChronologicalBy(
@@ -14,7 +13,7 @@ const formatDate = (id: string) =>
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  });
+  }); 
 ---
 
 <Layout
@@ -26,7 +25,14 @@ const formatDate = (id: string) =>
   <ul class="then">
     {entries.map(entry => (
       <li>
-        <a href={`/now/${entry.id}`}>{formatDate(entry.id)}</a>
+        <details>
+          <summary>
+            <a href={`/now/${entry.id}`}>{formatDate(entry.id)}</a>
+          </summary>
+          {entry.data.description && (
+            <p>{entry.data.description}</p>
+          )}
+        </details>
       </li>
     ))}
   </ul>
@@ -37,11 +43,28 @@ const formatDate = (id: string) =>
   @use '../../styles/base/breakpoints.scss' as *;
 
   ul.then {
-    li {
-      margin-bottom: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-      a {
-        font-size: 1.5rem;
+    li {
+      margin: 0 0 0.75rem 0;
+
+      details {
+        margin: 0 0 0 1rem;
+
+        summary {
+          font-size: 1.5rem;
+
+          a {
+            font-size: 1.5rem;
+            margin: 0 0 0 0.25rem;
+          }
+        }
+
+        p {
+          margin: 0.5rem  0 1.5rem 1.75rem;
+        }
       }
     }
   }
