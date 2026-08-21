@@ -32,7 +32,7 @@ const picks = shuffled.slice(0, Math.min(count, shuffled.length));
 ---
 
 <div class="random-items">
-  {title && <h2 class="section-title">{title}</h2>}
+  {title && <h2>{title}</h2>}
   <ul class="cards">
     {picks.map((entry) => 
       <li class="d_press-down">
@@ -65,6 +65,10 @@ const picks = shuffled.slice(0, Math.min(count, shuffled.length));
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    h2 {
+      margin: 0 0 1rem;
+    }
 
     ul {
       &.cards {
